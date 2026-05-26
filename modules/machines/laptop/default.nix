@@ -11,7 +11,7 @@ in
   flake.nixosConfigurations =
     let
       nixpkgsMap = {
-        #z500 = "-unstable";
+        z500 = "-unstable";
       };
       systemArchMap = {
         z500 = "x86_64-linux";

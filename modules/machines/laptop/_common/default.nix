@@ -34,7 +34,7 @@
 
   security = {
     doas = {
-      enable = lib.mkDefault false;
+      enable = lib.mkDefault true;
       wheelNeedsPassword = lib.mkDefault true;
       extraRules = [
         {
@@ -61,16 +61,16 @@
     delta
 
     zsh
-    fish
+    #fish
 
-    doas
+    #doas
 
     rsync
     ncdu
     speedtest-cli
     net-tools
     iperf3
-    starship
+    #starship
   ];
 
   environment.variables = {

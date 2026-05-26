@@ -135,6 +135,8 @@
     just
   ];
 
+  environment.shellAliases = lib.mkForce {};
+
   environment.variables = {
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";
   };
@@ -195,7 +197,14 @@
   ];
 
   programs = {
-    fish.enable = true;
+    fish = {
+      enable = true;
+      shellAliases = {};
+      shellAbbrs = {};
+      shellInit = "";
+      loginShellInit = "";
+      interactiveShellInit = "";
+    };
     starship.enable = true;
     #gnupg.agent = {
       #enable = true;
