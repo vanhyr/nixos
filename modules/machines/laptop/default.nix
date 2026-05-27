@@ -34,13 +34,19 @@ in
 	    };
 	    modules = [
 	      {
-	        #nixpkgs.overlays = [
-		#  self.inputs.nix-cachyos-kernel.overlays.default
-		#  #self.inputs.nix-cachyos-kernel.overlays.pinned
-		#];
+	        nixpkgs.overlays = [
+		  # nix-cachyos-kernel
+		  #self.inputs.nix-cachyos-kernel.overlays.default
+		  #self.inputs.nix-cachyos-kernel.overlays.pinned
+		];
 	      }
-	      #{ chaotic.nyx.overlay.enable = false; }
+
+	      # chaotic-nyx
 	      #self.inputs.chaotic.nixosModules.default
+
+              # nyx-loner
+	      self.inputs.nyx-loner.nixosModules.default
+	      
 	      (./. + "/_common/default.nix")
 	      (./. + "/${name}/configuration.nix")
 	    ];

@@ -17,11 +17,31 @@
       #download-buffer-size = 4194304000; # 4GiB
       trusted-users = [ "vanhyr" ]; # root is already trusted by default, no need to add
 
-      #extra-substituters = [ "https://chaotic-nyx.cachix.org/" ];
-      #extra-trusted-public-keys = [ "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8=" ];
+      #substituters = [ "https://chaotic-nyx.cachix.org/" ];
+      #trusted-public-keys = [ "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8=" ];
 
-      #substituters = [ "https://xddxdd.cachix.org" ];
-      #trusted-public-keys = [ "xddxdd.cachix.org-1:ay1m5fX7wA499N3pP6mXb60bU1BfLsk1XHCf29K7M8E=" ];
+      substituters = [
+        # chaotic-nyx
+        #"https://chaotic-nyx.cachix.org/"
+
+        # nyx-loner
+	#"https://cache.garnix.io"
+
+        # nix-cachyos-kernel
+        #"https://attic.xuyh0120.win/lantian"
+	#"https://cache.garnix.io"
+      ];
+      trusted-public-keys = [
+        # chaotic-nyx
+        #"chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
+
+        # nyx-loner
+        #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        
+        # nix-cachyos-kernel
+	#"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+	#"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      ];
     };
   };
 
@@ -51,12 +71,17 @@
     };
   };
   
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
  
-  #boot.kernelPackages = pkgs.legacyPackages.${pkgs.system}.linuxPackages_cachyos;
+  # chaotic-nyx
   #boot.kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
   #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto)
 
+  # nyx-loner
+  #boot.kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
+  boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto)
+
+  # nix-cachyos-kernel
   #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
   #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto; # cachyOS kernel (lto)
 
@@ -143,6 +168,7 @@
     just
 
     autorandr
+    fastfetch
 
   ];
 
@@ -243,6 +269,7 @@
 
   # Enable the OpenSSH daemon.
   services = {
+    
     openssh = {
       enable = true;
       ports = [ 235 ];
@@ -267,13 +294,21 @@
         AllowTcpForwarding no
       ";
     };
+
     btrfs.autoScrub = {
       enable = true;
       interval = "weekly";
     };
+    
     autorandr = {
       enable = true;
       profiles = {};
+    };
+
+    ananicy = {
+      enable = true;
+      package = pkgs.ananicy-cpp;
+      rulesProvider = pkgs.ananicy-rules-cachyos;
     };
   };
 
