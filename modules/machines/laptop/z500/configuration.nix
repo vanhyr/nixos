@@ -12,9 +12,16 @@
 
   nix = {
     settings = {
-      #cores = 1;
+      cores = 0;
+      max-jobs = "auto";
       #download-buffer-size = 4194304000; # 4GiB
       trusted-users = [ "vanhyr" ]; # root is already trusted by default, no need to add
+
+      #extra-substituters = [ "https://chaotic-nyx.cachix.org/" ];
+      #extra-trusted-public-keys = [ "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8=" ];
+
+      #substituters = [ "https://xddxdd.cachix.org" ];
+      #trusted-public-keys = [ "xddxdd.cachix.org-1:ay1m5fX7wA499N3pP6mXb60bU1BfLsk1XHCf29K7M8E=" ];
     };
   };
 
@@ -43,9 +50,15 @@
       #xbootldrMountPoint = "/boot/efi";
     };
   };
-     
-  # Use latest kernel.
+  
   boot.kernelPackages = pkgs.linuxPackages_latest;
+ 
+  #boot.kernelPackages = pkgs.legacyPackages.${pkgs.system}.linuxPackages_cachyos;
+  #boot.kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
+  #boot.kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto)
+
+  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
+  #boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto; # cachyOS kernel (lto)
 
   networking = {
     hostName = "z500";
@@ -76,11 +89,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
-  };
-  
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
@@ -133,12 +141,16 @@
 
     compsize # real size for btrfs filesystems
     just
+
+    autorandr
+
   ];
 
   environment.shellAliases = lib.mkForce {};
 
   environment.variables = {
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";
+    WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
   };
 
   fileSystems = {
@@ -230,29 +242,39 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    ports = [ 235 ];
-    settings = {
-      Banner = null;
-      AllowUsers = [ "vanhyr" ];
-      PasswordAuthentication = false;
-      LoginGraceTime = 0; # 20?
-      PermitRootLogin = "no";
-      X11Forwarding = false;
-      StrictModes = true;
-      UsePAM = true;
-      UseDns = false;
-      KbdInteractiveAuthentication = false;
-      PrintMotd = false;
+  services = {
+    openssh = {
+      enable = true;
+      ports = [ 235 ];
+      settings = {
+        Banner = null;
+        AllowUsers = [ "vanhyr" ];
+        PasswordAuthentication = false;
+        LoginGraceTime = 0; # 20?
+        PermitRootLogin = "no";
+        X11Forwarding = false;
+        StrictModes = true;
+        UsePAM = true;
+        UseDns = false;
+        KbdInteractiveAuthentication = false;
+        PrintMotd = false;
+      };
+      extraConfig = "
+        AddressFamily inet
+        PermitEmptyPasswords no
+        GSSAPIAuthentication no
+        AllowAgentForwarding no
+        AllowTcpForwarding no
+      ";
     };
-    extraConfig = "
-      AddressFamily inet
-      PermitEmptyPasswords no
-      GSSAPIAuthentication no
-      AllowAgentForwarding no
-      AllowTcpForwarding no
-    ";
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+    autorandr = {
+      enable = true;
+      profiles = {};
+    };
   };
 
   # Open ports in the firewall.

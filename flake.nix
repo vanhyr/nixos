@@ -1,29 +1,49 @@
+    #  #inputs.nixpkgs.follows = "nixpkgs-unstable"0
 {
   description = "NixOS";
 
   inputs = {
+  
     nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    
+    #chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    #chaotic = {
+    #  url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #};
+
+    #nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    #nix-cachyos-kernel = {
+    #  url = "github:xddxdd/nix-cachyos-kernel/release";
+    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #};
+    
     #nur = {
     #  url = "github:nix-community/NUR";
     #  inputs.nixpkgs-lib.follows = "nixpkgs";
     #};
+    
     #home-manager = {
     #  url = "github:nix-community/home-manager/release-25.11";
     #  inputs.nixpkgs-lib.follows = "nixpkgs";
     #};
+    
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    
     #agenix = {
     #  url = "github:ryantm/agenix";
     #  inputs.nixpkgs-lib.follows = "nixpkgs";
     #};
+    
     #disko = {
     #  url = "github:nix-community/disko";
     #  inputs.nixpkgs-lib.follows = "nixpkgs";
     #};
+  
   };
 
   outputs =

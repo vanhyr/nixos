@@ -33,6 +33,14 @@ in
 	      };
 	    };
 	    modules = [
+	      {
+	        #nixpkgs.overlays = [
+		#  self.inputs.nix-cachyos-kernel.overlays.default
+		#  #self.inputs.nix-cachyos-kernel.overlays.pinned
+		#];
+	      }
+	      #{ chaotic.nyx.overlay.enable = false; }
+	      #self.inputs.chaotic.nixosModules.default
 	      (./. + "/_common/default.nix")
 	      (./. + "/${name}/configuration.nix")
 	    ];
