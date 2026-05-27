@@ -18,14 +18,14 @@ check:
 dry-run:
   sudo nixos-rebuild dry-activate --flake .#{{hostname}}
 
-test: git-stage
+test:
   sudo nixos-rebuild test --flake .#{{hostname}}
 
-switch: git-stage
+switch:
   sudo nixos-rebuild switch --flake .#{{hostname}}
 
-switch-upgrade: git-stage
-  sudo nixos-rebuild switch --upgrade --flake .#{{hostname}}
+#switch-upgrade:
+#  sudo nixos-rebuild switch --upgrade --flake .#{{hostname}}
 
 fmt:
   nix fmt
@@ -35,18 +35,25 @@ check-clean:
 
 # Remote
 
-dry-run-remote $host:
+dry-run-remote host:
   nixos-rebuild dry-activate --flake .#{{host}} --target-host {{host}} --build-host {{host}} --no-reexec --sudo --ask-sudo-password
 
-deploy $host: # TODO -> not sure if $ is needed
+deploy host:
   nixos-rebuild switch --flake .#{{host}} --target-host {{host}} --build-host {{host}} --no-reexec --sudo --ask-sudo-password
 
-deploy-upgrade-remote $host:
+deploy-upgrade-remote host:
   nixos-rebuild switch --upgrade --flake .#{{host}} --target-host {{host}} --build-host {{host}} --no-reexec --sudo --ask-sudo-password
 
-copy $host:
+copy host:
   rsync -ax --delete --rsync-path="sudo rsync" ./ {{host}}:/etc/nixos/
 
-[private]
-git-stage:
-  @git add --intent-to-add . 2>/dev/null || true
+# Maintenance
+
+@clean:
+  nix-collect-garbage -d
+
+@optimize:
+  nix-store --optimize
+
+@fix:
+  nix-store --repair --verify --check-contents
