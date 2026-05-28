@@ -1,7 +1,5 @@
 set quiet
 
-# TODO -> Use nixos-rebuild-ng
-
 hostname := `hostname` # get's the hostname and stores it as a variable
 
 default:
@@ -16,13 +14,16 @@ check:
   nix flake check
 
 dry-run:
-  sudo nixos-rebuild dry-activate --flake .#{{hostname}}
+  #sudo nixos-rebuild dry-activate --flake .#{{hostname}}
+  doas nixos-rebuild dry-activate --flake .#{{hostname}}
 
 test:
-  sudo nixos-rebuild test --flake .#{{hostname}}
+  doas nixos-rebuild test --flake .#{{hostname}}
+  #sudo nixos-rebuild test --flake .#{{hostname}}
 
 switch:
-  sudo nixos-rebuild switch --flake .#{{hostname}}
+  doas nixos-rebuild switch --flake .#{{hostname}}
+  #sudo nixos-rebuild switch --flake .#{{hostname}}
 
 switch-nh:
   #nh os switch .#{{hostname}}

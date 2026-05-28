@@ -71,16 +71,12 @@
   boot = {
 
     # default linux kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    #kernelPackages = pkgs.linuxPackages_latest;
     #kernelPackages = pkgs.linuxPackages_6_12; # LTS (para nvidia legacy_470 sin parchear)
 
-    # chaotic-nyx
-    #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
-    #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto)
-
-    # nyx-loner
-    #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
-    #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto)
+    # chaotic-nyx and nyx-loner
+    kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
+    #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto) TODO -> broken cups
 
     # nix-cachyos-kernel
     #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel

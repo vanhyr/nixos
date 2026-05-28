@@ -46,13 +46,13 @@
       extraRules = [
         {
           groups = [ "wheel" ];
-	  persist = true;
-	  #keepEnv = true;
+          persist = true;
+          keepEnv = true;
         }
       ];
     };
     sudo = {
-      enable = lib.mkDefault true;
+      enable = lib.mkDefault false;
       #wheelNeedsPassword = lib.mkDefault false;
     };
   };

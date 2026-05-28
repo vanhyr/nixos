@@ -7,9 +7,9 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
    
     # chaotic-nyx (works now, it didn't for a while)
-    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    #chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
     # nyx-loner (works)
-    #nyx-loner.url = "github:lonerOrz/nyx-loner";
+    nyx-loner.url = "github:lonerOrz/nyx-loner";
 
     # nix-cachyos-kernel (doesn't work, revisit it if their ci/cd passes)
     #nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";

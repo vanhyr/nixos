@@ -46,9 +46,9 @@ in
                 ];
               }
               # chaotic-nyx
-              self.inputs.chaotic.nixosModules.default
+              #self.inputs.chaotic.nixosModules.default
               # nyx-loner
-              #self.inputs.nyx-loner.nixosModules.default
+              self.inputs.nyx-loner.nixosModules.default
               (./. + "/_common/default.nix")
               (./. + "/${name}/configuration.nix")
             ];
