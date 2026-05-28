@@ -10,10 +10,10 @@ default:
 # Local
 
 update:
-  sudo nix flake update
+  nix flake update
 
 check:
-  sudo nix flake check
+  nix flake check
 
 dry-run:
   sudo nixos-rebuild dry-activate --flake .#{{hostname}}
@@ -23,6 +23,11 @@ test:
 
 switch:
   sudo nixos-rebuild switch --flake .#{{hostname}}
+
+switch-nh:
+  #nh os switch .#{{hostname}}
+  nh os switch . -H {{hostname}}
+  #nh os switch .
 
 #switch-upgrade:
 #  sudo nixos-rebuild switch --upgrade --flake .#{{hostname}}
@@ -51,6 +56,9 @@ copy host:
 
 @clean:
   nix-collect-garbage -d
+
+@clean-nh:
+  nh clean all
 
 @optimize:
   nix-store --optimize

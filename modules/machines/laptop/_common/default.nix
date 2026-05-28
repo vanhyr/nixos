@@ -27,6 +27,13 @@
     config = {
       allowUnfree = true;
       #allowUnfreePredicate = (_:true); # TODO -> see how to integrate this
+      nvidia.acceptLicense = true;
+      #allowBroken = true; # general option, allow broken packages
+      # granular allowing of broken packages
+      problems.handlers = {
+        nvidia-x11.broken = "warn"; # or "ignore"
+        cups.broken = "warn";
+      };
     };
   };
 

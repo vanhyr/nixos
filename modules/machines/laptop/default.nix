@@ -1,3 +1,8 @@
+    #nyx-loner = 0
+    #  url = "github:lonerOrz/nyx-loner";
+    #  #inputs.nixpkgs.follows = "nixpkgs";
+    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #};
 {
   lib,
   self,
@@ -15,7 +20,7 @@ in
       };
       systemArchMap = {
         z500 = "x86_64-linux";
-	#rpi = "aarch64-linux";
+	      #rpi = "aarch64-linux";
       };
       myNixosSystem =
         name: self.inputs."nixpkgs${lib.attrsets.attrByPath [name] "" nixpkgsMap}".lib.nixosSystem;
@@ -23,35 +28,32 @@ in
     lib.listToAttrs (
       builtins.map (
         name:
-	lib.nameValuePair name (
-	  (myNixosSystem name) {
+	      lib.nameValuePair name (
+          (myNixosSystem name) {
             system = lib.attrsets.attrByPath [ name ] "x86_64-linux" systemArchMap;
-	    specialArgs = {
-	      inherit (self) inputs;
-	      self = {
-	        nixosModules = self.nixosModules;
-	      };
-	    };
-	    modules = [
-	      {
-	        nixpkgs.overlays = [
-		  # nix-cachyos-kernel
-		  #self.inputs.nix-cachyos-kernel.overlays.default
-		  #self.inputs.nix-cachyos-kernel.overlays.pinned
-		];
-	      }
-
-	      # chaotic-nyx
-	      #self.inputs.chaotic.nixosModules.default
-
+            specialArgs = {
+              inherit (self) inputs;
+              self = {
+                nixosModules = self.nixosModules;
+              };
+            };
+            modules = [
+              {
+                nixpkgs.overlays = [
+                  # nix-cachyos-kernel
+                  #self.inputs.nix-cachyos-kernel.overlays.default
+                  #self.inputs.nix-cachyos-kernel.overlays.pinned
+                ];
+              }
+              # chaotic-nyx
+              self.inputs.chaotic.nixosModules.default
               # nyx-loner
-	      self.inputs.nyx-loner.nixosModules.default
-	      
-	      (./. + "/_common/default.nix")
-	      (./. + "/${name}/configuration.nix")
-	    ];
-	  }
-	)
+              #self.inputs.nyx-loner.nixosModules.default
+              (./. + "/_common/default.nix")
+              (./. + "/${name}/configuration.nix")
+            ];
+          }
+        )
       ) configs
     );
 }
