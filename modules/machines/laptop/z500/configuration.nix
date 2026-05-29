@@ -188,7 +188,7 @@
   console = {
     #font = "Lat2-Terminus16";
     keyMap = "es";
-    useXkbConfig = true; # use xkb.options in tty.
+    #useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
@@ -274,7 +274,7 @@
     PAGER = "less";
     EDITOR = "nvim";
     BROWSER = "firefox";
-    FILE_EXPLORER = "thunar"
+    FILE_EXPLORER = "thunar";
 
     #WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
   };

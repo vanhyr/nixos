@@ -8,5 +8,4 @@
 result
 #.terraform
 
-config/
-#config/dwm/
+#config/
