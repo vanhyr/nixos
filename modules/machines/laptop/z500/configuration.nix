@@ -18,26 +18,12 @@
       trusted-users = [ "vanhyr" ]; # root is already trusted by default, no need to add
 
       substituters = [
-        # chaotic-nyx
-        #"https://chaotic-nyx.cachix.org/"
-
-        # nyx-loner
-	      #"https://cache.garnix.io"
-
         # nix-cachyos-kernel
         #"https://attic.xuyh0120.win/lantian"
-	      #"https://cache.garnix.io"
       ];
       trusted-public-keys = [
-        # chaotic-nyx
-        #"chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12WfF+Gqk6SonIT8="
-
-        # nyx-loner
-        #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-        
         # nix-cachyos-kernel
 	      #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
-	      #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
     };
   };
@@ -202,7 +188,7 @@
   console = {
     #font = "Lat2-Terminus16";
     keyMap = "es";
-    # useXkbConfig = true; # use xkb.options in tty.
+    useXkbConfig = true; # use xkb.options in tty.
   };
 
   # Enable the X11 windowing system.
@@ -267,6 +253,16 @@
 
     intel-vaapi-driver
 
+    rofi
+
+    libnotify
+
+    # for thunar
+    file-roller
+
+    # for the rofi-power script
+    procps
+
     #nix-output-monitor
   ];
 
@@ -274,6 +270,12 @@
 
   environment.variables = {
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";
+    
+    PAGER = "less";
+    EDITOR = "nvim";
+    BROWSER = "firefox";
+    FILE_EXPLORER = "thunar"
+
     #WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
   };
 
@@ -382,6 +384,17 @@
     nh = {
       enable = true;
     };
+    firefox = {
+      enable = true;
+    };
+    thunar = {
+      enable = true;
+      plugins = with pkgs; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
+    };
+    xfconf.enable = true; # for saving thunar options
   };
 
   zramSwap = {
@@ -445,7 +458,51 @@
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
 
-    xserver.videoDrivers = [ "nvidia" ];
+    xserver = {
+      enable = true;
+      videoDrivers = [ "nvidia" ];
+
+      #autoRepeatDelay = 200;
+      #autoRepeatInterval = 35;
+
+      xkb = {
+        model = "pc105"; # europe ISO, TODO -> or pc104 (is it trully ANSI US?)
+        layout = "es";
+        options = "caps:escape";
+      };
+
+      windowManager = { 
+        dwm = {
+          enable = true;
+          package = pkgs.dwm.overrideAttrs (oldAttrs: {
+            src = pkgs.lib.cleanSource ../../../../config/dwm;
+          });
+          #package = pkgs.dwm.overrideAttrs {
+          #  src = pkgs.lib.cleanSource ../../../../config/dwm;
+          #};
+        };
+      };
+    };
+
+    displayManager = {
+      ly = {
+        enable = true;
+        #settings = {
+        #
+        #};
+      };
+    };
+
+    dunst = {
+      enable = true;
+      #settings = {
+      #
+      #};
+    };
+
+    # for thunar
+    gvfs.enable = true;
+    tumbler.enable = true;
 
   };
 

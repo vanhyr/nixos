@@ -7,3 +7,6 @@
 .env
 result
 #.terraform
+
+config/
+#config/dwm/

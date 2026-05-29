@@ -26,9 +26,7 @@ switch:
   #sudo nixos-rebuild switch --flake .#{{hostname}}
 
 switch-nh:
-  #nh os switch .#{{hostname}}
   nh os switch . -H {{hostname}}
-  #nh os switch .
 
 #switch-upgrade:
 #  sudo nixos-rebuild switch --upgrade --flake .#{{hostname}}
