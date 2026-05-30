@@ -58,7 +58,7 @@
 
     # default linux kernel
     #kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = pkgs.linuxPackages_6_12; # LTS (para nvidia legacy_470 sin parchear)
+    #kernelPackages = pkgs.linuxPackages_6_12; # LTS (for nvidia legacy_470 without patching)
 
     # chaotic-nyx and nyx-loner
     kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
@@ -97,8 +97,16 @@
       nvidiaSettings = true;
       #branch = "legacy_470";
       #branch = "stable";
+     
+      # only works up to kernel 6.12
+      # check if pkg gets patched in the mainline repo so needs no manual patching no more:
+      #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
       #package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-      #package = pkgs.linuxPackages_latest.nvidiaPackages.legacy_470;
+      
+      # patched the 470 driver myself so it works with the 7.0.10 kernel.
+      # check these links if a new version needs revision:
+      #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
+      #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
       package = (config.boot.kernelPackages.nvidiaPackages.legacy_470).overrideAttrs (
         old: {
           patches = old.patches ++ [
@@ -254,6 +262,7 @@
     intel-vaapi-driver
 
     rofi
+    kitty
 
     libnotify
 
@@ -262,6 +271,7 @@
 
     # for the rofi-power script
     procps
+    psmisc
 
     #nix-output-monitor
   ];
@@ -272,7 +282,8 @@
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";
     
     PAGER = "less";
-    EDITOR = "nvim";
+    TERMINAL = "kitty";
+    #EDITOR = "nvim";
     BROWSER = "firefox";
     FILE_EXPLORER = "thunar";
 
