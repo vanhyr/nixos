@@ -49,6 +49,8 @@ in
               self.inputs.chaotic.nixosModules.default
               # nyx-loner
               #self.inputs.nyx-loner.nixosModules.default
+              # helium browser
+              self.inputs.helium-browser.nixosModules.default
               (./. + "/_common/default.nix")
               (./. + "/${name}/configuration.nix")
             ];

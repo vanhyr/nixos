@@ -246,7 +246,7 @@
       };
     };
   };
-  
+ 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -284,7 +284,7 @@
     PAGER = "less";
     TERMINAL = "kitty";
     #EDITOR = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "helium";
     FILE_EXPLORER = "thunar";
 
     #WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
@@ -406,6 +406,9 @@
       ];
     };
     xfconf.enable = true; # for saving thunar options
+    helium = {
+      enable = true;
+    };
   };
 
   zramSwap = {
