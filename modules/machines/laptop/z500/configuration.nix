@@ -266,6 +266,8 @@
 
     intel-vaapi-driver
 
+    nerd-fonts.jetbrains-mono
+
     rofi
     kitty
 
