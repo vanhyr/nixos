@@ -178,6 +178,11 @@
     networkmanager.enable = true;
   };
 
+  location = {
+    latitude = 37.08484;
+    longitude = -3.61837;
+  };
+
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings = {
@@ -272,6 +277,8 @@
     # for the rofi-power script
     procps
     psmisc
+
+    brave
 
     #nix-output-monitor
   ];
@@ -517,6 +524,14 @@
     # for thunar
     gvfs.enable = true;
     tumbler.enable = true;
+
+    picom = {
+      enable = true;
+    };
+
+    redshift = {
+      enable = true;
+    };
 
   };
 
