@@ -78,7 +78,7 @@ static const Layout layouts[] = {
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} }, \
+	{ MODKEY|ShiftMask,             XK_f,     togglefullscr,  {0} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -107,8 +107,11 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	//{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
+	//{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.1} },
+	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.1} },
+	{ MODKEY,                       XK_o,      setmfact,       {.f = 0.00} },
 	
   { MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
@@ -145,7 +148,8 @@ static const Key keys[] = {
 	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	//{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
+	{ MODKEY|ShiftMask,             XK_v,      togglefloating, {0} },
 	
   //{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	//{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
@@ -167,7 +171,8 @@ static const Key keys[] = {
 
   { MODKEY|ShiftMask,             XK_q,      spawn,          {.v = (const char*[]){ "rofi-power", NULL } } },
   //{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
-  { MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
+  //{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {1} },
+  { MODKEY|ShiftMask,             XK_r,      quit,           {1} },
 };
 
 /* button definitions */
