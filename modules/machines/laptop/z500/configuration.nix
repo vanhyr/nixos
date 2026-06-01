@@ -252,6 +252,10 @@
     };
   };
  
+  fonts.packages = with pkgs; [
+    pkgs.nerd-fonts.jetbrains-mono
+  ];
+
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   environment.systemPackages = with pkgs; [
@@ -265,8 +269,6 @@
     dysk
 
     intel-vaapi-driver
-
-    nerd-fonts.jetbrains-mono
 
     rofi
     kitty
