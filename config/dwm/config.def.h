@@ -78,7 +78,7 @@ static const Layout layouts[] = {
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
-	{ MODKEY|ShiftMask,             XK_f,      togglefullscr,  {0} },
+	{ MODKEY|ShiftMask,             XK_f,     togglefullscr,  {0} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
@@ -98,7 +98,7 @@ static const Key keys[] = {
   { MODKEY,                       XK_Return, spawn,          SHCMD("$TERMINAL") },
   { MODKEY,                       XK_b,      spawn,          SHCMD("$BROWSER") },
   { MODKEY,                       XK_e,      spawn,          SHCMD("$FILE_EXPLORER") },
-  { MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = dmenucmd } },
+  { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
   //{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
   //{ MODKEY,                       XK_b,      togglebar,      {0} },
