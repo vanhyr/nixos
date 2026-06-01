@@ -64,8 +64,6 @@ static const Layout layouts[] = {
 	{ "===",      bstackhoriz },
 	{ "HHH",      grid },
 	{ "###",      nrowgrid },
-	{ MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 	{ "---",      horizgrid },
 	{ ":::",      gaplessgrid },
 	{ "|M|",      centeredmaster },
@@ -100,7 +98,7 @@ static const Key keys[] = {
   { MODKEY,                       XK_Return, spawn,          SHCMD("$TERMINAL") },
   { MODKEY,                       XK_b,      spawn,          SHCMD("$BROWSER") },
   { MODKEY,                       XK_e,      spawn,          SHCMD("$FILE_EXPLORER") },
-  { MODKEY|ShiftMask,                       XK_p,      spawn,          {.v = dmenucmd } },
+  { MODKEY|ShiftMask,             XK_p,      spawn,          {.v = dmenucmd } },
   //{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 
   //{ MODKEY,                       XK_b,      togglebar,      {0} },
@@ -111,6 +109,9 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	
+  { MODKEY|ShiftMask,             XK_j,      rotatestack,    {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_k,      rotatestack,    {.i = -1 } },
 
   { MODKEY|ShiftMask,             XK_h,      setcfact,       {.f = +0.25} },
   { MODKEY|ShiftMask,             XK_l,      setcfact,       {.f = -0.25} },
