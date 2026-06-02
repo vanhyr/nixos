@@ -1,8 +1,3 @@
-    #nyx-loner = 0
-    #  url = "github:lonerOrz/nyx-loner";
-    #  #inputs.nixpkgs.follows = "nixpkgs";
-    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
-    #};
 {
   lib,
   self,

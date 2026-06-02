@@ -63,6 +63,7 @@
     # chaotic-nyx and nyx-loner
     kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
     #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto) TODO -> broken cups
+    #kernelPackages = pkgs.linuxPackagesFor pkgs.linuxPackages_cachyos-lto.kernel; # just the kernel TODO -> idk, better than above? maybe
 
     # nix-cachyos-kernel
     #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
@@ -97,34 +98,37 @@
       nvidiaSettings = true;
       #branch = "legacy_470";
       #branch = "stable";
-     
+
       # only works up to kernel 6.12
       # check if pkg gets patched in the mainline repo so needs no manual patching no more:
       #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
       #package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-      
+
       # patched the 470 driver myself so it works with the 7.0.10 kernel.
       # check these links if a new version needs revision:
       #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
       #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
-      package = (config.boot.kernelPackages.nvidiaPackages.legacy_470).overrideAttrs (
-        old: {
-          patches = old.patches ++ [
-            (pkgs.fetchpatch {   # ← pkgs.fetchpatch, no fetchpatch solo
-              url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-6.19-part1.patch";
-              hash = "sha256-Swq82/0CMM8OMJz1BpgkuOngGio8cIrdXWuR05cZDa8=";
-            })
-            (pkgs.fetchpatch {
-              url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-6.19-part2.patch";
-              hash = "sha256-9ykrYEl6UH3NDvfdv5sWfFUShrdRzIqf/h+OAqijRLM=";
-            })
-            (pkgs.fetchpatch {
-              url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-7.0.patch";
-              hash = "sha256-mytOoDLZe8rmM/DQNMo3TxirN1RZkwjSRamg7MfsoZg=";
-            })
-          ];
-        }
-      );
+      package = (config.boot.kernelPackages.nvidiaPackages.legacy_470).overrideAttrs (oldAttrs: {
+        # TODO -> for lto maybe
+        #env = (oldAttrs.env or {}) // {
+        #  IGNORE_CC_MISMATCH = "1";
+        #};
+
+        patches = (oldAttrs.patches or []) ++ [
+          (pkgs.fetchpatch {   # ← pkgs.fetchpatch, no fetchpatch solo
+            url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-6.19-part1.patch";
+            hash = "sha256-Swq82/0CMM8OMJz1BpgkuOngGio8cIrdXWuR05cZDa8=";
+          })
+          (pkgs.fetchpatch {
+            url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-6.19-part2.patch";
+            hash = "sha256-9ykrYEl6UH3NDvfdv5sWfFUShrdRzIqf/h+OAqijRLM=";
+          })
+          (pkgs.fetchpatch {
+            url = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/master/patches/nvidia-470xx-fix-linux-7.0.patch";
+            hash = "sha256-mytOoDLZe8rmM/DQNMo3TxirN1RZkwjSRamg7MfsoZg=";
+          })
+        ];
+      });
       
       modesetting.enable = true; # optional, only if you are experiencing problems
 
@@ -283,6 +287,12 @@
     psmisc
 
     brave
+
+    lf
+    mpv
+    nsxiv
+
+    zathura
 
     #nix-output-monitor
   ];
@@ -501,10 +511,11 @@
           enable = true;
           package = pkgs.dwm.overrideAttrs (oldAttrs: {
             src = pkgs.lib.cleanSource ../../../../config/dwm;
+            buildInputs = (oldAttrs.buildInputs or []) ++ [
+              pkgs.libxcb
+              #pkgs.libx11
+            ];
           });
-          #package = pkgs.dwm.overrideAttrs {
-          #  src = pkgs.lib.cleanSource ../../../../config/dwm;
-          #};
         };
       };
     };
