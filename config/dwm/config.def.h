@@ -102,6 +102,12 @@ static const Keychord *keychords[] = {
   &((Keychord){ 1, {{MODKEY,                          XK_e}},         spawn,            SHCMD("$FILE_EXPLORER") }),
   
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_p}},         spawn,            {.v = dmenucmd } }),
+ 
+  // screenshots
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},
+                    {0,                               XK_a}},         spawn,            SHCMD("scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},
+                    {0,                               XK_s}},         spawn,            SHCMD("scrot -s '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
 
   //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_b}},         togglebar,        {0} }),
 
