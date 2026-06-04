@@ -287,6 +287,8 @@
     psmisc
 
     brave
+    
+    scrot
 
     lf
     mpv
