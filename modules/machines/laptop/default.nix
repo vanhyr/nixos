@@ -15,15 +15,16 @@ in
       };
       systemArchMap = {
         z500 = "x86_64-linux";
-	      #rpi = "aarch64-linux";
+        #rpi = "aarch64-linux";
       };
       myNixosSystem =
-        name: self.inputs."nixpkgs${lib.attrsets.attrByPath [name] "" nixpkgsMap}".lib.nixosSystem;
+        name: self.inputs."nixpkgs${lib.attrsets.attrByPath [ name ] "" nixpkgsMap}".lib.nixosSystem;
     in
     lib.listToAttrs (
-      builtins.map (
+      #builtins.map (
+      map (
         name:
-	      lib.nameValuePair name (
+        lib.nameValuePair name (
           (myNixosSystem name) {
             system = lib.attrsets.attrByPath [ name ] "x86_64-linux" systemArchMap;
             specialArgs = {
