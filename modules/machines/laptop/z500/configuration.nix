@@ -220,6 +220,19 @@
     };
     thermald.enable = true;
 
+    libinput = {
+      enable = true;
+
+      touchpad = {
+        accelProfile = "flat";
+        accelSpeed = "0.0";
+        tapping = true;
+        naturalScrolling = false;
+        disableWhileTyping = true;
+        clickMethod = "clickfinger"; # or buttonareas
+      };
+    };
+
   };
 
   # Open ports in the firewall.

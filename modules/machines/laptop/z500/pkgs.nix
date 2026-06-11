@@ -53,6 +53,8 @@
     xclip
     xsel
 
+    libinput
+
     #nix-output-monitor
   ];
 }
