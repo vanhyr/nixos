@@ -2,7 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int snap      = 0;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const unsigned int gappih    = 8;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 8;       /* vert inner gap between windows */
@@ -38,15 +38,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class            instance  title             tags mask   isfloating  isterminal    noswallow  monitor   scratch key */
-	{ "Gimp",           NULL,     NULL,             0,          1,          0,            0,        -1,        0   },
-	{ "Firefox",        NULL,     NULL,             1 << 8,     0,          0,            -1,       -1,        0   },
-	{ "kitty",          NULL,     NULL,             0,          0,          1,            0,        -1,        0   },
-	{ NULL,             NULL,     "Event Tester",   0,          0,          0,            1,        -1,        0   }, /* xev */
+	/* class            instance  title             tags mask   isfloating  isterminal    noswallow  monitor  float x,y,w,h   floatborderpx   scratch key */
+	{ "Gimp",           NULL,     NULL,             0,          1,          0,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Firefox",        NULL,     NULL,             1 << 8,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "kitty",          NULL,     NULL,             0,          0,          1,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ NULL,             NULL,     "Event Tester",   0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
   
-  // scratchpads
-	{ "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,        't' }, /* scratchpad terminal */
-	{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,        'b' }, /* scratchpad terminal */
+  /* scratchpads */
+  // pixels
+  //{ "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,       -1,64,800,470,  -1,             't' }, /* scratchpad terminal */
+	//{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,       -1,64,802,546,  -1,             'b' }, /* scratchpad terminal */
+	// percentages
+  { "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
+	{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad terminal */
 };
 
 /* layout(s) */

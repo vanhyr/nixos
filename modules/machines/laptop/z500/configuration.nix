@@ -61,9 +61,6 @@
   #   pulse.enable = true;
   # };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.libinput.enable = true;
-
   fonts.packages = [
     #fonts.packages = with pkgs; [
     pkgs.nerd-fonts.jetbrains-mono
@@ -228,8 +225,9 @@
         accelSpeed = "0.0";
         tapping = true;
         naturalScrolling = false;
-        disableWhileTyping = true;
-        clickMethod = "clickfinger"; # or buttonareas
+        #disableWhileTyping = true;
+        clickMethod = "clickfinger";
+        #clickMethod = "buttonareas";
       };
     };
 
