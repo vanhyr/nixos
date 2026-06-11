@@ -38,11 +38,15 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",     NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",  NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "kitty",    NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,       NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	/* class            instance  title             tags mask   isfloating  isterminal    noswallow  monitor   scratch key */
+	{ "Gimp",           NULL,     NULL,             0,          1,          0,            0,        -1,        0   },
+	{ "Firefox",        NULL,     NULL,             1 << 8,     0,          0,            -1,       -1,        0   },
+	{ "kitty",          NULL,     NULL,             0,          0,          1,            0,        -1,        0   },
+	{ NULL,             NULL,     "Event Tester",   0,          0,          0,            1,        -1,        0   }, /* xev */
+  
+  // scratchpads
+	{ "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,        't' }, /* scratchpad terminal */
+	{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,        'b' }, /* scratchpad terminal */
 };
 
 /* layout(s) */
@@ -92,6 +96,10 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "rofi", "-show", "drun" , "-show-icons", NULL };
 static const char *termcmd[]  = { "kitty", NULL };
 
+/* first arg only serves to match against key in rules*/
+static const char *scratchtermcmd[] = {"t", "kitty", "--app-id", "scratch_term", NULL};
+static const char *scratchbtopcmd[] = {"b", "kitty", "--app-id", "scratch_btop", "btop", NULL};
+
 /* KEYBINDS (Supports Keychords) */
 static const Keychord *keychords[] = {
 	/* nKchord         modifier,                        key             function          argument */
@@ -102,7 +110,12 @@ static const Keychord *keychords[] = {
   &((Keychord){ 1, {{MODKEY,                          XK_e}},         spawn,            SHCMD("$FILE_EXPLORER") }),
   
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_p}},         spawn,            {.v = dmenucmd } }),
- 
+
+  // scratchpads
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_Return}},    togglescratch,    {.v = scratchtermcmd} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = "b", "kitty", "--app-id", "scratch_btop", "btop", NULL} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = scratchbtopcmd} }),
+
   // screenshots
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},
                     {0,                               XK_a}},         spawn,            SHCMD("scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),

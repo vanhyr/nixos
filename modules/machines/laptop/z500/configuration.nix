@@ -187,6 +187,14 @@
 
     redshift = {
       enable = true;
+      brightness = {
+        day = "1";
+        night = "1";
+      };
+      temperature = {
+        day = 5500; # 6000
+        night = 3700; # 3500
+      };
     };
 
     fstrim.enable = true;
@@ -203,6 +211,11 @@
 
         CPU_BOOST_ON_AC = 1;
         CPU_BOOST_ON_BAT = 0;
+
+        #USB_EXCLUDE_BTUSB = 1;
+
+        #WIFI_PWR_ON_AC = "off";
+        #WIFI_PWR_ON_BAT = "off";
       };
     };
     thermald.enable = true;
