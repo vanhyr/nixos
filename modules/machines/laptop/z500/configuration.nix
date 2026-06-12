@@ -226,8 +226,8 @@
         tapping = true;
         naturalScrolling = false;
         disableWhileTyping = true;
-        #clickMethod = "clickfinger";
-        clickMethod = "buttonareas";
+        #clickMethod = "clickfinger"; # only tap works as buttons press
+        clickMethod = "buttonareas"; # tap and click works as buttons press
       };
     };
 

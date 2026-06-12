@@ -238,6 +238,7 @@ static void setfullscreen(Client *c, int fullscreen);
 static void setlayout(const Arg *arg);
 static void setcfact(const Arg *arg);
 static void setmfact(const Arg *arg);
+//static void sortclients(Monitor *m);
 static void setup(void);
 static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
@@ -1637,6 +1638,16 @@ restack(Monitor *m)
 	XEvent ev;
 	XWindowChanges wc;
 
+  /*
+  int n = 0;
+
+	for (c = m->clients; c; c = c->next) {
+		long stack_pos = n++;
+		XChangeProperty(dpy, c->win, XInternAtom(dpy, "_DWM_STACK_POSITION", False),
+		                XA_CARDINAL, 32, PropModeReplace, (unsigned char *)&stack_pos, 1);
+	}
+  */
+
 	drawbar(m);
 	if (!m->sel)
 		return;
@@ -1863,6 +1874,53 @@ setmfact(const Arg *arg)
 	arrange(selmon);
 }
 
+/*
+void
+sortclients(Monitor *m)
+{
+	if (!m->clients || !m->clients->next)
+		return;
+
+	Client *sorted = NULL;
+	Client *c, *next_c;
+
+	auto get_stack_pos = [](Display *d, Window w) -> long {
+		Atom actual_type;
+		int actual_format;
+		unsigned long nitems, bytes_after;
+		long *prop = NULL;
+		long pos = 999;
+
+		if (XGetWindowProperty(d, w, XInternAtom(d, "_DWM_STACK_POSITION", False), 0L, 1L, False,
+		                       XA_CARDINAL, &actual_type, &actual_format, &nitems, &bytes_after,
+		                       (unsigned char **)&prop) == Success && prop) {
+			if (nitems > 0)
+				pos = *prop;
+			XFree(prop);
+		}
+		return pos;
+	};
+
+	c = m->clients;
+	while (c) {
+		next_c = c->next;
+		if (!sorted || get_stack_pos(dpy, c->win) < get_stack_pos(dpy, sorted->win)) {
+			c->next = sorted;
+			sorted = c;
+		} else {
+			Client *current = sorted;
+			while (current->next && get_stack_pos(dpy, current->next->win) < get_stack_pos(dpy, c->win)) {
+				current = current->next;
+			}
+			c->next = current->next;
+			current->next = c;
+		}
+		c = next_c;
+	}
+	m->clients = sorted;
+}
+*/
+
 void
 setup(void)
 {
@@ -1943,6 +2001,30 @@ setup(void)
 	XSelectInput(dpy, root, wa.event_mask);
 	grabkeys();
 	focus(NULL);
+  
+	Atom actual_type;
+	int actual_format;
+	unsigned long nitems, bytes_after;
+	long *prop_tags = NULL;
+
+	if (XGetWindowProperty(dpy, root, XInternAtom(dpy, "_DWM_MONITOR_TAGS", False), 0L, 8L, False, XA_CARDINAL,
+	                       &actual_type, &actual_format, &nitems, &bytes_after, (unsigned char **)&prop_tags) == Success && prop_tags) {
+		if (nitems > 0) {
+			int mon_idx = 0;
+			Monitor *m;
+			// Asignamos a cada monitor el tag guardado antes del restart
+			for (m = mons; m && mon_idx < nitems; m = m->next, mon_idx++) {
+				m->tagset[m->seltags] = prop_tags[mon_idx];
+        //sortclients(m);
+			}
+		}
+		XFree(prop_tags);
+	}
+  /*
+  Monitor *m;
+	for (m = mons; m; m = m->next)
+		arrange(m);
+  */
 }
 
 void
@@ -2487,6 +2569,7 @@ view(const Arg *arg)
 	unsigned int tmptag;
   Client *c;
 
+
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
 	for (c = selmon->clients; c; c = c->next) {
@@ -2522,6 +2605,17 @@ view(const Arg *arg)
 
 	focus(selmon->pertag->sel[selmon->pertag->curtag]);
 	arrange(selmon);
+	
+  long target_tags[8]; 
+	int mon_idx = 0;
+	Monitor *m;
+
+	// Iteramos sobre todos los monitores activos para salvar sus estados
+	for (m = mons; m && mon_idx < 8; m = m->next, mon_idx++) {
+		target_tags[mon_idx] = m->tagset[m->seltags];
+	}
+	XChangeProperty(dpy, root, XInternAtom(dpy, "_DWM_MONITOR_TAGS", False), 
+	                XA_CARDINAL, 32, PropModeReplace, (unsigned char *)target_tags, mon_idx);
 }
 
 pid_t
