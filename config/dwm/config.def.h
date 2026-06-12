@@ -11,8 +11,6 @@ static const unsigned int gappov    = 8;       /* vert outer gap between windows
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-//static const char *fonts[]          = { "monospace:size=10" };
-//static const char *fonts[]          = { "JetBrainsMono NFM Regular:size=12", "monospace:size=10" };
 static const char *fonts[]          = {
   "JetBrainsMono Nerd Font Mono:size=12:antialias=true:autohint=true",
   "monospace:size=10"
@@ -38,19 +36,17 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class            instance  title             tags mask   isfloating  isterminal    noswallow  monitor  float x,y,w,h   floatborderpx   scratch key */
-	{ "Gimp",           NULL,     NULL,             0,          1,          0,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
-	{ "Firefox",        NULL,     NULL,             1 << 8,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
-	{ "kitty",          NULL,     NULL,             0,          0,          1,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
-	{ NULL,             NULL,     "Event Tester",   0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
+	/* class              instance              title             tags mask   isfloating  isterminal    noswallow  monitor  float x,y,w,h   floatborderpx   scratch key */
+	{ "Gimp",             NULL,                 NULL,             0,          1,          0,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Firefox",          NULL,                 NULL,             1 << 8,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "kitty",            NULL,                 NULL,             0,          0,          1,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ NULL,               NULL,                 "Event Tester",   0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
   
   /* scratchpads */
-  // pixels
-  //{ "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,       -1,64,800,470,  -1,             't' }, /* scratchpad terminal */
-	//{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,       -1,64,802,546,  -1,             'b' }, /* scratchpad terminal */
-	// percentages
-  { "scratch_term",   NULL,     NULL,             0,          1,          0,            1,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
-	{ "scratch_btop",   NULL,     NULL,             0,          1,          0,            0,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad terminal */
+  { "scratch_term",     NULL,                 NULL,             0,          1,          0,            1,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
+	{ "scratch_btop",     NULL,                 NULL,             0,          1,          0,            0,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
+	{ "ZapZap",           "zapzap",             NULL,             0,          1,          0,            0,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
+	//{ "WhatSie",          "whatsie",            NULL,             0,          1,          0,            0,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
 };
 
 /* layout(s) */
@@ -103,6 +99,8 @@ static const char *termcmd[]  = { "kitty", NULL };
 /* first arg only serves to match against key in rules*/
 static const char *scratchtermcmd[] = {"t", "kitty", "--app-id", "scratch_term", NULL};
 static const char *scratchbtopcmd[] = {"b", "kitty", "--app-id", "scratch_btop", "btop", NULL};
+static const char *scratchwhatsappcmd[] = {"w", "zapzap", NULL};
+//static const char *scratchwhatsappcmd[] = {"w", "whatsie", NULL};
 
 /* KEYBINDS (Supports Keychords) */
 static const Keychord *keychords[] = {
@@ -119,6 +117,7 @@ static const Keychord *keychords[] = {
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_Return}},    togglescratch,    {.v = scratchtermcmd} }),
   //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = "b", "kitty", "--app-id", "scratch_btop", "btop", NULL} }),
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = scratchbtopcmd} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_w}},         togglescratch,    {.v = scratchwhatsappcmd} }),
 
   // screenshots
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},

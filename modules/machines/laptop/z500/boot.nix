@@ -64,7 +64,7 @@
       "ideapad_laptop.backlight=0"
 
       # touchpad fix
-      "psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
+      #"psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
     ];
 
     blacklistedKernelModules = [

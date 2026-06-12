@@ -225,9 +225,9 @@
         accelSpeed = "0.0";
         tapping = true;
         naturalScrolling = false;
-        #disableWhileTyping = true;
-        clickMethod = "clickfinger";
-        #clickMethod = "buttonareas";
+        disableWhileTyping = true;
+        #clickMethod = "clickfinger";
+        clickMethod = "buttonareas";
       };
     };
 

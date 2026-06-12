@@ -55,6 +55,12 @@
 
     libinput
 
+    karere
+    whatsie
+    zapzap
+
+    duf
+
     #nix-output-monitor
   ];
 }

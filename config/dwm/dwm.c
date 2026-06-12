@@ -1312,7 +1312,7 @@ manage(Window w, XWindowAttributes *wa)
 		Atom atom;
 		if (XGetWindowProperty(dpy, c->win, netatom[NetClientInfo], 0L, 2L, False, XA_CARDINAL,
 				&atom, &format, &n, &extra, (unsigned char **)&data) == Success && n == 2) {
-			c->tags = *data;
+			c->tags = c->scratchkey ? 0 : *data;
 			for (m = mons; m; m = m->next) {
 				if (m->num == *(data+1)) {
 					c->mon = m;
@@ -2485,9 +2485,15 @@ view(const Arg *arg)
 {
 	int i;
 	unsigned int tmptag;
+  Client *c;
 
 	if ((arg->ui & TAGMASK) == selmon->tagset[selmon->seltags])
 		return;
+	for (c = selmon->clients; c; c = c->next) {
+		if (c->scratchkey && ISVISIBLE(c)) {
+			c->tags = 0;
+		}
+	}
 	selmon->seltags ^= 1; /* toggle sel tagset */
 	if (arg->ui & TAGMASK) {
 		selmon->tagset[selmon->seltags] = arg->ui & TAGMASK;
