@@ -1,0 +1,51 @@
+disko
+sops/agenix
+nur
+impermanence
+
+
+mount /boot/efi/EFI to /boot/EFI directly
+fix suspend
+limine bootloader ?
+grub-btrfs (works on nixos?)
+snapper/timeshift (btrfs)
+network shares (smb)
+symlink data folders (dl,doc,mus,vid,dsk,prj)
+dwmblocksasync
+fix bluetooth audio
+user directories
+background (feh)
+printing (cups+avahi)
+podman
+devshells
+
+specialization for each kernel (switch to the wanted one using grub)
+cachyos_kernel-lto
+
+try xlibre
+
+dwm (+ patches)
+oxwm
+qtile
+
+add gtk/qt looks
+stylix
+
+helium widevine fix
+lf/yazi
+fzf
+nvim config (lsp, treesitter, completions, multiple cursors, markdown previews, fzf)
+tmux/
+xephyr (for testing wm)
+winboat (garmin express)
+
+check multimonitor
+check external monitor
+
+make betterlockscreen/slock work
+make picom work
+make autorandr work
+make redshift work
+
+home manager config files + some services?
+better flake modularization + reusable modules

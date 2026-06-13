@@ -1,0 +1,28 @@
+add more keybinds and polish them
+
+preserveonrestart:
+  - remember client positions (now they shuffle)
+  - remember tags layouts (now they go to default which is tiled)
+  - DONE -> remember the tag you were before restart and restore it after the restart (it used to go to tag 1)
+
+namedscratchpads:
+  - fix placement bug after closing the same type of window and spawning the scratch.
+  - look for a workaround for normal clients (no terminals) to have an unique identifier (wm_class) so rules can be independent for the normal app and the scratched app.
+  - DONE -> hide when restarting (preserveonrestart)
+  - DONE -> hide when changing tag.
+
+floatrules:
+  - DONE -> percentage x,y,w and h.
+  - DONE -> center x and y using -1 (namedscratchpads)
+
+systray: apply
+statuscmd: apply (for dwmblocksasync)
+status2d: apply (for dwmblocksasync and the bar)
+statusallmons: apply (for dwmblocksasync and the bar)
+
+coolautostart: apply (either into dwm or manage it on nixos config)
+xrdb: apply (for theming, either into dwm or manage it on nixos with stylix)
+barpadding: DONE -> apply (for bar looks, OPTIONAL)
+statuspadding: apply (for dwmblocksasync and the bar looks, OPTIONAL)
+
+ewmhtags: apply (for using external bars like polybar, OPTIONAL)

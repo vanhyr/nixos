@@ -1,0 +1,228 @@
+--- dwm.c	2025-08-09 15:00:55.740267680 +0200
++++ dwm.c	2025-11-18 16:35:53.062929489 +0100
+@@ -56,12 +56,27 @@
+ #define TAGMASK                 ((1 << LENGTH(tags)) - 1)
+ #define TEXTW(X)                (drw_fontset_getwidth(drw, (X)) + lrpad)
+ 
++#define SYSTEM_TRAY_REQUEST_DOCK    0
++/* XEMBED messages */
++#define XEMBED_EMBEDDED_NOTIFY      0
++#define XEMBED_WINDOW_ACTIVATE      1
++#define XEMBED_FOCUS_IN             4
++#define XEMBED_MODALITY_ON         10
++#define XEMBED_MAPPED              (1 << 0)
++#define XEMBED_WINDOW_ACTIVATE      1
++#define XEMBED_WINDOW_DEACTIVATE    2
++#define VERSION_MAJOR               0
++#define VERSION_MINOR               0
++#define XEMBED_EMBEDDED_VERSION (VERSION_MAJOR << 16) | VERSION_MINOR
++
+ /* enums */
+ enum { CurNormal, CurResize, CurMove, CurLast }; /* cursor */
+ enum { SchemeNorm, SchemeSel }; /* color schemes */
+ enum { NetSupported, NetWMName, NetWMState, NetWMCheck,
++       NetSystemTray, NetSystemTrayOP, NetSystemTrayOrientation, NetSystemTrayOrientationHorz,
+        NetWMFullscreen, NetActiveWindow, NetWMWindowType,
+        NetWMWindowTypeDialog, NetClientList, NetLast }; /* EWMH atoms */
++enum { Manager, Xembed, XembedInfo, XLast }; /* Xembed atoms */
+ enum { WMProtocols, WMDelete, WMState, WMTakeFocus, WMLast }; /* default atoms */
+ enum { ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle,
+        ClkClientWin, ClkRootWin, ClkLast }; /* clicks */
+@@ -195,13 +217,16 @@ static void pop(Client *c);
+ static void propertynotify(XEvent *e);
+ static void quit(const Arg *arg);
+ static Monitor *recttomon(int x, int y, int w, int h);
++static void removesystrayicon(Client *i);
+ static void resize(Client *c, int x, int y, int w, int h, int interact);
++static void resizebarwin(Monitor *m);
+ static void resizeclient(Client *c, int x, int y, int w, int h);
+ static void resizemouse(const Arg *arg);
++static void resizerequest(XEvent *e);
+ static void restack(Monitor *m);
+ static void run(void);
+ static void scan(void);
+-static int sendevent(Client *c, Atom proto);
++static int sendevent(Window w, Atom proto, int m, long d0, long d1, long d2, long d3, long d4);
+ static void sendmon(Client *c, Monitor *m);
+ static void setclientstate(Client *c, long state);
+ static void setfocus(Client *c);
+@@ -230,24 +256,31 @@ static int updategeom(void);
+ static void updatenumlockmask(void);
+ static void updatesizehints(Client *c);
+ static void updatestatus(void);
++static void updatesystray(void);
++static void updatesystrayicongeom(Client *i, int w, int h);
++static void updatesystrayiconstate(Client *i, XPropertyEvent *ev);
+ static void updatetitle(Client *c);
+ static void updatewindowtype(Client *c);
+ static void updatewmhints(Client *c);
+ static void view(const Arg *arg);
+ static Client *wintoclient(Window w);
+ static Monitor *wintomon(Window w);
++static Client *wintosystrayicon(Window w);
+ static int xerror(Display *dpy, XErrorEvent *ee);
+ static int xerrordummy(Display *dpy, XErrorEvent *ee);
+ static int xerrorstart(Display *dpy, XErrorEvent *ee);
+ static void zoom(const Arg *arg);
+ 
+ /* variables */
++static Systray *systray = NULL;
+ static const char broken[] = "broken";
+ static char stext[256];
+ static int screen;
+ static int sw, sh;           /* X display screen geometry width, height */
+ static int bh;               /* bar height */
+ static int lrpad;            /* sum of left and right padding for text */
++static int vp;               /* vertical padding for bar */
++static int sp;               /* side padding for bar */
+ static int (*xerrorxlib)(Display *, XErrorEvent *);
+ static unsigned int numlockmask = 0;
+ static void (*handler[LASTEvent]) (XEvent *) = {
+@@ -449,7 +483,7 @@ buttonpress(XEvent *e)
+ 			arg.ui = 1 << i;
+ 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
+ 			click = ClkLtSymbol;
+-		else if (ev->x > selmon->ww - (int)TEXTW(stext))
++		else if (ev->x > selmon->ww - (int)TEXTW(stext) - getsystraywidth())
+ 			click = ClkStatusText;
+ 		else
+ 			click = ClkWinTitle;
+@@ -634,7 +724,7 @@ configurenotify(XEvent *e)
+ 				for (c = m->clients; c; c = c->next)
+ 					if (c->isfullscreen)
+ 						resizeclient(c, m->mx, m->my, m->mw, m->mh);
+-				XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, m->ww, bh);
++				resizebarwin(m);
+ 			}
+ 			focus(NULL);
+ 			arrange(NULL);
+@@ -776,13 +871,17 @@ drawbar(Monitor *m)
+ 	if (!m->showbar)
+ 		return;
+ 
++	if(showsystray && m == systraytomon(m) && !systrayonleft)
++		stw = getsystraywidth();
++
+ 	/* draw status first so it can be overdrawn by tags later */
+ 	if (m == selmon) { /* status is only drawn on selected monitor */
+ 		drw_setscheme(drw, scheme[SchemeNorm]);
+-		tw = TEXTW(stext) - lrpad + 2; /* 2px right padding */
+-		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
++		tw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
++		drw_text(drw, m->ww - tw - stw - 2 * sp, 0, tw, bh, lrpad / 2 - 2, stext, 0);
+ 	}
+ 
++	resizebarwin(m);
+ 	for (c = m->clients; c; c = c->next) {
+ 		occ |= c->tags;
+ 		if (c->isurgent)
+@@ -803,18 +902,18 @@ drawbar(Monitor *m)
+ 	drw_setscheme(drw, scheme[SchemeNorm]);
+ 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
+ 
+-	if ((w = m->ww - tw - x) > bh) {
++	if ((w = m->ww - tw - stw - x) > bh) {
+ 		if (m->sel) {
+ 			drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]);
+-			drw_text(drw, x, 0, w, bh, lrpad / 2, m->sel->name, 0);
++			drw_text(drw, x, 0, w - 2 * sp, bh, lrpad / 2, m->sel->name, 0);
+ 			if (m->sel->isfloating)
+ 				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
+ 		} else {
+ 			drw_setscheme(drw, scheme[SchemeNorm]);
+-			drw_rect(drw, x, 0, w, bh, 1, 1);
++			drw_rect(drw, x, 0, w - 2 * sp, bh, 1, 1);
+ 		}
+ 	}
+-	drw_map(drw, m->barwin, 0, 0, m->ww, bh);
++	drw_map(drw, m->barwin, 0, 0, m->ww - stw, bh);
+ }
+ 
+ void
+@@ -941,14 +1043,32 @@ getatomprop(Client *c, Atom prop)
+ 	unsigned char *p = NULL;
+ 	Atom da, atom = None;
+ 
+-	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof atom, False, XA_ATOM,
++	/* FIXME getatomprop should return the number of items and a pointer to
++	 * the stored data instead of this workaround */
++	Atom req = XA_ATOM;
++	if (prop == xatom[XembedInfo])
++		req = xatom[XembedInfo];
++
++	if (XGetWindowProperty(dpy, c->win, prop, 0L, sizeof atom, False, req,
+ 		&da, &di, &dl, &dl, &p) == Success && p) {
+ 		atom = *(Atom *)p;
++		if (da == xatom[XembedInfo] && dl == 2)
++			atom = ((Atom *)p)[1];
+ 		XFree(p);
+ 	}
+ 	return atom;
+ }
+ 
++unsigned int
++getsystraywidth()
++{
++	unsigned int w = 0;
++	Client *i;
++	if(showsystray)
++		for(i = systray->icons; i; w += i->w + systrayspacing, i = i->next) ;
++	return w ? w + systrayspacing : 1;
++}
++
+ int
+ getrootptr(int *x, int *y)
+ {
+@@ -1866,7 +2063,18 @@ togglebar(const Arg *arg)
+ {
+ 	selmon->showbar = !selmon->showbar;
+ 	updatebarpos(selmon);
+-	XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
++	resizebarwin(selmon);
++	if (showsystray) {
++		XWindowChanges wc;
++		if (!selmon->showbar)
++			wc.y = -bh;
++		else if (selmon->showbar) {
++			wc.y = 0;
++			if (!selmon->topbar)
++				wc.y = selmon->mh - bh;
++		}
++		XConfigureWindow(dpy, systray->win, CWY, &wc);
++	}
+ 	arrange(selmon);
+ }
+ 
+@@ -1984,10 +2199,15 @@ updatebars(void)
+ 	for (m = mons; m; m = m->next) {
+ 		if (m->barwin)
+ 			continue;
+-		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, DefaultDepth(dpy, screen),
++		w = m->ww;
++		if (showsystray && m == systraytomon(m))
++			w -= getsystraywidth();
++		m->barwin = XCreateWindow(dpy, root, m->wx + sp, m->by + vp, w - 2 * sp, bh, 0, DefaultDepth(dpy, screen),
+ 				CopyFromParent, DefaultVisual(dpy, screen),
+ 				CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
+ 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
++		if (showsystray && m == systraytomon(m))
++			XMapRaised(dpy, systray->win);
+ 		XMapRaised(dpy, m->barwin);
+ 		XSetClassHint(dpy, m->barwin, &ch);
+ 	}
+@@ -1999,11 +2219,11 @@ updatebarpos(Monitor *m)
+ 	m->wy = m->my;
+ 	m->wh = m->mh;
+ 	if (m->showbar) {
+-		m->wh -= bh;
+-		m->by = m->topbar ? m->wy : m->wy + m->wh;
+-		m->wy = m->topbar ? m->wy + bh : m->wy;
++		m->wh = m->wh - vertpad - bh;
++		m->by = m->topbar ? m->wy : m->wy + m->wh + vertpad;
++		m->wy = m->topbar ? m->wy + bh + vp : m->wy;
+ 	} else
+-		m->by = -bh;
++		m->by = -bh - vp;
+ }
+ 
+ void
