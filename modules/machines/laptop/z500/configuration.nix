@@ -131,42 +131,6 @@
       rulesProvider = pkgs.ananicy-rules-cachyos;
     };
 
-    xserver = {
-      enable = true;
-      videoDrivers = [ "nvidia" ];
-
-      #autoRepeatDelay = 200;
-      #autoRepeatInterval = 35;
-
-      xkb = {
-        model = "pc105"; # europe ISO, TODO -> or pc104 (is it trully ANSI US?)
-        layout = "es";
-        options = "caps:escape";
-      };
-
-      windowManager = {
-        dwm = {
-          enable = true;
-          package = pkgs.dwm.overrideAttrs (oldAttrs: {
-            src = pkgs.lib.cleanSource ../../../../config/dwm;
-            buildInputs = (oldAttrs.buildInputs or [ ]) ++ [
-              pkgs.libxcb
-              #pkgs.libx11
-            ];
-          });
-        };
-      };
-    };
-
-    displayManager = {
-      ly = {
-        enable = true;
-        #settings = {
-        #
-        #};
-      };
-    };
-
     dunst = {
       enable = true;
       #settings = {

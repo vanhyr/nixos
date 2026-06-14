@@ -60,6 +60,13 @@
     zapzap
 
     duf
+    feh
+    nitrogen
+
+    lxappearance
+    lxappearance-gtk2
+
+    nwg-look
 
     #nix-output-monitor
   ];

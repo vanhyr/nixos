@@ -10,11 +10,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1781337624,
-        "narHash": "sha256-fLChA76pWMbUyGA9rMlITod/yGp431ITKUbncNSiets=",
+        "lastModified": 1781365186,
+        "narHash": "sha256-NUy7to4VMKTgmdWtjVhbk2FTiY8BUzyPOTHkasU3j6Y=",
         "owner": "chaotic-cx",
         "repo": "nyx",
-        "rev": "d0eec7b99247a9f2392abe7e61eb8053b8669fcb",
+        "rev": "9cca6d229a19c87152157cbc0b6c1d3daac4dc6e",
         "type": "github"
       },
       "original": {
@@ -101,7 +101,9 @@
     },
     "jovian": {
       "inputs": {
-        "nix-github-actions": "nix-github-actions",
+        "nix-github-actions": [
+          "chaotic"
+        ],
         "nixpkgs": [
           "chaotic",
           "nixpkgs"
@@ -127,7 +129,9 @@
           "chaotic",
           "nixpkgs"
         ],
-        "treefmt-nix": "treefmt-nix"
+        "treefmt-nix": [
+          "chaotic"
+        ]
       },
       "locked": {
         "lastModified": 1781027181,
@@ -141,29 +145,6 @@
         "owner": "Mic92",
         "repo": "niks3",
         "rev": "c74d275536d9a38ff279b498612fae0fd68cfe85",
-        "type": "github"
-      }
-    },
-    "nix-github-actions": {
-      "inputs": {
-        "nixpkgs": [
-          "chaotic",
-          "jovian",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1729697500,
-        "narHash": "sha256-VFTWrbzDlZyFHHb1AlKRiD/qqCJIripXKiCSFS8fAOY=",
-        "owner": "zhaofengli",
-        "repo": "nix-github-actions",
-        "rev": "e418aeb728b6aa5ca8c5c71974e7159c2df1d8cf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "zhaofengli",
-        "ref": "matrix-name",
-        "repo": "nix-github-actions",
         "type": "github"
       }
     },
@@ -220,7 +201,8 @@
         "flake-parts": "flake-parts",
         "helium-browser": "helium-browser",
         "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs-unstable": "nixpkgs-unstable",
+        "sops-nix": "sops-nix"
       }
     },
     "rust-overlay": {
@@ -244,25 +226,23 @@
         "type": "github"
       }
     },
-    "treefmt-nix": {
+    "sops-nix": {
       "inputs": {
         "nixpkgs": [
-          "chaotic",
-          "niks3",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1780220602,
-        "narHash": "sha256-eynAfOmbmxJnkp7YewvCEbShNnnYJ9gLLqkzsYtBPeM=",
-        "owner": "numtide",
-        "repo": "treefmt-nix",
-        "rev": "db947814a175b7ca6ded66e21383d938df01c227",
+        "lastModified": 1780547341,
+        "narHash": "sha256-Gq8KNx5A7hBB3uGJaj6eQfLDIz5YdLu92gqBcvHvoUo=",
+        "owner": "Mic92",
+        "repo": "sops-nix",
+        "rev": "9ed65852b6257fbeae4355bc24ecfea307ca759a",
         "type": "github"
       },
       "original": {
-        "owner": "numtide",
-        "repo": "treefmt-nix",
+        "owner": "Mic92",
+        "repo": "sops-nix",
         "type": "github"
       }
     }

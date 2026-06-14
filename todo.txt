@@ -1,17 +1,16 @@
 disko
-sops/agenix
+WIP -> sops/agenix
 nur
 impermanence
-
 
 mount /boot/efi/EFI to /boot/EFI directly
 fix suspend
 limine bootloader ?
 grub-btrfs (works on nixos?)
 snapper/timeshift (btrfs)
-network shares (smb)
+WIP -> network shares (smb)
 symlink data folders (dl,doc,mus,vid,dsk,prj)
-dwmblocksasync
+DONE -> dwmblocksasync
 fix bluetooth audio
 user directories
 background (feh)
@@ -24,7 +23,7 @@ cachyos_kernel-lto
 
 try xlibre
 
-dwm (+ patches)
+WIP -> dwm (+ patches)
 oxwm
 qtile
 
@@ -48,4 +47,4 @@ make autorandr work
 make redshift work
 
 home manager config files + some services?
-better flake modularization + reusable modules
+better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)

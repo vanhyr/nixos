@@ -47,6 +47,8 @@ in
               #self.inputs.nyx-loner.nixosModules.default
               # helium browser
               self.inputs.helium-browser.nixosModules.default
+              #self.inputs.sops-nix.nixosModules.default
+              self.inputs.sops-nix.nixosModules.sops
               (./. + "/_common/default.nix")
               (./. + "/${name}/configuration.nix")
             ];
