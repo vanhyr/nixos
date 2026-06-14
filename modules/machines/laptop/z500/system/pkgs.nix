@@ -53,8 +53,6 @@
     xclip
     xsel
 
-    libinput
-
     karere
     whatsie
     zapzap
@@ -65,8 +63,18 @@
 
     lxappearance
     lxappearance-gtk2
-
     nwg-look
+
+    #libsForQt5.qt5ct
+    #libsForQt5.qtstyleplugin-kvantum # activate it with qt.style = kvantum
+
+    #qt6Packages.qt6ct
+    #qt6Packages.qtstyleplugin-kvantum # activate it with qt.style = kvantum
+
+    #catppuccin-cursors
+    #catppuccin-gtk
+    #catppuccin-qt5ct
+    #catppuccin-kvantum
 
     #nix-output-monitor
   ];

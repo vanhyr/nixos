@@ -61,9 +61,8 @@
   #   pulse.enable = true;
   # };
 
-  fonts.packages = [
-    #fonts.packages = with pkgs; [
-    pkgs.nerd-fonts.jetbrains-mono
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
 
   environment.shellAliases = lib.mkForce { };
@@ -139,7 +138,7 @@
     };
 
     # for thunar
-    gvfs.enable = true;
+    #gvfs.enable = true;
     tumbler.enable = true;
 
     picom = {
@@ -158,11 +157,10 @@
       };
     };
 
-    fstrim.enable = true;
-
-    power-profiles-daemon.enable = false;
+    #power-profiles-daemon.enable = false;
     tlp = {
-      enable = true;
+      #enable = true;
+      enable = false;
       settings = {
         CPU_SCALING_GOVERNOR_ON_AC = "performance";
         CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -180,20 +178,6 @@
       };
     };
     thermald.enable = true;
-
-    libinput = {
-      enable = true;
-
-      touchpad = {
-        accelProfile = "flat";
-        accelSpeed = "0.0";
-        tapping = true;
-        naturalScrolling = false;
-        disableWhileTyping = true;
-        #clickMethod = "clickfinger"; # only tap works as buttons press
-        clickMethod = "buttonareas"; # tap and click works as buttons press
-      };
-    };
 
   };
 

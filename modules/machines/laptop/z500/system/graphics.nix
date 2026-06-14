@@ -5,7 +5,20 @@
   ...
 }:
 {
+  environment.systemPackages = with pkgs; [
+    intel-vaapi-driver
+  ];
+  boot = {
+    blacklistedKernelModules = [
+      #"nouveau"
+    ];
+  };
   hardware = {
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
 
     nvidia = {
       open = false;
@@ -71,11 +84,6 @@
       #  nvidiaBusId = "PCI:1:0:0"; # 01:00.0
       #};
 
-    };
-
-    graphics = {
-      enable = true;
-      enable32Bit = true;
     };
 
   };

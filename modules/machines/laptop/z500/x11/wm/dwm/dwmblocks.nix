@@ -6,27 +6,28 @@
 let
   dwmblocks-async = pkgs.stdenv.mkDerivation {
     pname = "dwmblocks-async";
-    #version = "0-unstable-2026-04-18";
-    version = "unstable-2026-04-18";
+    version = "0-unstable-2026-04-18";
+    #version = "unstable-2026-04-18";
 
     src = pkgs.fetchFromGitHub {
       owner = "UtkarshVerma";
       repo = "dwmblocks-async";
-      #rev = "main";
       rev = "469e6841432693d81a17088706d99ef044a29936";
       hash = "sha256-gACpUAFVT/6Z9IvWQQ+IW7vNG7kzgJeVkXXMJeuw1V0=";
     };
 
-    nativeBuildInputs = [
-      pkgs.pkg-config
+    strictDeps = true;
+
+    nativeBuildInputs = with pkgs; [
+      pkg-config
     ];
 
-    buildInputs = [
-      #pkgs.libx11
-      pkgs.libxcb
-      pkgs.xcbutil
+    buildInputs = with pkgs; [
+      libxcb
+      xcbutil
     ];
 
+    # this would look for a path with the config file, a string containing the code of the config
     #postPatch =
     #  let
     #    configFile =

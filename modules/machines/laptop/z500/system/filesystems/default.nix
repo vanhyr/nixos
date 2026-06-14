@@ -13,8 +13,6 @@
 
       blacklist = [
         "default.nix"
-
-        "xdg.nix"
       ];
 
       isValidNix =

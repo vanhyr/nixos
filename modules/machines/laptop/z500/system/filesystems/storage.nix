@@ -88,8 +88,11 @@
   #  "d /swap 0700 root root - -"
   #  "h /swap - - - - +C"
   #];
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
+  services = {
+    fstrim.enable = true; # trim ssd
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
   };
 }
