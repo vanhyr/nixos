@@ -14,22 +14,12 @@
       blacklist = [
         "default.nix"
 
-        #"graphics.nix"
-        "graphics-old.nix"
-
-        "xdg.nix"
-
-        "nvidia"
+        #"prime.nix"
+        "patched-nvidia-470-driver.nix"
       ];
 
       isValidNix =
-        name: type:
-        (type == "regular" && lib.hasSuffix ".nix" name && !lib.elem name blacklist)
-        || (
-          type == "directory"
-          && builtins.pathExists (dir + "/${name}/default.nix")
-          && !lib.elem name blacklist
-        );
+        name: type: (type == "regular" && lib.hasSuffix ".nix" name && !lib.elem name blacklist);
 
       filteredContent = lib.filterAttrs isValidNix content;
     in

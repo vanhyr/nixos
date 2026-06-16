@@ -4,11 +4,11 @@ nur
 impermanence
 
 mount /boot/efi/EFI to /boot/EFI directly
-fix suspend
+DONE -> fix suspend
 limine bootloader ?
 grub-btrfs (works on nixos?)
 snapper/timeshift (btrfs)
-WIP -> network shares (smb)
+DONE -> network shares (smb)
 symlink data folders (dl,doc,mus,vid,dsk,prj)
 DONE -> dwmblocksasync
 fix bluetooth audio
@@ -46,5 +46,5 @@ make picom work
 make autorandr work
 make redshift work
 
-home manager config files + some services?
-better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)
+WIP -> home manager config files + some services?
+WIP -> better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)
