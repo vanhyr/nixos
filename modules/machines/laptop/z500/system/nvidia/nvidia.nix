@@ -24,6 +24,9 @@ in
       ];
     };
 
+    #systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
+    #systemd.services.systemd-hibernate.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
+
     hardware = {
       graphics = {
         enable = true;
@@ -46,7 +49,8 @@ in
         open = false;
         nvidiaSettings = true;
 
-        modesetting.enable = true; # optional, only if you are experiencing problems
+        modesetting.enable = true;
+
         powerManagement.enable = true; # fixes suspend bug
         powerManagement.finegrained = true;
         nvidiaPersistenced = false; # fixes suspend bug
@@ -61,44 +65,7 @@ in
         #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
         #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
         package = patched-nvidia-470-driver;
-
-        #prime = {
-        #  offload = {
-        #    enable = true;
-        #    enableOffloadCmd = true;
-        #  };
-        #  # integrated
-        #  intelBusId = "PCI:0:2:0"; # 00:02.0
-        #  # dedicated
-        #  nvidiaBusId = "PCI:1:0:0"; # 01:00.0
-        #};
-
-        # sync mode (max performance)
-        #prime = {
-        #  sync.enable = true;
-        #
-        #  # integrated
-        #  intelBusId = "PCI:0:2:0"; # 00:02.0
-        #  # dedicated
-        #  nvidiaBusId = "PCI:1:0:0"; # 01:00.0
-        #};
       };
     };
-
-    # second boot entry for max performance (offload default, this would activate sync mode), pair this only with offload mode
-    #specialisation = {
-    #  max-graphics-performance.configuration = {
-    #    system.nixos.tags = [ "max-graphics-performance" ];
-    #    hardware.nvidia = {
-    #      powerManagement.finegrained = lib.mkForce false;
-    #
-    #      prime.sync.enable = lib.mkForce true;
-    #      prime.offload = {
-    #        enable = lib.mkForce false;
-    #        enableOffloadCmd = lib.mkForce false; # probably reduntant if above is false
-    #      };
-    #    };
-    #  };
-    #};
   };
 }

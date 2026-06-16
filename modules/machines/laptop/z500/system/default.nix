@@ -14,9 +14,6 @@
       blacklist = [
         "default.nix"
 
-        #"graphics.nix"
-        "graphics-old.nix"
-
         "xdg.nix"
 
         "nvidia"
