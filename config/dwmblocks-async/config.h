@@ -1,6 +1,14 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+/*
+static const char *fonts[]          = {
+  "JetBrainsMono Nerd Font Mono:size=12:antialias=true:autohint=true",
+  "Noto Color Emoji:size=12:antialias=true:autohint=true",
+  "monospace:size=10"
+};
+*/
+
 // String used to delimit block outputs in the status.
 //#define DELIMITER "  "
 #define DELIMITER " | "
@@ -18,10 +26,8 @@
 #define TRAILING_DELIMITER 0
 
 // Define blocks for the status feed as X(icon, cmd, interval, signal).
-#define BLOCKS(X)             \
-    X("", "date '+%H:%M'", 60, 4)
-
-//X("", "uname -r", 3600, 5)
+#define BLOCKS(X) \
+  X("󱑁 ", "date '+%H:%M'", 60, 4)
 
 
 #endif  // CONFIG_H

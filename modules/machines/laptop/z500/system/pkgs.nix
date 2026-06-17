@@ -9,7 +9,6 @@
     compsize # real size for btrfs filesystems
     just
 
-    autorandr
     fastfetch
     dysk
 
@@ -58,12 +57,13 @@
     zapzap
 
     duf
-    feh
     nitrogen
 
     lxappearance
     lxappearance-gtk2
     nwg-look
+
+    arandr
 
     #libsForQt5.qt5ct
     #libsForQt5.qtstyleplugin-kvantum # activate it with qt.style = kvantum

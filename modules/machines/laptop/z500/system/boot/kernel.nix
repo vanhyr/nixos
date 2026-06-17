@@ -42,6 +42,9 @@
       #"acpi_backlight=video"
       "ideapad_laptop.backlight=0"
 
+      # fix nvidia suspend bug
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+
       # touchpad fix
       #"psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
     ];

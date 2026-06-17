@@ -15,14 +15,14 @@ floatrules:
   - DONE -> percentage x,y,w and h.
   - DONE -> center x and y using -1 (namedscratchpads)
 
-systray: apply
+barpadding: DONE -> apply (for bar looks, OPTIONAL)
+systray: DONE -> apply
 statuscmd: apply (for dwmblocksasync)
 status2d: apply (for dwmblocksasync and the bar)
 statusallmons: apply (for dwmblocksasync and the bar)
 
 coolautostart: apply (either into dwm or manage it on nixos config)
 xrdb: apply (for theming, either into dwm or manage it on nixos with stylix)
-barpadding: DONE -> apply (for bar looks, OPTIONAL)
 statuspadding: apply (for dwmblocksasync and the bar looks, OPTIONAL)
 
 ewmhtags: apply (for using external bars like polybar, OPTIONAL)

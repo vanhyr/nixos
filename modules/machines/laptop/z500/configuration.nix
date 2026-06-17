@@ -67,10 +67,6 @@
   #   pulse.enable = true;
   # };
 
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-  ];
-
   environment.shellAliases = lib.mkForce { };
 
   environment.variables = {
@@ -120,15 +116,7 @@
     };
   };
 
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
   services = {
-
-    autorandr = {
-      enable = true;
-      profiles = { };
-    };
 
     ananicy = {
       enable = true;

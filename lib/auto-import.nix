@@ -1,33 +1,44 @@
 {
   dir,
   exclude ? [ ],
-  mainFile ? "default.nix",
+  extraImports ? [ ],
+  mainFiles ? [
+    "default.nix"
+    "configuration.nix"
+  ],
 }:
-
 let
-  files = builtins.readDir dir;
-  fullExclude = [ "default" ] ++ exclude;
+  entries = builtins.readDir dir;
 
-  isExcluded =
+  names = builtins.sort builtins.lessThan (builtins.attrNames entries);
+
+  isExcluded = name: builtins.elem name exclude;
+
+  autoImports = builtins.concatMap (
     name:
     let
-      base = builtins.head (builtins.match "([^\\.]+).*" name);
+      type = entries.${name};
+      path = dir + "/${name}";
     in
-    builtins.elem base fullExclude;
 
+    if isExcluded name then
+      [ ]
+
+    else if
+      type == "regular" && builtins.match ".*\\.nix" name != null && !(builtins.elem name mainFiles)
+    then
+      [ path ]
+    else if type == "directory" then
+      builtins.concatMap (
+        mainFile:
+        let
+          candidate = path + "/${mainFile}";
+        in
+        if builtins.pathExists candidate then [ candidate ] else [ ]
+      ) mainFiles
+
+    else
+      [ ]
+  ) names;
 in
-builtins.concatMap (
-  name:
-  let
-    path = dir + "/${name}";
-    info = files.${name};
-  in
-  if isExcluded name then
-    [ ]
-  else if info == "regular" && builtins.match ".*\\.nix" name != null then
-    [ path ]
-  else if info == "directory" && builtins.pathExists (path + "/${mainFile}") then
-    [ (path + "/${mainFile}") ]
-  else
-    [ ]
-) (builtins.attrNames files)
+autoImports ++ extraImports

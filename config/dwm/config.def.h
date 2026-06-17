@@ -20,6 +20,7 @@ static const int vertpad            = 8;       /* vertical padding of bar */
 static const int sidepad            = 8;       /* horizontal padding of bar */
 static const char *fonts[]          = {
   "JetBrainsMono Nerd Font Mono:size=12:antialias=true:autohint=true",
+  "Noto Color Emoji:size=12:antialias=true:autohint=true",
   "monospace:size=10"
 };
 static const char dmenufont[]       = "monospace:size=10";
