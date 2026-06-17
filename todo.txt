@@ -14,7 +14,7 @@ symlink data folders (dl,doc,mus,vid,dsk,prj)
 DONE -> dwmblocksasync
 fix bluetooth audio
 user directories
-background (feh)
+DONE -> background (feh) (TODO -> refine it)
 printing (cups+avahi)
 podman
 devshells
@@ -42,10 +42,11 @@ winboat (garmin express)
 check multimonitor
 check external monitor
 
-make betterlockscreen/slock work
+DONE -> make betterlockscreen/slock work
 make picom work
-make autorandr work
-make redshift work
+DONE -> make autorandr work
+  - WIP -> fix lockscreen background (betterlockscreen using wrong resolution)
+WIP -> make redshift work
 
 WIP -> home-manager/hjem config files + some services?
 WIP -> better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)

@@ -1,4 +1,5 @@
 {
+  pkgs,
   ...
 }:
 {
@@ -34,4 +35,10 @@
     pulse.enable = true;
     #jack.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+    pulsemixer
+    wiremix
+  ];
 }

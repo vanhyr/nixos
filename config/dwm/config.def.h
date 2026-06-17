@@ -44,17 +44,33 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class              instance              title             tags mask   isfloating  isterminal    noswallow  monitor  float x,y,w,h   floatborderpx   scratch key */
-	{ "Gimp",             NULL,                 NULL,             0,          1,          0,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
-	{ "Firefox",          NULL,                 NULL,             1 << 8,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
-	{ "kitty",            NULL,                 NULL,             0,          0,          1,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
-	{ NULL,               NULL,                 "Event Tester",   0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
+	/* class                        instance              title                               tags mask   isfloating  isterminal    noswallow  monitor  float x,y,w,h   floatborderpx   scratch key */
+  { "kitty",                      NULL,                 NULL,                               0,          0,          1,            0,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Nsxiv",                      NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "mpv",                        NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "pavucontrol",                NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ ".blueman-manager-wrapped",   NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Lxappearance",               NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Nwg-look",                   NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Arandr",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+  { "firefox",                    NULL,                 NULL,                               1 << 1,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "firefox",                    "Places",             NULL,                               1 << 1,     1,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "firefox",                    NULL,                 "About Mozilla Firefox",            1 << 1,     1,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+  { "Helium",                     NULL,                 NULL,                               1 << 1,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+  { "Brave-browser",              NULL,                 NULL,                               1 << 1,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
+  { "dev.zed.Zed",                NULL,                 NULL,                               1 << 2,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+  //{ "dev.zed.Zed",                NULL,                 "Zed â\302\200\302\224 Settings",   1 << 2,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+  //{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             0   },
+  { "Spotube",                    NULL,                 NULL,                               1 << 5,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Gimp",                       NULL,                 NULL,                               1 << 7,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ NULL,                         NULL,                 "Event Tester",                     0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
   
   /* scratchpads */
-  { "scratch_term",     NULL,                 NULL,             0,          1,          0,            1,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
-	{ "scratch_btop",     NULL,                 NULL,             0,          1,          0,            0,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
-	{ "ZapZap",           "zapzap",             NULL,             0,          1,          0,            0,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
-	//{ "WhatSie",          "whatsie",            NULL,             0,          1,          0,            0,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
+  { "scratch_term",               NULL,                 NULL,                               0,          1,          0,            0,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
+	{ "scratch_btop",               NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
+	{ "ZapZap",                     "zapzap",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
+	//{ "WhatSie",                    "whatsie",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp */
 };
 
 /* layout(s) */

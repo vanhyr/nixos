@@ -21,6 +21,9 @@ in
       "wallpaper" = ''
         ${pkgs.feh}/bin/feh --bg-fill ${wallpaper}
       '';
+      #"update-betterlockscreen-wallpaper" = ''
+      #  ${pkgs.betterlockscreen}/bin/betterlockscreen -u ${wallpaper} --blur 0.8;
+      #'';
     };
     profiles = {
       "mobile" = {
@@ -96,8 +99,12 @@ in
     };
   };
 
-  # Not sure if needed
-  #services.xserver.displayManager.sessionCommands = ''
-  #  ${pkgs.autorandr}/bin/autorandr --change
-  #'';
+  # Wayland support
+  environment.variables = {
+    #WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
+  };
+
+  services.xserver.displayManager.sessionCommands = ''
+    ${pkgs.autorandr}/bin/autorandr --change
+  '';
 }

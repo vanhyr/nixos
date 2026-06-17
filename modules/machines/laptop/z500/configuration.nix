@@ -139,18 +139,6 @@
       enable = true;
     };
 
-    redshift = {
-      enable = true;
-      brightness = {
-        day = "1";
-        night = "1";
-      };
-      temperature = {
-        day = 5500; # 6000
-        night = 3700; # 3500
-      };
-    };
-
     #power-profiles-daemon.enable = false;
     tlp = {
       #enable = true;

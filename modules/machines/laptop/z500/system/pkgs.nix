@@ -12,8 +12,6 @@
     fastfetch
     dysk
 
-    intel-vaapi-driver
-
     rofi
     kitty
 
@@ -44,11 +42,6 @@
     nil
     nixd
 
-    pavucontrol
-    bluetuith
-    pulsemixer
-    wiremix
-
     xclip
     xsel
 
@@ -64,6 +57,11 @@
     nwg-look
 
     arandr
+
+    # for btop?
+    pciutils
+    intel-gpu-tools
+    nvtopPackages.nvidia # not sure
 
     #libsForQt5.qt5ct
     #libsForQt5.qtstyleplugin-kvantum # activate it with qt.style = kvantum
