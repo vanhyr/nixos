@@ -24,6 +24,17 @@ in
       ];
     };
 
+    # lto kernels fix
+    #nixpkgs.overlays = [
+    #  (final: prev: {
+    #    cups = prev.cups.overrideAttrs (oldAttrs: {
+    #      meta = (oldAttrs.meta or { }) // {
+    #        broken = false;
+    #      };
+    #    });
+    #  })
+    #];
+
     #systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
     #systemd.services.systemd-hibernate.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
 

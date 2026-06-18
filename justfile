@@ -24,6 +24,9 @@ test:
   doas nixos-rebuild test --flake .#{{hostname}}
   #sudo nixos-rebuild test --flake .#{{hostname}}
 
+test-nh:
+  nh os test . -H {{hostname}}
+
 switch:
   doas nixos-rebuild switch --flake .#{{hostname}}
   #sudo nixos-rebuild switch --flake .#{{hostname}}
