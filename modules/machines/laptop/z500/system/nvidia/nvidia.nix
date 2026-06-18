@@ -51,8 +51,10 @@ in
 
         modesetting.enable = true;
 
-        powerManagement.enable = true; # fixes suspend bug
-        powerManagement.finegrained = true;
+        powerManagement = {
+          enable = true; # fixes suspend bug
+          finegrained = true;
+        };
         nvidiaPersistenced = false; # fixes suspend bug
 
         # only works up to kernel 6.12

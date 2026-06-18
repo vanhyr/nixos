@@ -12,7 +12,8 @@ snapper/timeshift (btrfs)
 DONE -> network shares (smb)
 symlink data folders (dl,doc,mus,vid,dsk,prj)
 DONE -> dwmblocksasync
-fix bluetooth audio
+  - Needs visual fix for missing icon before modules
+fix bluetooth audio (LG XBOOM only)
 user directories
 DONE -> background (feh) (TODO -> refine it)
 printing (cups+avahi)
@@ -35,18 +36,19 @@ helium widevine fix
 lf/yazi
 fzf
 nvim config (lsp, treesitter, completions, multiple cursors, markdown previews, fzf)
-tmux/
+tmux/zellij
 xephyr (for testing wm)
 winboat (garmin express)
 
-check multimonitor
-check external monitor
+DONE -> check multimonitor
+DONE -> check external monitor
 
 DONE -> make betterlockscreen/slock work
+  - Need to add cache generation for the first time (taking all screens into account)
 make picom work
 DONE -> make autorandr work
-  - WIP -> fix lockscreen background (betterlockscreen using wrong resolution)
-WIP -> make redshift work
+  - DONE -> fix first boot (wrong resolution)
+DONE -> make redshift work
 
 WIP -> home-manager/hjem config files + some services?
 WIP -> better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)

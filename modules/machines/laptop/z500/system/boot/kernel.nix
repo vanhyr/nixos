@@ -9,8 +9,11 @@
     #kernelPackages = pkgs.linuxPackages_6_12; # LTS (for nvidia legacy_470 without patching)
 
     # chaotic-nyx and nyx-loner
-    kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel
-    #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS kernel (lto) TODO -> broken cups
+    kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
+    # lto breaks! marks nvidia and cups as broken
+    #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel (now it applies lto, use gcc instead)
+    #kernelPackages = pkgs.linuxPackages_cachyos-rc; # cachyOS RC kernel (applies lto, use gcc instead)
+    #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS lto kernel
     #kernelPackages = pkgs.linuxPackagesFor pkgs.linuxPackages_cachyos-lto.kernel; # just the kernel TODO -> idk, better than above? maybe
 
     # nix-cachyos-kernel

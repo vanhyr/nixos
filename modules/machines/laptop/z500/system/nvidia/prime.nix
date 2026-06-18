@@ -35,7 +35,10 @@
       max-graphics-performance.configuration = {
         system.nixos.tags = [ "max-graphics-performance" ];
         hardware.nvidia = {
-          powerManagement.finegrained = lib.mkForce false;
+          powerManagement = {
+            enable = lib.mkForce false;
+            finegrained = lib.mkForce false;
+          };
 
           prime.sync.enable = lib.mkForce true;
           prime.offload = {

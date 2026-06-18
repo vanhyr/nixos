@@ -4,7 +4,8 @@
   ...
 }:
 let
-  joanbm-patches = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/4cb394a4560ac25b0bd21411e26aacbc1b59e81f/patches";
+  commit = "3453cd04da69c60e9330acf085746449c0a7b754";
+  joanbm-patches = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/${commit}/patches";
 
   # Disable objtool for propietary blobs (optional if you are compiling the kernel)
   #patch-disable-objtool-override = pkgs.fetchpatch {
@@ -16,20 +17,32 @@ let
   patch-linux-6-19-part1 = pkgs.fetchpatch {
     url = "${joanbm-patches}/nvidia-470xx-fix-linux-6.19-part1.patch";
     hash = "sha256-Swq82/0CMM8OMJz1BpgkuOngGio8cIrdXWuR05cZDa8=";
-    stripLen = 1;
-    extraPrefix = "kernel/";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
   };
   patch-linux-6-19-part2 = pkgs.fetchpatch {
     url = "${joanbm-patches}/nvidia-470xx-fix-linux-6.19-part2.patch";
     hash = "sha256-9ykrYEl6UH3NDvfdv5sWfFUShrdRzIqf/h+OAqijRLM=";
-    stripLen = 1;
-    extraPrefix = "kernel/";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
   };
   patch-linux-7-0 = pkgs.fetchpatch {
     url = "${joanbm-patches}/nvidia-470xx-fix-linux-7.0.patch";
-    hash = "sha256-mytOoDLZe8rmM/DQNMo3TxirN1RZkwjSRamg7MfsoZg=";
-    stripLen = 1;
-    extraPrefix = "kernel/";
+    hash = "sha256-mytOoDLZe8rmM/DQNMo3TxirN1RZkwjSRamg7MfsoZg";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
+  };
+  patch-linux-7-2-part1 = pkgs.fetchpatch {
+    url = "${joanbm-patches}/nvidia-470xx-fix-linux-7.2-part1.patch";
+    hash = "sha256-LO+jMpq8ZPukZUdeTyHpsRpdLQu/Nx3Vynw5nPJv+C4";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
+  };
+  patch-linux-7-2-part2 = pkgs.fetchpatch {
+    url = "${joanbm-patches}/nvidia-470xx-fix-linux-7.2-part2.patch";
+    hash = "sha256-eI5TbTaEUzH3XFYubh/vNbDsE1b84HQQ+RcTrMoGtbY=";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
   };
 
   baseDriver = config.boot.kernelPackages.nvidiaPackages.legacy_470;
@@ -40,5 +53,7 @@ baseDriver.overrideAttrs (oldAttrs: {
     patch-linux-6-19-part1
     patch-linux-6-19-part2
     patch-linux-7-0
+    patch-linux-7-2-part1
+    patch-linux-7-2-part2
   ];
 })

@@ -74,6 +74,9 @@
     #catppuccin-qt5ct
     #catppuccin-kvantum
 
+    hypnotix
+    librepods
+
     #nix-output-monitor
   ];
 }

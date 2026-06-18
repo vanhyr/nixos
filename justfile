@@ -17,6 +17,9 @@ dry-run:
   #sudo nixos-rebuild dry-activate --flake .#{{hostname}}
   doas nixos-rebuild dry-activate --flake .#{{hostname}}
 
+dry-run-nh:
+  nh os switch --dry . -H {{hostname}}
+
 test:
   doas nixos-rebuild test --flake .#{{hostname}}
   #sudo nixos-rebuild test --flake .#{{hostname}}
