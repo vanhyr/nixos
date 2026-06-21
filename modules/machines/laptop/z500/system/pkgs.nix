@@ -29,7 +29,11 @@
     scrot
 
     lf
+
     mpv
+    #ffmpeg
+    ffmpeg-full
+
     nsxiv
 
     zathura
@@ -87,6 +91,9 @@
     tuliprox
 
     librepods
+
+    python3
+    #pipx
 
     #nix-output-monitor
   ];

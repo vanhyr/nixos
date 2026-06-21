@@ -30,10 +30,10 @@
       #allowBroken = true; # general option, allow broken packages
 
       # granular allowing of broken packages
-      #problems.handlers = {
-      #  nvidia-x11.broken = "warn"; # or "ignore"
-      #  cups.broken = "warn";
-      #};
+      problems.handlers = {
+        nvidia-x11.broken = "warn"; # or "ignore"
+        cups.broken = "warn";
+      };
 
       # granular allowing of broken packages
       #allowBrokenPredicate =

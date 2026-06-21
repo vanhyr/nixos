@@ -48,26 +48,27 @@ let
   baseDriver = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 in
 baseDriver.overrideAttrs (oldAttrs: {
-  # FIX -> using lto kernel needs some tinkering (v1)
+  # FIX -> using lto kernel needs some tinkering
   #meta = (oldAttrs.meta or { }) // {
   #  broken = false; # for the cachyos_lto kernel
   #};
-  #env = (oldAttrs.env or { }) // {
-  #  IGNORE_CC_MISMATCH = "1";
-  #  LLVM = "1"; # only if it uses clang
-  #};
-  # FIX -> using lto kernle needs some tinkering (v2)
+  #nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.llvmPackages.clang ];
   #IGNORE_CC_MISMATCH = "1";
   #LLVM = "1";
-  #makeFlags = (oldAttrs.makeFlags or [ ]) ++ [
-  #  "IGNORE_CC_MISMATCH=1"
-  #  "LLVM=1"
-  #  "CC=${pkgs.clang}/bin/clang"
-  #];
+  #CC = "clang";
+  #env = (oldAttrs.env or { }) // {
+  #  IGNORE_CC_MISMATCH = "1";
+  #  LLVM = "1";
+  #  CC = "clang";
+  #};
   #preBuild = (oldAttrs.preBuild or "") + ''
   #  export IGNORE_CC_MISMATCH=1
   #  export LLVM=1
-  #  export CC=${pkgs.clang}/bin/clang
+  #  export CC=clang
+  #  export LD=ld.lld
+  #  export AR=llvm-ar
+  #  export OBJDUMP=llvm-objdump
+  #  export OBJCOPY=llvm-objcopy
   #'';
   #NIX_CFLAGS_COMPILE = (oldAttrs.NIX_CFLAGS_COMPILE or "") + " -fno-lto";
 
