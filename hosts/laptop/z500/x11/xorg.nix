@@ -4,7 +4,7 @@
 {
   services.xserver = {
     enable = true;
-    videoDrivers = [ "nvidia" ];
+    #videoDrivers = [ "nvidia" ];
 
     #autoRepeatDelay = 200;
     #autoRepeatInterval = 35;

@@ -53,8 +53,8 @@ DONE -> make redshift work
 WIP -> home-manager/hjem config files + some services?
 WIP -> better flake modularization + reusable modules (need to work on modules shared by multiple systems, 1 system for now)
   - WIP -> Nvidia:
-    - TODO (move config from a single host to multiple) -> Nvidia modular config for all hosts
+    - DONE -> Nvidia modular config for all hosts
     - DONE -> Nvidia modular config toggle
     - DONE -> Nvidia modular driver package injection
-    - FIX (specialization for only sync mode not working) -> Nvidia modular prime (offload/sync) + specialization
+    - DONE -> Nvidia modular prime (offload/sync) + specialization
     - Separate Nvidia and Intel configs

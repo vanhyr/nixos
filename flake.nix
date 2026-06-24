@@ -74,9 +74,9 @@
           "aarch64-linux"
         ];
         imports = [
-          #./modules/machines/desktop
-          ./modules/machines/laptop
-          #./modules/machines/server
+          #./hosts/desktop
+          ./hosts/laptop
+          #./hosts/server
         ];
         _module.args.rootPath = ./.;
       }

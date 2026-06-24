@@ -10,6 +10,7 @@
     just
 
     fastfetch
+    maxfetch
     dysk
 
     rofi
@@ -27,8 +28,6 @@
     brave
 
     scrot
-
-    lf
 
     mpv
     #ffmpeg
@@ -94,6 +93,10 @@
 
     python3
     #pipx
+
+    stremio-linux-shell
+
+    openvpn
 
     #nix-output-monitor
   ];

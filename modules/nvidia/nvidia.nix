@@ -13,16 +13,19 @@ in
 {
   options.drivers.nvidia = {
     enable = lib.mkEnableOption "Enable Nvidia drivers";
+    driverVersion = lib.mkOption {
+      type = lib.types.enum [
+        "production"
+        "legacy-470"
+        "legacy-470-patched"
+      ];
+      default = "production";
+      description = "Driver version to use";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     services.xserver.videoDrivers = [ "nvidia" ];
-
-    boot = {
-      blacklistedKernelModules = [
-        #"nouveau"
-      ];
-    };
 
     # lto kernels fix
     #nixpkgs.overlays = [
@@ -34,9 +37,6 @@ in
     #    });
     #  })
     #];
-
-    #systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
-    #systemd.services.systemd-hibernate.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
 
     hardware = {
       graphics = {
@@ -64,7 +64,7 @@ in
 
         powerManagement = {
           enable = true; # fixes suspend bug
-          finegrained = true;
+          finegrained = false; # turns off gpu when not in use, experimental (turing or newer)
         };
         nvidiaPersistenced = false; # fixes suspend bug
 
@@ -77,7 +77,13 @@ in
         # check these links if a new version needs revision:
         #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
         #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
-        package = patched-nvidia-470-driver;
+        package =
+          if cfg.driverVersion == "legacy-470-patched" then
+            patched-nvidia-470-driver
+          else if cfg.driverVersion == "legacy-470" then
+            config.boot.kernelPackages.nvidiaPackages.legacy_470
+          else
+            config.boot.kernelPackages.nvidiaPackages.production;
       };
     };
   };

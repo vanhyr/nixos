@@ -1,7 +1,6 @@
 {
   #config,
   lib,
-  pkgs,
   ...
 }:
 {
@@ -59,16 +58,6 @@
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
-  # Enable sound.
-  # services.pulseaudio.enable = true;
-  # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
-
-  environment.shellAliases = lib.mkForce { };
-
   environment.variables = {
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";
 
@@ -84,61 +73,19 @@
   };
 
   programs = {
-    fish = {
-      enable = true;
-      shellAliases = { };
-      shellAbbrs = { };
-      shellInit = "";
-      loginShellInit = "";
-      interactiveShellInit = "";
-    };
-    starship.enable = true;
     #gnupg.agent = {
-    #enable = true;
-    #enableSSHSupport = true;
+    #  enable = true;
+    #  enableSSHSupport = true;
     #};
-    nh = {
+
+    # userspace mounting for fs
+    fuse = {
       enable = true;
-    };
-    firefox = {
-      enable = true;
-    };
-    thunar = {
-      enable = true;
-      plugins = with pkgs; [
-        thunar-archive-plugin
-        thunar-volman
-      ];
-    };
-    xfconf.enable = true; # for saving thunar options
-    helium = {
-      enable = true;
+      userAllowOther = true;
     };
   };
 
   services = {
-
-    ananicy = {
-      enable = true;
-      package = pkgs.ananicy-cpp;
-      rulesProvider = pkgs.ananicy-rules-cachyos;
-    };
-
-    dunst = {
-      enable = true;
-      #settings = {
-      #
-      #};
-    };
-
-    # for thunar
-    #gvfs.enable = true;
-    tumbler.enable = true;
-
-    picom = {
-      enable = true;
-    };
-
     #power-profiles-daemon.enable = false;
     tlp = {
       #enable = true;
@@ -160,7 +107,6 @@
       };
     };
     thermald.enable = true;
-
   };
 
   # Open ports in the firewall.

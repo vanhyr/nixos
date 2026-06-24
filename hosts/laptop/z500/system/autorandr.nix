@@ -1,4 +1,5 @@
 {
+  lib,
   pkgs,
   ...
 }:
@@ -104,7 +105,7 @@ in
     #WAYLAND_DISPLAY = "autorandr"; # make aurorandr use wayland
   };
 
-  services.xserver.displayManager.sessionCommands = ''
+  services.xserver.displayManager.sessionCommands = lib.mkBefore ''
     ${pkgs.autorandr}/bin/autorandr --change
   '';
 }

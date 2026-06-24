@@ -14,7 +14,6 @@
       blacklist = [
         "default.nix"
 
-        #"prime.nix"
         "patched-nvidia-470-driver.nix"
       ];
 

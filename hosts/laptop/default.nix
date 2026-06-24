@@ -49,7 +49,7 @@ in
               self.inputs.helium-browser.nixosModules.default
               #self.inputs.sops-nix.nixosModules.default
               self.inputs.sops-nix.nixosModules.sops
-              (./. + "/_common/default.nix")
+              (./. + "/common/default.nix")
               (./. + "/${name}/configuration.nix")
             ];
           }

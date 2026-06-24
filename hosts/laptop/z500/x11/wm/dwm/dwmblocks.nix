@@ -36,7 +36,7 @@ let
     #  lib.optionalString (conf != null) "cp ${configFile} config.h";
 
     postPatch = ''
-      cp ${../../../../../../../config/dwmblocks-async/config.h} config.h
+      cp ${../../../../../../config/dwmblocks-async/config.h} config.h
     '';
 
     makeFlags = [ "PREFIX=$(out)" ];
