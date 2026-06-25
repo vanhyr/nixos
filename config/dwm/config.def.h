@@ -61,8 +61,8 @@ static const Rule rules[] = {
   { "dev.zed.Zed",                NULL,                 NULL,                               1 << 2,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
   //{ "dev.zed.Zed",                NULL,                 "Zed â\302\200\302\224 Settings",   1 << 2,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
 	//{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
-  //{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             0   },
   { "Spotube",                    NULL,                 NULL,                               1 << 5,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+  { "Hypnotix.py",                NULL,                 NULL,                               1 << 6,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
 	{ "Gimp",                       NULL,                 NULL,                               1 << 7,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
 	{ NULL,                         NULL,                 "Event Tester",                     0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
   
@@ -72,7 +72,7 @@ static const Rule rules[] = {
 	{ "scratch_btop",               NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
 	{ "ZapZap",                     "zapzap",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (zapzap) */
 	//{ "WhatSie",                    "whatsie",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (whatsie) */
-	{ "Todoist",                    "todoist",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             't' }, /* scratchpad todoist (todoist-electron)*/
+	{ "Todoist",                    "todoist",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'm' }, /* scratchpad todoist (todoist-electron)*/
 };
 
 /* layout(s) */
@@ -128,7 +128,7 @@ static const char *scratchexplorercmd[] = {"e", "thunar", NULL};
 static const char *scratchbtopcmd[] = {"b", "kitty", "--app-id", "scratch_btop", "btop", NULL};
 static const char *scratchwhatsappcmd[] = {"w", "zapzap", NULL};
 //static const char *scratchwhatsappcmd[] = {"w", "whatsie", NULL};
-static const char *scratchtodoistcmd[] = {"t", "todoist-electron", NULL};
+static const char *scratchtodoistcmd[] = {"m", "todoist-electron", NULL};
 
 /* KEYBINDS (Supports Keychords) */
 static const Keychord *keychords[] = {
