@@ -6,17 +6,11 @@
     nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # chaotic-nyx -> cachyos_kernel
+    # chaotic-nyx -> cachyos_kernel (lto does not work)
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # nyx-loner -> cachyos_kernel
-    #nyx-loner.url = "github:lonerOrz/nyx-loner";
 
-    # nix-cachyos-kernel (doesn't work, revisit it if their ci/cd passes?)
-    #nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
-    #nix-cachyos-kernel = {
-    #  url = "github:xddxdd/nix-cachyos-kernel/release";
-    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
-    #};
+    # nix-cachyos-kernel (works but doesn't cache, probably because the processor it's v2 which the repo doesn't cache, lto does not work)
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     #nur = {
     #  url = "github:nix-community/NUR";

@@ -37,14 +37,12 @@ in
               {
                 nixpkgs.overlays = [
                   # nix-cachyos-kernel
-                  #self.inputs.nix-cachyos-kernel.overlays.default
-                  #self.inputs.nix-cachyos-kernel.overlays.pinned
+                  self.inputs.nix-cachyos-kernel.overlays.default # works but no binary cache, needs to compile the kernel
+                  #self.inputs.nix-cachyos-kernel.overlays.pinned # binary cached (doesn't work with nvidia-470-patched, can't use unfree)
                 ];
               }
               # chaotic-nyx
               self.inputs.chaotic.nixosModules.default
-              # nyx-loner
-              #self.inputs.nyx-loner.nixosModules.default
               # helium browser
               self.inputs.helium-browser.nixosModules.default
               #self.inputs.sops-nix.nixosModules.default
