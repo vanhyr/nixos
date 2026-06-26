@@ -6,10 +6,10 @@
     nixpkgs.url = "nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    # chaotic-nyx -> cachyos_kernel (lto does not work)
+    # chaotic-nyx -> provides the cachyos kernel and some bleeding edge packages (lto does not work)
     chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
-    # nix-cachyos-kernel (works but doesn't cache, probably because the processor it's v2 which the repo doesn't cache, lto does not work)
+    # nix-cachyos-kernel, provides just the cachyos kernel (lto does not work)
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     #nur = {

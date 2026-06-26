@@ -37,8 +37,8 @@ in
               {
                 nixpkgs.overlays = [
                   # nix-cachyos-kernel
-                  self.inputs.nix-cachyos-kernel.overlays.default # works but no binary cache, needs to compile the kernel
-                  #self.inputs.nix-cachyos-kernel.overlays.pinned # binary cached (doesn't work with nvidia-470-patched, can't use unfree)
+                  #self.inputs.nix-cachyos-kernel.overlays.default # works
+                  #self.inputs.nix-cachyos-kernel.overlays.pinned # doesn't work with nvidia-470-patched, can't use unfree (nixConfig is fixed on the repo and can't be changed)
                 ];
               }
               # chaotic-nyx

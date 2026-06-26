@@ -4,7 +4,7 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    todoist-electron
-    planify
+    todoist-electron # closed source (electron)
+    planify # gnome alternative (oss)
   ];
 }

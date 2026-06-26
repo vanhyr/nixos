@@ -9,7 +9,7 @@
     #kernelPackages = pkgs.linuxPackages_6_12; # LTS (for nvidia legacy_470 without patching)
 
     # chaotic-nyx
-    #kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
+    kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
     # lto breaks! marks nvidia and cups as broken
     #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel (now it applies lto)
     #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS lto kernel
@@ -19,10 +19,8 @@
     #kernelPackages = pkgs.legacyPackages.x86_64-linux.linuxPackages_cachyos-lto; # try this maybe, just kernel, no overlay or modules
 
     # nix-cachyos-kernel
-    kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
+    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
     #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto; # cachyOS kernel (lto)
-    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-eevdf; # cachyOS kernel eevdf
-    #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-eevdf-lto; # cachyOS kernel eevdf (lto)
 
     initrd = {
       availableKernelModules = [
