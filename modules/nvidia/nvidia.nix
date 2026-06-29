@@ -73,7 +73,7 @@ in
         #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
         #package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 
-        # patched the 470 driver myself so it works with the 7.0.10 kernel.
+        # patched the 470 driver myself so it works with the 7.2 kernel.
         # check these links if a new version needs revision:
         #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
         #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
