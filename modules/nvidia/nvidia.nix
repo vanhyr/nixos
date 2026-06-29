@@ -68,20 +68,15 @@ in
         };
         nvidiaPersistenced = false; # fixes suspend bug
 
-        # only works up to kernel 6.12
-        # check if pkg gets patched in the mainline repo so needs no manual patching no more:
-        #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
-        #package = config.boot.kernelPackages.nvidiaPackages.legacy_470;
-
         # patched the 470 driver myself so it works with the 7.2 kernel.
         # check these links if a new version needs revision:
         #   https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/os-specific/linux/nvidia-x11/default.nix
         #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
         package =
           if cfg.driverVersion == "legacy-470-patched" then
-            patched-nvidia-470-driver
+            patched-nvidia-470-driver # works up to kernel 7.2
           else if cfg.driverVersion == "legacy-470" then
-            config.boot.kernelPackages.nvidiaPackages.legacy_470
+            config.boot.kernelPackages.nvidiaPackages.legacy_470 # works up to kernel 7.1
           else
             config.boot.kernelPackages.nvidiaPackages.production;
       };

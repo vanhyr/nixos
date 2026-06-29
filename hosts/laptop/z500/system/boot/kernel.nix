@@ -6,7 +6,6 @@
   boot = {
     # default linux kernel
     #kernelPackages = pkgs.linuxPackages_latest;
-    #kernelPackages = pkgs.linuxPackages_6_12; # LTS (for nvidia legacy_470 without patching)
 
     # chaotic-nyx
     kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
