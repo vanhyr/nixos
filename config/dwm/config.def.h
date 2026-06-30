@@ -68,7 +68,7 @@ static const Rule rules[] = {
   
   /* scratchpads */
   { "scratch_term",               NULL,                 NULL,                               0,          1,          0,            0,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
-	{ "Thunar",                     "Thunar",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'e' }, /* scratchpad explorer (thunar) */
+	{ "scratch_thunar",             NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'e' }, /* scratchpad explorer (thunar) */
 	{ "scratch_btop",               NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
 	{ "ZapZap",                     "zapzap",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (zapzap) */
 	//{ "WhatSie",                    "whatsie",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (whatsie) */
@@ -124,7 +124,7 @@ static const char *termcmd[]  = { "kitty", NULL };
 
 /* first arg only serves to match against key in rules*/
 static const char *scratchtermcmd[] = {"t", "kitty", "--app-id", "scratch_term", NULL};
-static const char *scratchexplorercmd[] = {"e", "thunar", NULL};
+static const char *scratchexplorercmd[] = {"e", "thunar", "--class=scratch_thunar", NULL};
 static const char *scratchbtopcmd[] = {"b", "kitty", "--app-id", "scratch_btop", "btop", NULL};
 static const char *scratchwhatsappcmd[] = {"w", "zapzap", NULL};
 //static const char *scratchwhatsappcmd[] = {"w", "whatsie", NULL};
