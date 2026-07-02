@@ -9,13 +9,10 @@
 
     # chaotic-nyx
     kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
-    # lto breaks! marks nvidia and cups as broken
+    # lto breaks! marks cups as broken
     #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel (now it applies lto)
     #kernelPackages = pkgs.linuxPackages_cachyos-lto; # cachyOS lto kernel
     #kernelPackages = pkgs.linuxPackages_cachyos-rc; # cachyOS RC kernel, is not cached! (applies lto)
-    # idk
-    #kernelPackages = pkgs.linuxPackages_cachyos-lto.kernel; # just the kernel TODO -> idk, better than above? maybe
-    #kernelPackages = pkgs.legacyPackages.x86_64-linux.linuxPackages_cachyos-lto; # try this maybe, just kernel, no overlay or modules
 
     # nix-cachyos-kernel
     #kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest; # cachyOS kernel
@@ -29,14 +26,17 @@
         "usb_storage" # flash drive boot
         "sd_mod" # SCSI/SATA disks (block devices)
         "sr_mod" # CD/DVD reader
+
+        "usbhid"
+        "btrfs"
       ];
       kernelModules = [ ];
     };
 
     kernelModules = [
-      "kvm-intel"
+      #"kvm-intel"
       "rtsx_usb" # Realtek USB bus root module
-      "rtsx_usb_sdmmc" # SD/MMC Realtek memory card reader (internal USB bus)
+      #"rtsx_usb_sdmmc" # Suspend warning -> SD/MMC Realtek memory card reader (internal USB bus)
     ];
     extraModulePackages = [ ];
 
@@ -51,6 +51,8 @@
 
       # touchpad fix
       #"psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
+
+      "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
     ];
 
     blacklistedKernelModules = [

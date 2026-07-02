@@ -1,10 +1,23 @@
 {
+  pkgs,
   ...
 }:
 {
   networking = {
     hostName = "z500";
-    networkmanager.enable = true;
+    enableIPv6 = false; # disable ipv6
+    nameservers = [
+      "192.168.18.50"
+      "192.168.18.53"
+      #"9.9.9.9"
+      #"1.1.1.1"
+    ];
+    networkmanager = {
+      enable = true;
+      plugins = with pkgs; [
+        networkmanager-openvpn
+      ];
+    };
   };
   services.openssh = {
     enable = true;

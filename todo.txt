@@ -29,6 +29,10 @@ WIP -> dwm (+ patches)
 oxwm
 qtile
 
+lightdm
+
+lxsession?
+
 add gtk/qt looks
 stylix
 

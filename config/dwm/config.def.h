@@ -60,9 +60,10 @@ static const Rule rules[] = {
   { "Brave-browser",              NULL,                 NULL,                               1 << 1,     0,          0,            -1,       -1,       -1,-1,-1,-1,    -1,             0   },
   { "dev.zed.Zed",                NULL,                 NULL,                               1 << 2,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
   //{ "dev.zed.Zed",                NULL,                 "Zed â\302\200\302\224 Settings",   1 << 2,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
-	//{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+	{ "Thunar",                     NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
   { "Spotube",                    NULL,                 NULL,                               1 << 5,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
   { "Hypnotix.py",                NULL,                 NULL,                               1 << 6,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
+  { "com.stremio.Stremio",        NULL,                 NULL,                               1 << 6,     0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
 	{ "Gimp",                       NULL,                 NULL,                               1 << 7,     1,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   },
 	{ NULL,                         NULL,                 "Event Tester",                     0,          0,          0,            1,        -1,       -1,-1,-1,-1,    -1,             0   }, /* xev */
   

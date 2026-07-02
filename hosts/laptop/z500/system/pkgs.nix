@@ -38,6 +38,8 @@
     zathura
     zathuraPkgs.zathura_pdf_poppler
 
+    spotify
+
     spotube
     yt-dlp
 
@@ -87,6 +89,13 @@
     stremio-linux-shell
 
     openvpn
+
+    # apk inspection
+    binutils
+    apktool
+    #findutils
+
+    localsend
 
     #nix-output-monitor
   ];
