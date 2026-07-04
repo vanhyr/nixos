@@ -12,7 +12,6 @@
     bluetuith
   ];
   hardware = {
-    pulseaudio.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;

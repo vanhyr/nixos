@@ -16,14 +16,17 @@
   ];
   hardware.sane = {
     enable = true; # support for sane scanners
-    openFirewall = true;
+    extraBackends = with pkgs; [
+      sane-airscan
+    ];
+    #openFirewall = true; # just for cannon scanners
   };
   services = {
     #ipp-usb.enable = true; # auto discover usb printers
     avahi = {
       enable = true;
       nssmdns4 = true;
-      openFirewall = true; # open firewall rule for avahi
+      openFirewall = true; # open firewall rule for avahi (5353/UDP)
     };
     printing = {
       enable = true;

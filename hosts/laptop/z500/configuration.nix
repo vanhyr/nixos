@@ -17,8 +17,6 @@
         "default.nix"
         "configuration.nix"
         #"hardware-configuration.nix"
-
-        #"nvidia"
       ];
 
       isValidNix =

@@ -13,7 +13,6 @@
     maxfetch
     dysk
 
-    rofi
     kitty
 
     libnotify
@@ -25,8 +24,6 @@
     procps
     psmisc
 
-    brave
-
     scrot
 
     mpv
@@ -35,24 +32,12 @@
 
     nsxiv
 
-    zathura
-    zathuraPkgs.zathura_pdf_poppler
-
-    spotify
-
-    spotube
-    yt-dlp
-
     zed-editor
     nil
     nixd
 
     xclip
     xsel
-
-    karere
-    whatsie
-    zapzap
 
     duf
     nitrogen
@@ -86,8 +71,6 @@
     python3
     #pipx
 
-    stremio-linux-shell
-
     openvpn
 
     # apk inspection
@@ -96,6 +79,8 @@
     #findutils
 
     localsend
+
+    brightnessctl
 
     #nix-output-monitor
   ];

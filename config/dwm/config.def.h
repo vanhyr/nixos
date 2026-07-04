@@ -69,7 +69,7 @@ static const Rule rules[] = {
   
   /* scratchpads */
   { "scratch_term",               NULL,                 NULL,                               0,          1,          0,            0,        -1,       -1,6,60,60,     -1,             't' }, /* scratchpad terminal */
-	{ "scratch_thunar",             NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'e' }, /* scratchpad explorer (thunar) */
+	{ "scratch_thunar",             "thunar",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'e' }, /* scratchpad explorer (thunar) */
 	{ "scratch_btop",               NULL,                 NULL,                               0,          1,          0,            1,        -1,       -1,6,59,70,     -1,             'b' }, /* scratchpad btop */
 	{ "ZapZap",                     "zapzap",             NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (zapzap) */
 	//{ "WhatSie",                    "whatsie",            NULL,                               0,          1,          0,            1,        -1,       -1,6,80,80,     -1,             'w' }, /* scratchpad whatsapp (whatsie) */
@@ -164,16 +164,16 @@ static const Keychord *keychords[] = {
 	&((Keychord){ 1, {{MODKEY,                          XK_d}},         incnmaster,       {.i = -1 } }),
 	//&((Keychord){ 1, {{MODKEY,                          XK_h}},         setmfact,         {.f = -0.05} }),
 	//&((Keychord){ 1, {{MODKEY,                          XK_l}},         setmfact,         {.f = +0.05} }),
-	&((Keychord){ 1, {{MODKEY,                          XK_h}},         setmfact,         {.f = -0.1} }),
-	&((Keychord){ 1, {{MODKEY,                          XK_l}},         setmfact,         {.f = +0.1} }),
+	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_h}},         setmfact,         {.f = -0.1} }),
+	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_l}},         setmfact,         {.f = +0.1} }),
 	//&((Keychord){ 1, {{MODKEY,                          XK_o}},         setmfact,         {.f = 0.00} }), // doesn't work
 	
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_j}},         rotatestack,      {.i = +1 } }),
 	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_k}},         rotatestack,      {.i = -1 } }),
 
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_l}},         setcfact,         {.f = -0.25} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_h}},         setcfact,         {.f = +0.25} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_o}},         setcfact,         {.f =  0.00} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_l}},         setcfact,         {.f = -0.25} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_h}},         setcfact,         {.f = +0.25} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_o}},         setcfact,         {.f =  0.00} }),
 
   //&((Keychord){ 1, {{MODKEY,                          XK_z}},         zoom,             {0} }),
 
@@ -188,13 +188,15 @@ static const Keychord *keychords[] = {
   &((Keychord){ 2, {{MODKEY,                          XK_l},
                     {0,                               XK_t}},         setlayout,        {.v = &layouts[0]} }),
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_f}},         setlayout,        {.v = &layouts[5]} }),
-  &((Keychord){ 2, {{MODKEY,                          XK_l},
                     {0,                               XK_m}},         setlayout,        {.v = &layouts[1]} }),
+  &((Keychord){ 2, {{MODKEY,                          XK_l},
+                    {0,                               XK_b}},         setlayout,        {.v = &layouts[3]} }),
+  &((Keychord){ 2, {{MODKEY,                          XK_l},
+                    {0,                               XK_f}},         setlayout,        {.v = &layouts[5]} }),
 	
   &((Keychord){ 1, {{MODKEY,                          XK_space}},     setlayout,        {0} }),
 	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_space}},     togglefloating,   {0} }),
-	&((Keychord){ 1, {{MODKEY,                          XK_v}},         togglefloating,   {0} }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_v}},         togglefloating,   {0} }),
 	
   //&((Keychord){ 1, {{MODKEY,                          XK_0}},         view,             {.ui = ~0 } }),
 	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_0}},         tag,              {.ui = ~0 } }),

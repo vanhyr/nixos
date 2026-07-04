@@ -12,13 +12,20 @@
   ];
 
   services = {
-    pulseaudio.enable = false;
+    pulseaudio = {
+      enable = false;
+      package = pkgs.pulseaudioFull;
+      #extraConfig = "
+      #  load-module module-switch-on-connect
+      #";
+    };
     pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
       jack.enable = true;
+      audio.enable = true;
       wireplumber = {
         enable = true;
         #extraConfig = {
@@ -32,5 +39,5 @@
     };
   };
 
-  security.rtkit.enable = true;
+  security.rtkit.enable = true; # not sure
 }
