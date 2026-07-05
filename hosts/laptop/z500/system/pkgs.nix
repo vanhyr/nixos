@@ -67,8 +67,6 @@
 
     librepods
 
-    #pipx
-
     openvpn
 
     # apk inspection

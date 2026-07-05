@@ -71,6 +71,7 @@
           #./hosts/desktop
           ./hosts/laptop
           #./hosts/server
+          ./modules/devshell.nix
         ];
         _module.args.rootPath = ./.;
       }
