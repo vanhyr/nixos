@@ -7,6 +7,7 @@
     xdg-ninja
 
     compsize # real size for btrfs filesystems
+
     just
 
     fastfetch
@@ -64,11 +65,8 @@
     #catppuccin-qt5ct
     #catppuccin-kvantum
 
-    tuliprox
-
     librepods
 
-    python3
     #pipx
 
     openvpn
@@ -77,8 +75,6 @@
     binutils
     apktool
     #findutils
-
-    localsend
 
     brightnessctl
 

@@ -16,7 +16,7 @@ DONE -> dwmblocksasync
 fix bluetooth audio (LG XBOOM only)
 user directories
 DONE -> background (feh) (TODO -> refine it)
-printing (cups+avahi)
+DONE -> printing (cups+avahi)
 podman
 devshells
 
