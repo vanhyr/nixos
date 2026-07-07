@@ -6,6 +6,15 @@
 let
   entries = builtins.attrNames (builtins.readDir ./.);
   configs = builtins.filter (dir: builtins.pathExists (./. + "/${dir}/configuration.nix")) entries;
+
+  homeManagerCfg = userPackages: {
+    home-manager.useUserPackages = lib.mkDefault userPackages;
+    home-manager.useGlobalPkgs = false;
+    home-manager.extraSpecialArgs = {
+      inherit (self) inputs;
+    };
+    home-manager.backupFileExtension = "hm-bak";
+  };
 in
 {
   flake.nixosConfigurations =
@@ -21,7 +30,6 @@ in
         name: self.inputs."nixpkgs${lib.attrsets.attrByPath [ name ] "" nixpkgsMap}".lib.nixosSystem;
     in
     lib.listToAttrs (
-      #builtins.map (
       map (
         name:
         lib.nameValuePair name (
@@ -35,7 +43,7 @@ in
             };
             modules = [
               {
-                nixpkgs.overlays = lib.mkAfter [
+                nixpkgs.overlays = [
                   # nix-cachyos-kernel
                   #self.inputs.nix-cachyos-kernel.overlays.default # works
                   #self.inputs.nix-cachyos-kernel.overlays.pinned # doesn't work with nvidia-470-patched, can't use unfree (nixConfig is fixed on the repo and can't be changed)
@@ -45,8 +53,16 @@ in
               self.inputs.chaotic.nixosModules.default
               # helium browser
               self.inputs.helium-browser.nixosModules.default
+              # sops-nix
               #self.inputs.sops-nix.nixosModules.default
               self.inputs.sops-nix.nixosModules.sops
+              # home-manager
+              self.inputs."home-manager${
+                lib.attrsets.attrByPath [ name ] "" nixpkgsMap
+              }".nixosModules.home-manager
+              (homeManagerCfg true)
+
+              # imports
               (./. + "/common/default.nix")
               (./. + "/${name}/configuration.nix")
             ];

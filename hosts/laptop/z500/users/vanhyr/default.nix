@@ -8,6 +8,7 @@
       vanhyr = {
         isNormalUser = true;
         uid = 1000;
+        home = "/home/vanhyr";
         shell = pkgs.fish;
         group = "vanhyr";
         extraGroups = [

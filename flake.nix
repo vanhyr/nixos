@@ -17,12 +17,14 @@
     #  inputs.nixpkgs-lib.follows = "nixpkgs";
     #};
 
-    #home-manager = {
-    #  url = "github:nix-community/home-manager";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #  #url = "github:nix-community/home-manager/release-25.11";
-    #  #inputs.nixpkgs-lib.follows = "nixpkgs";
-    #};
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-unstable = {
+      url = "github:nix-community/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
@@ -52,6 +54,11 @@
     # alvaroparker helium derivation (simpler, not declarative, no module, just the pkg) -> helium browser
     #helium = {
     #  url = "github:AlvaroParker/helium-nix";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
+
+    #zen-browser = {
+    #  url = "github:0xc000022070/zen-browser-flake";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
