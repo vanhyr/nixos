@@ -7,12 +7,16 @@ let
   entries = builtins.attrNames (builtins.readDir ./.);
   configs = builtins.filter (dir: builtins.pathExists (./. + "/${dir}/configuration.nix")) entries;
 
-  homeManagerCfg = userPackages: {
+  homeManagerCfg = userPackages: extraImports: {
     home-manager.useUserPackages = lib.mkDefault userPackages;
     home-manager.useGlobalPkgs = false;
     home-manager.extraSpecialArgs = {
       inherit (self) inputs;
     };
+    home-manager.users.vanhyr.imports = [
+      ./z500/users/vanhyr/home.nix
+    ]
+    ++ extraImports;
     home-manager.backupFileExtension = "hm-bak";
   };
 in
@@ -60,7 +64,7 @@ in
               self.inputs."home-manager${
                 lib.attrsets.attrByPath [ name ] "" nixpkgsMap
               }".nixosModules.home-manager
-              (homeManagerCfg true)
+              (homeManagerCfg true [ ])
 
               # imports
               (./. + "/common/default.nix")

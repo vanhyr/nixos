@@ -3,6 +3,8 @@ WIP -> sops/agenix
 nur
 impermanence
 WIP -> home-manager/hjem
+  DONE -> user directories, TODO -> edge cases (data/user/{folders} don't exist)
+    DONE -> symlink data folders (dl,doc,mus,vid,dsk,prj-git)
 
 mount /boot/efi/EFI to /boot/EFI directly
 DONE -> fix suspend
@@ -10,11 +12,9 @@ limine bootloader ?
 grub-btrfs (works on nixos?)
 snapper/timeshift (btrfs)
 DONE -> network shares (smb)
-symlink data folders (dl,doc,mus,vid,dsk,prj)
 DONE -> dwmblocksasync
   - Needs visual fix for missing icon before modules
 fix bluetooth audio (LG XBOOM only)
-user directories
 DONE -> background (feh) (TODO -> refine it)
 DONE -> printing (cups+avahi)
 podman
@@ -39,7 +39,7 @@ lxsession?
 add gtk/qt looks
 stylix
 
-helium widevine fix
+WIP -> helium widevine fix (manual intervention, need to implement it into home-manager)
 lf/yazi
 fzf
 nvim config (lsp, treesitter, completions, multiple cursors, markdown previews, fzf)

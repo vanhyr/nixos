@@ -15,8 +15,6 @@
         "default.nix"
 
         "xdg.nix"
-
-        "nvidia"
       ];
 
       isValidNix =
