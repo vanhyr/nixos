@@ -12,6 +12,7 @@
   swapDevices = [
     {
       device = "/swap/swapfile";
+      options = [ "discard" ]; # enabling TRIM (discard) on the swap files can help avoid unnecessary copy actions on the SSD, reducing wear and potentially helping increase performance
       priority = 10;
       size = 8192; # MiB
     }

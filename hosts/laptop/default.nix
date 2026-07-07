@@ -35,7 +35,7 @@ in
             };
             modules = [
               {
-                nixpkgs.overlays = [
+                nixpkgs.overlays = lib.mkAfter [
                   # nix-cachyos-kernel
                   #self.inputs.nix-cachyos-kernel.overlays.default # works
                   #self.inputs.nix-cachyos-kernel.overlays.pinned # doesn't work with nvidia-470-patched, can't use unfree (nixConfig is fixed on the repo and can't be changed)

@@ -75,7 +75,5 @@
     #findutils
 
     brightnessctl
-
-    #nix-output-monitor
   ];
 }

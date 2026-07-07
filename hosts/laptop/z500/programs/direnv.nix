@@ -4,10 +4,11 @@
 {
   programs.direnv = {
     enable = true;
+    silent = false;
     nix-direnv.enable = true;
-    silent = true;
+    loadInNixShell = true;
     enableFishIntegration = true;
-    enableBashIntegration = true;
-    enableZshIntegration = true;
+    #enableBashIntegration = true;
+    #enableZshIntegration = true;
   };
 }

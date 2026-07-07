@@ -18,7 +18,10 @@ user directories
 DONE -> background (feh) (TODO -> refine it)
 DONE -> printing (cups+avahi)
 podman
-devshells
+WIP -> devshells
+  - DONE -> python
+  - C
+  - Rust
 
 specialization for each kernel (switch to the wanted one using grub)
 cachyos_kernel-lto

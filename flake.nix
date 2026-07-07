@@ -47,7 +47,6 @@
     # oxcl complete flake (module, home manager, declarative) -> helium browser
     helium-browser = {
       url = "github:oxcl/nix-flake-helium-browser";
-      #inputs.nixpkgs-lib.follows = "nixpkgs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # alvaroparker helium derivation (simpler, not declarative, no module, just the pkg) -> helium browser
