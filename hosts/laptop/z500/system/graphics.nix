@@ -1,9 +1,10 @@
 {
+  rootPath,
   ...
 }:
 {
   imports = [
-    ../../../../modules/nvidia/default.nix
+    "${rootPath}/modules/nvidia/default.nix"
   ];
 
   drivers.nvidia = {

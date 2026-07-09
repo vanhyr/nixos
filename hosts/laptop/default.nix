@@ -12,9 +12,10 @@ let
     home-manager.useGlobalPkgs = false;
     home-manager.extraSpecialArgs = {
       inherit (self) inputs;
+      rootPath = self;
     };
     home-manager.users.vanhyr.imports = [
-      ./z500/users/vanhyr/home.nix
+      ./z500/users/vanhyr/home/home.nix
     ]
     ++ extraImports;
     home-manager.backupFileExtension = "hm-bak";
@@ -41,6 +42,7 @@ in
             system = lib.attrsets.attrByPath [ name ] "x86_64-linux" systemArchMap;
             specialArgs = {
               inherit (self) inputs;
+              rootPath = self;
               self = {
                 nixosModules = self.nixosModules;
               };
@@ -64,7 +66,8 @@ in
               self.inputs."home-manager${
                 lib.attrsets.attrByPath [ name ] "" nixpkgsMap
               }".nixosModules.home-manager
-              (homeManagerCfg true [ ])
+              #(homeManagerCfg true [ ])
+              (homeManagerCfg false [ ])
 
               # imports
               (./. + "/common/default.nix")

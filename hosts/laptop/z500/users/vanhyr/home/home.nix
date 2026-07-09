@@ -3,8 +3,7 @@
 }:
 {
   imports = [
-    ./xdg.nix
-    ./user-dirs.nix
+    ./xdg/default.nix
   ];
 
   home.stateVersion = "26.05";

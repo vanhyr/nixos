@@ -10,8 +10,5 @@
     cacheHome = "${config.home.homeDirectory}/.cache";
     stateHome = "${config.home.homeDirectory}/.local/state";
     configHome = "${config.home.homeDirectory}/.config";
-    #mime = {
-    #  enable = true;
-    #};
   };
 }
