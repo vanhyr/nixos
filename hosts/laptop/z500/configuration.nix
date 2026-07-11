@@ -53,8 +53,11 @@
     #useXkbConfig = true; # use xkb.options in tty.
   };
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  # TODO -> it fixes home manager xdg-portal but idk why and if it is correct
+  environment.pathsToLink = [
+    "/share/applications"
+    "/share/xdg-desktop-portal"
+  ];
 
   environment.variables = {
     ZDOTDIR = "XDG_CONFIG_HOME/zsh";

@@ -29,9 +29,9 @@ let
     #"dir_mode=0770"
 
     # TODO -> take a look at this
-    "rsize=4194304" # Buffer optimizado de lectura secuencial (4MB)
-    "wsize=4194304" # Buffer optimizado de escritura secuencial (4MB)
-    "cache=strict" # Mantiene consistencia estricta en tiempo real si modificas ficheros concurrentemente
+    #"rsize=4194304" # Buffer optimizado de lectura secuencial (4MB)
+    #"wsize=4194304" # Buffer optimizado de escritura secuencial (4MB)
+    #"cache=strict" # Mantiene consistencia estricta en tiempo real si modificas ficheros concurrentemente
   ];
 in
 {

@@ -3,7 +3,7 @@ WIP -> sops/agenix
 nur
 impermanence
 WIP -> home-manager/hjem
-  DONE -> user directories, TODO -> edge cases (data/user/{folders} don't exist)
+  DONE -> user directories, TODO -> test edge cases (data/user/{folders} don't exist)
     DONE -> symlink data folders (dl,doc,mus,vid,dsk,prj-git)
 
 mount /boot/efi/EFI to /boot/EFI directly
@@ -24,7 +24,7 @@ WIP -> devshells
   - Rust
 
 specialization for each kernel (switch to the wanted one using grub)
-cachyos_kernel-lto
+cachyos_kernel-lto -> will probably not work
 
 try xlibre
 

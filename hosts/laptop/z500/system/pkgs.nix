@@ -47,7 +47,7 @@
     lxappearance-gtk2
     nwg-look
 
-    arandr
+    #arandr # enable once it's fixed (https://github.com/NixOS/nixpkgs/commit/e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3)
 
     # for btop?
     pciutils

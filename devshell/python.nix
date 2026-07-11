@@ -19,34 +19,11 @@ let
 
     build-system = with python3.pkgs; [
       setuptools
-      wheel
     ];
-
-    #nativeBuildInputs = [
-    #  pkgs.pkg-config
-    #];
-    #buildInputs = [
-    #  pkgs.openssl
-    #];
 
     dependencies = with python3.pkgs; [
       selenium
       mitmproxy
-
-      #pyopenssl
-
-      #blinker
-      #brotli
-      #h11
-      #h2
-      #hyperframe
-      #hpack
-      #kaitaistruct
-      #cryptography
-      #sortedcontainers
-      #wsproto
-      #zstandard
-      #certifi
     ];
 
     doCheck = false;

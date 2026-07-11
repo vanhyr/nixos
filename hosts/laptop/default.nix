@@ -66,8 +66,8 @@ in
               self.inputs."home-manager${
                 lib.attrsets.attrByPath [ name ] "" nixpkgsMap
               }".nixosModules.home-manager
-              #(homeManagerCfg true [ ])
-              (homeManagerCfg false [ ])
+              (homeManagerCfg true [ ])
+              #(homeManagerCfg false [ ])
 
               # imports
               (./. + "/common/default.nix")
