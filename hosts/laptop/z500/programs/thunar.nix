@@ -3,9 +3,17 @@
   ...
 }:
 {
-  services.tumbler.enable = true; # thumbnails
-  environment.systemPackages = [
-    pkgs.ffmpegthumbnailer # thumbnails,
+  services = {
+    tumbler.enable = true; # thumbnails
+    gvfs = {
+      enable = true;
+      #package = pkgs.gvfs; # default is gnome.gvfs
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    ffmpegthumbnailer # tumbler thumbnails
+    sshfs
   ];
   programs = {
     xfconf.enable = true; # for saving thunar options
@@ -14,8 +22,6 @@
       plugins = with pkgs; [
         thunar-archive-plugin
         thunar-volman
-
-        #tumbler # needed if service activate?
 
         xfce4-exo # xfce support library, dunno
 

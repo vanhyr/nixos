@@ -15,7 +15,7 @@
           "gtk"
         ];
       };
-      # not use about dwm, but this is the structure por hyprland and so
+      # not sure about dwm, but this is the structure por hyprland and so
       dwm = {
         default = [
           "gtk"

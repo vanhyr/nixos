@@ -35,11 +35,6 @@ let
   ];
 in
 {
-  services.gvfs = {
-    enable = true;
-    #package = pkgs.gnome.gvfs;
-    package = pkgs.gvfs;
-  };
   environment.systemPackages = [
     pkgs.cifs-utils
   ];
