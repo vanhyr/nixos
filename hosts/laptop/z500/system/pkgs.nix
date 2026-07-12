@@ -18,9 +18,6 @@
 
     libnotify
 
-    # for thunar
-    file-roller
-
     # for the rofi-power script
     procps
     psmisc
@@ -47,7 +44,7 @@
     lxappearance-gtk2
     nwg-look
 
-    #arandr # enable once it's fixed (https://github.com/NixOS/nixpkgs/commit/e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3)
+    arandr # enable once it's fixed (https://github.com/NixOS/nixpkgs/commit/e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3)
 
     # for btop?
     pciutils

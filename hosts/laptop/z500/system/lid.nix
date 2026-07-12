@@ -12,9 +12,13 @@
       HandleLidSwitchExternalPower = "ignore";
       HandleLidSwitchDocked = "ignore";
       LidSwitchIgnoreInhibited = "no"; # permit inhibitors (like music players) to prevent suspend
-      IdleAction = "suspend";
-      #IdleAction = "sleep";
-      IdleActionSec = "30min";
+
+      #IdleAction = "suspend";
+      ##IdleAction = "sleep";
+      #IdleActionSec = "30min";
+
+      # Do not suspend
+      IdleAction = "ignore";
     };
   };
 }

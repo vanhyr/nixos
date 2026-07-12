@@ -17,7 +17,8 @@ static const char *fonts[]          = {
 #define MAX_BLOCK_OUTPUT_LENGTH 45
 
 // Control whether blocks are clickable.
-#define CLICKABLE_BLOCKS 1
+//#define CLICKABLE_BLOCKS 1
+#define CLICKABLE_BLOCKS 0
 
 // Control whether a leading delimiter should be prepended to the status.
 #define LEADING_DELIMITER 0
