@@ -9,9 +9,22 @@
       nerd-fonts.jetbrains-mono
       noto-fonts-color-emoji
     ];
-    fontconfig.defaultFonts = {
-      monospace = [ "JetBrainsMono Nerd Font Mono" ];
-      emoji = [ "Noto Color Emoji" ];
+    fontconfig = {
+      enable = true;
+      antialias = true;
+      #subpixel = {
+      #  rgba = "rgb";
+      #  lcdfilter = "default";
+      #};
+      hinting = {
+        enable = true;
+        style = "slight";
+        autohint = false;
+      };
+      defaultFonts = {
+        monospace = [ "JetBrainsMono Nerd Font Mono" ];
+        emoji = [ "Noto Color Emoji" ];
+      };
     };
   };
 }

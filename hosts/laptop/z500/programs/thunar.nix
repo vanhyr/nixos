@@ -13,7 +13,7 @@
 
   environment.systemPackages = with pkgs; [
     ffmpegthumbnailer # tumbler thumbnails
-    sshfs # not sure
+    #sshfs # not sure
 
     xfce4-exo # xfce support library, dunno
     #libxfce4ui # newer exo, dunno

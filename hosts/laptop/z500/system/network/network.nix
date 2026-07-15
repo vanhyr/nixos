@@ -20,7 +20,8 @@
     };
   };
   services.openssh = {
-    enable = true;
+    #enable = true;
+    enable = false;
     ports = [ 235 ];
     settings = {
       Banner = null;

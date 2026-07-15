@@ -19,7 +19,10 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 8;       /* vertical padding of bar */
 static const int sidepad            = 8;       /* horizontal padding of bar */
 static const char *fonts[]          = {
-  "JetBrainsMono Nerd Font Mono:size=12:antialias=true:autohint=true",
+  //"JetBrainsMono Nerd Font Mono:size=12:antialias=true:autohint=true",
+  "JetBrainsMono Nerd Font Mono:size=12:antialias=true",
+  //"Symbols Nerd Font Mono:size=12:antialias=true:autohint=true",
+  "Symbols Nerd Font Mono:size=12:antialias=true",
   "Noto Color Emoji:size=12:antialias=true:autohint=true",
   "monospace:size=10"
 };
@@ -88,21 +91,26 @@ static const int refreshrate = 120;  /* refresh rate (per second) for client mov
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
-	//{ "[@]",      spiral },
+	{ "[]=",      tile }, // default -> master on left, slaves on right
+	{ "TTT",      bstack }, // master on top, slaves on bottom
+	
+  { "[M]",      monocle }, // all windows on top of each other
+	{ "H[]",      deck }, // master on left, slaves in monocle-like mode on right
+	
+  { "|M|",      centeredmaster }, // master in middle, slaves on sides
+	
+	{ "><>",      NULL }, // no layout function means floating behavior
+	{ NULL,       NULL },
+  
+  /* extras */
+	//{ ">M>",      centeredfloatingmaster }, //  master floats, slaves on sides
+  //{ "[@]",      spiral },
 	//{ "[\\]",     dwindle },
-	{ "H[]",      deck },
-	//{ "TTT",      bstack },
-	{ "===",      bstackhoriz },
+	//{ "===",      bstackhoriz },
 	//{ "HHH",      grid },
 	//{ "###",      nrowgrid },
 	//{ "---",      horizgrid },
 	//{ ":::",      gaplessgrid },
-	{ "|M|",      centeredmaster },
-	//{ ">M>",      centeredfloatingmaster },
-	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -131,6 +139,8 @@ static const char *scratchwhatsappcmd[] = {"w", "zapzap", NULL};
 //static const char *scratchwhatsappcmd[] = {"w", "whatsie", NULL};
 static const char *scratchtodoistcmd[] = {"m", "todoist-electron", NULL};
 
+#include <X11/XF86keysym.h>
+
 /* KEYBINDS (Supports Keychords) */
 static const Keychord *keychords[] = {
 	/* nKchord         modifier,                        key             function          argument */
@@ -151,10 +161,16 @@ static const Keychord *keychords[] = {
   &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_t}},         togglescratch,    {.v = scratchtodoistcmd} }),
 
   // screenshots
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},
+  &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_s},
                     {0,                               XK_a}},         spawn,            SHCMD("scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_s},
+  &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_s},
                     {0,                               XK_s}},         spawn,            SHCMD("scrot -s '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
+
+  &((Keychord){ 1, {{0,                               XF86XK_AudioMute}},           spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") }),
+  //&((Keychord){ 1, {{0,                               XF86XK_AudioRaiseVolume}},    spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
+  //&((Keychord){ 1, {{0,                               XF86XK_AudioLowerVolume}},    spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                                XF86XK_AudioRaiseVolume}},    spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                                XF86XK_AudioLowerVolume}},    spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
 
   //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_b}},         togglebar,        {0} }),
 
@@ -185,20 +201,26 @@ static const Keychord *keychords[] = {
   //&((Keychord){ 1, {{MODKEY,                          XK_t}},         setlayout,        {.v = &layouts[0]} }),
 	//&((Keychord){ 1, {{MODKEY,                          XK_f}},         setlayout,        {.v = &layouts[1]} }),
 	//&((Keychord){ 1, {{MODKEY,                          XK_m}},         setlayout,        {.v = &layouts[2]} }),
+  // tile
   &((Keychord){ 2, {{MODKEY,                          XK_l},
                     {0,                               XK_t}},         setlayout,        {.v = &layouts[0]} }),
+  // bstack
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_m}},         setlayout,        {.v = &layouts[1]} }),
+                    {0,                               XK_b}},         setlayout,        {.v = &layouts[1]} }),
+  // monocle
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_d}},         setlayout,        {.v = &layouts[2]} }),
+                    {0,                               XK_m}},         setlayout,        {.v = &layouts[2]} }),
+  // deck
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_b}},         setlayout,        {.v = &layouts[3]} }),
+                    {0,                               XK_d}},         setlayout,        {.v = &layouts[3]} }),
+  // centeredmaster
   &((Keychord){ 2, {{MODKEY,                          XK_l},
                     {0,                               XK_c}},         setlayout,        {.v = &layouts[4]} }),
+  // floating
   &((Keychord){ 2, {{MODKEY,                          XK_l},
                     {0,                               XK_f}},         setlayout,        {.v = &layouts[5]} }),
 	
-  &((Keychord){ 1, {{MODKEY,                          XK_space}},     setlayout,        {0} }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_space}},     setlayout,        {0} }),
 	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_space}},     togglefloating,   {0} }),
 	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_v}},         togglefloating,   {0} }),
 	
