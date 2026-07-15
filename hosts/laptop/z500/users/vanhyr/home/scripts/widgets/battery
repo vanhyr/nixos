@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -euo pipefail
+
+bat_path="/sys/class/power_supply/BAT1"
+
+[ -d "$bat_path" ] || exit 0
+
+read -r capacity < "$bat_path/capacity" 2>/dev/null || exit 0
+read -r status < "$bat_path/status" 2>/dev/null || exit 0
+
+rounded=$(( ((capacity + 5) / 10) * 10 ))
+
+case "$status" in
+  "Charging")
+    icon="󰂄"
+  ;;
+  "Discharging"|"Not charging")
+    case "$rounded" in
+      0)   icon="󰂎" ;;
+      10)  icon="󰁺" ;;
+      20)  icon="󰁻" ;;
+      30)  icon="󰁼" ;;
+      40)  icon="󰁽" ;;
+      50)  icon="󰁾" ;;
+      60)  icon="󰁿" ;;
+      70)  icon="󰂀" ;;
+      80)  icon="󰂁" ;;
+      90)  icon="󰂂" ;;
+      100) icon="󰁹" ;;
+    esac
+  ;;
+  "Full")
+    icon="󰁹"
+  ;;
+  *)
+    icon="󰂑"
+  ;;
+esac
+
+printf '%s %d%%\n' "$icon" "$capacity"

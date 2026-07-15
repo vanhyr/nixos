@@ -1,0 +1,41 @@
+#!/bin/sh
+
+set -euo pipefail
+
+state_file="/tmp/.dwmblocks_cpu_state_${USER:-$(id -u)}"
+
+read -r _ user nice system idle iowait irq softirq steal _ < /proc/stat
+
+idle_now=$((idle + iowait))
+total_now=$((user + nice + system + idle + iowait + irq + softirq + steal))
+
+idle_prev=0
+total_prev=0
+
+if [ -f "$state_file" ]; then
+  read -r idle_prev total_prev < "$state_file" 2>/dev/null || true
+fi
+
+printf '%s %s\n' "$idle_now" "$total_now" > "$state_file"
+
+diff_total=$((total_now - total_prev))
+diff_idle=$((idle_now - idle_prev))
+
+if [ "$diff_total" -le 0 ]; then
+  printf '󰻠 --%%\n'
+  exit 0
+fi
+
+usage=$(( (1000 * (diff_total - diff_idle) / diff_total + 5) / 10 ))
+
+if [ "$usage" -ge 90 ]; then
+  icon="󰀪"
+elif [ "$usage" -ge 70 ]; then
+  icon="󰓅"
+elif [ "$usage" -ge 40 ]; then
+  icon="󰾆"
+else
+  icon=""
+fi
+
+printf '%s %d%%\n' "$icon" "$usage"

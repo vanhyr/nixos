@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -euo pipefail
+
+for zone in /sys/class/thermal/thermal_zone*; do
+  if [ -r "$zone/temp" ]; then
+    if read -r raw_temp < "$zone/temp"; then
+      if (( raw_temp > 0 )); then
+        temp=$((raw_temp / 1000))
+        break
+      fi
+    fi
+  fi
+done
+
+if [ -z "${temp:-}" ]; then
+  echo " N/A"
+  exit 1
+fi
+
+if (( temp < 50 )); then
+  icon=""
+elif (( temp < 65 )); then
+  icon=""
+elif (( temp < 75 )); then
+  icon=""
+elif (( temp < 85 )); then
+  icon=""
+else
+  icon=""
+fi
+
+printf '%s %d°C\n' "$icon" "$temp"

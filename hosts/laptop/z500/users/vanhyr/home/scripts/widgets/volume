@@ -1,0 +1,31 @@
+#!/bin/sh
+
+set -euo pipefail
+
+if ! raw_vol=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null); then
+  printf '󰝟 N/A\n'
+  exit 0
+fi
+
+case "$raw_vol" in
+  *[MUTED]*)
+    printf '󰝟 MUTED\n'
+    exit 0
+  ;;
+esac
+
+vol_num=$(echo "$raw_vol" | cut -d' ' -f2)
+
+volume=$(printf '%.0f' "$(echo "$vol_num * 100" | bc 2>/dev/null || awk "BEGIN {print $vol_num * 100}")")
+
+if [ "$volume" -eq 0 ]; then
+  icon="󰝟"
+elif [ "$volume" -lt 30 ]; then
+  icon="󰕿"
+elif [ "$volume" -lt 70 ]; then
+  icon="󰖀"
+else
+  icon="󰕾"
+fi
+
+printf '%s %d%%\n' "$icon" "$volume"

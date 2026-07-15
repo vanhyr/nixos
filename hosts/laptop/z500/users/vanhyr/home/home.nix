@@ -4,6 +4,7 @@
 {
   imports = [
     ./xdg/default.nix
+    ./scripts.nix
   ];
 
   home.stateVersion = "26.05";
