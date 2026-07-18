@@ -11,15 +11,16 @@ read -r max_brightness < "$backlight_path/max_brightness"
 
 [ "$max_brightness" -gt 0 ] || { printf '󰃞 N/A\n'; exit 0; }
 
-if [ "$curr_brightness" -le 0 ]; then
+percent=$(( (100 * curr_brightness + max_brightness / 2) / max_brightness ))
+
+if [ "$percent" -le 0 ]; then
   icon="󰃞"
-elif [ "$curr_brightness" -lt $((max_brightness * 3 / 10)) ]; then
+elif [ "$percent" -lt 30 ]; then
   icon="󰃟"
-elif [ "$curr_brightness" -lt $((max_brightness * 7 / 10)) ]; then
+elif [ "$percent" -lt 70 ]; then
   icon="󰃝"
 else
   icon="󰃠"
 fi
 
-printf '%s %d\n' "$icon" "$curr_brightness"
-#printf '%s %d/%d\n' "$icon" "$curr_brightness" "$max_brightness"
+printf '%s %d%%\n' "$icon" "$percent"
