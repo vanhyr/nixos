@@ -143,98 +143,103 @@ static const char *scratchtodoistcmd[] = {"m", "todoist-electron", NULL};
 
 /* KEYBINDS (Supports Keychords) */
 static const Keychord *keychords[] = {
-	/* nKchord         modifier,                        key             function          argument */
-  &((Keychord){ 1, {{MODKEY,                          XK_Return}},    spawn,            SHCMD("$TERMINAL") }),
-  &((Keychord){ 1, {{MODKEY,                          XK_b}},         spawn,            SHCMD("$BROWSER") }),
+	/* nKchord         modifier,                        key                           function          argument */
+  &((Keychord){ 1, {{MODKEY,                          XK_Return}},                  spawn,            SHCMD("$TERMINAL") }),
+  &((Keychord){ 1, {{MODKEY,                          XK_b}},                       spawn,            SHCMD("$BROWSER") }),
   &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_b},
-                    {0,                               XK_b}},         spawn,            SHCMD("brave") }),
-  &((Keychord){ 1, {{MODKEY,                          XK_e}},         spawn,            SHCMD("$FILE_EXPLORER") }),
+                    {0,                               XK_b}},                       spawn,            SHCMD("brave") }),
+  &((Keychord){ 1, {{MODKEY,                          XK_e}},                       spawn,            SHCMD("$FILE_EXPLORER") }),
   
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_p}},         spawn,            {.v = dmenucmd } }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_p}},                       spawn,            {.v = dmenucmd } }),
 
   // scratchpads
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_Return}},    togglescratch,    {.v = scratchtermcmd} }),
-  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = "b", "kitty", "--app-id", "scratch_btop", "btop", NULL} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_e}},         togglescratch,    {.v = scratchexplorercmd} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},         togglescratch,    {.v = scratchbtopcmd} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_w}},         togglescratch,    {.v = scratchwhatsappcmd} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_t}},         togglescratch,    {.v = scratchtodoistcmd} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_Return}},                  togglescratch,    {.v = scratchtermcmd} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},                       togglescratch,    {.v = "b", "kitty", "--app-id", "scratch_btop", "btop", NULL} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_e}},                       togglescratch,    {.v = scratchexplorercmd} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_g}},                       togglescratch,    {.v = scratchbtopcmd} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_w}},                       togglescratch,    {.v = scratchwhatsappcmd} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_t}},                       togglescratch,    {.v = scratchtodoistcmd} }),
 
   // screenshots
   &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_s},
-                    {0,                               XK_a}},         spawn,            SHCMD("scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
+                    {0,                               XK_a}},                       spawn,            SHCMD("scrot '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
   &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_s},
-                    {0,                               XK_s}},         spawn,            SHCMD("scrot -s '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
+                    {0,                               XK_s}},                       spawn,            SHCMD("scrot -s '%Y-%m-%d-%H%M%S_$wx$h.png' -e 'mv $f ~/img/scrots/'") }),
 
-  &((Keychord){ 1, {{0,                               XF86XK_AudioMute}},           spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") }),
-  //&((Keychord){ 1, {{0,                               XF86XK_AudioRaiseVolume}},    spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
-  //&((Keychord){ 1, {{0,                               XF86XK_AudioLowerVolume}},    spawn,    SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
-  &((Keychord){ 1, {{0,                                XF86XK_AudioRaiseVolume}},    spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
-  &((Keychord){ 1, {{0,                                XF86XK_AudioLowerVolume}},    spawn,    SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                               XF86XK_AudioMute}},           spawn,            SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)") }),
+  //&((Keychord){ 1, {{0,                               XF86XK_AudioRaiseVolume}},    spawn,            SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%- && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
+  //&((Keychord){ 1, {{0,                               XF86XK_AudioLowerVolume}},    spawn,            SHCMD("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0%+ && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                               XF86XK_AudioRaiseVolume}},    spawn,            SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+; kill -44 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                               XF86XK_AudioLowerVolume}},    spawn,            SHCMD("wpctl set-mute @DEFAULT_AUDIO_SINK@ 0 && wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-; kill -44 $(pidof dwmblocks)") }),
 
-  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_b}},         togglebar,        {0} }),
+  //&((Keychord){ 1, {{0,                               XF86XK_MonBrightnessUp}},     spawn,            SHCMD("brightnessctl set +5%; kill -54 $(pidof dwmblocks)") }),
+  //&((Keychord){ 1, {{0,                               XF86XK_MonBrightnessDown}},   spawn,            SHCMD("brightnessctl set 5%-; kill -54 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                               XF86XK_MonBrightnessUp}},     spawn,            SHCMD("brightnessctl set +1; kill -54 $(pidof dwmblocks)") }),
+  &((Keychord){ 1, {{0,                               XF86XK_MonBrightnessDown}},   spawn,            SHCMD("brightnessctl set 1-; kill -54 $(pidof dwmblocks)") }),
 
-  &((Keychord){ 1, {{MODKEY,                          XK_j}},         focusstack,       {.i = +1 } }),
-	&((Keychord){ 1, {{MODKEY,                          XK_k}},         focusstack,       {.i = -1 } }),
-	&((Keychord){ 1, {{MODKEY,                          XK_i}},         incnmaster,       {.i = +1 } }),
-	&((Keychord){ 1, {{MODKEY,                          XK_d}},         incnmaster,       {.i = -1 } }),
-	//&((Keychord){ 1, {{MODKEY,                          XK_h}},         setmfact,         {.f = -0.05} }),
-	//&((Keychord){ 1, {{MODKEY,                          XK_l}},         setmfact,         {.f = +0.05} }),
-	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_h}},         setmfact,         {.f = -0.1} }),
-	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_l}},         setmfact,         {.f = +0.1} }),
-	//&((Keychord){ 1, {{MODKEY,                          XK_o}},         setmfact,         {.f = 0.00} }), // doesn't work
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_b}},                       togglebar,        {0} }),
+
+  &((Keychord){ 1, {{MODKEY,                          XK_j}},                       focusstack,       {.i = +1 } }),
+	&((Keychord){ 1, {{MODKEY,                          XK_k}},                       focusstack,       {.i = -1 } }),
+	&((Keychord){ 1, {{MODKEY,                          XK_i}},                       incnmaster,       {.i = +1 } }),
+	&((Keychord){ 1, {{MODKEY,                          XK_d}},                       incnmaster,       {.i = -1 } }),
+	//&((Keychord){ 1, {{MODKEY,                          XK_h}},                       setmfact,         {.f = -0.05} }),
+	//&((Keychord){ 1, {{MODKEY,                          XK_l}},                       setmfact,         {.f = +0.05} }),
+	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_h}},                       setmfact,         {.f = -0.1} }),
+	&((Keychord){ 1, {{MODKEY|ControlMask,              XK_l}},                       setmfact,         {.f = +0.1} }),
+	//&((Keychord){ 1, {{MODKEY,                          XK_o}},                       setmfact,         {.f = 0.00} }), // doesn't work
 	
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_j}},         rotatestack,      {.i = +1 } }),
-	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_k}},         rotatestack,      {.i = -1 } }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_j}},                       rotatestack,      {.i = +1 } }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_k}},                       rotatestack,      {.i = -1 } }),
 
-  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_l}},         setcfact,         {.f = -0.25} }),
-  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_h}},         setcfact,         {.f = +0.25} }),
-  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_o}},         setcfact,         {.f =  0.00} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_l}},                       setcfact,         {.f = -0.25} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_h}},                       setcfact,         {.f = +0.25} }),
+  //&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_o}},                       setcfact,         {.f =  0.00} }),
 
-  //&((Keychord){ 1, {{MODKEY,                          XK_z}},         zoom,             {0} }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_z}},                       zoom,             {0} }),
 
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_f}},         togglefullscr,    {0} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_f}},                       togglefullscr,    {0} }),
   
-  &((Keychord){ 1, {{MODKEY,                          XK_Tab}},       view,             {0} }),
-	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_c}},         killclient,       {0} }),
+  &((Keychord){ 1, {{MODKEY,                          XK_Tab}},                     view,             {0} }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_c}},                       killclient,       {0} }),
 	
-  //&((Keychord){ 1, {{MODKEY,                          XK_t}},         setlayout,        {.v = &layouts[0]} }),
-	//&((Keychord){ 1, {{MODKEY,                          XK_f}},         setlayout,        {.v = &layouts[1]} }),
-	//&((Keychord){ 1, {{MODKEY,                          XK_m}},         setlayout,        {.v = &layouts[2]} }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_t}},                       setlayout,        {.v = &layouts[0]} }),
+	//&((Keychord){ 1, {{MODKEY,                          XK_f}},                       setlayout,        {.v = &layouts[1]} }),
+	//&((Keychord){ 1, {{MODKEY,                          XK_m}},                       setlayout,        {.v = &layouts[2]} }),
   // tile
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_t}},         setlayout,        {.v = &layouts[0]} }),
+                    {0,                               XK_t}},                       setlayout,        {.v = &layouts[0]} }),
   // bstack
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_b}},         setlayout,        {.v = &layouts[1]} }),
+                    {0,                               XK_b}},                       setlayout,        {.v = &layouts[1]} }),
   // monocle
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_m}},         setlayout,        {.v = &layouts[2]} }),
+                    {0,                               XK_m}},                       setlayout,        {.v = &layouts[2]} }),
   // deck
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_d}},         setlayout,        {.v = &layouts[3]} }),
+                    {0,                               XK_d}},                       setlayout,        {.v = &layouts[3]} }),
   // centeredmaster
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_c}},         setlayout,        {.v = &layouts[4]} }),
+                    {0,                               XK_c}},                       setlayout,        {.v = &layouts[4]} }),
   // floating
   &((Keychord){ 2, {{MODKEY,                          XK_l},
-                    {0,                               XK_f}},         setlayout,        {.v = &layouts[5]} }),
+                    {0,                               XK_f}},                       setlayout,        {.v = &layouts[5]} }),
 	
-  //&((Keychord){ 1, {{MODKEY,                          XK_space}},     setlayout,        {0} }),
-	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_space}},     togglefloating,   {0} }),
-	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_v}},         togglefloating,   {0} }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_space}},                   setlayout,        {0} }),
+	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_space}},                   togglefloating,   {0} }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_v}},                       togglefloating,   {0} }),
 	
-  //&((Keychord){ 1, {{MODKEY,                          XK_0}},         view,             {.ui = ~0 } }),
-	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_0}},         tag,              {.ui = ~0 } }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_0}},                       view,             {.ui = ~0 } }),
+	//&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_0}},                       tag,              {.ui = ~0 } }),
 	
-  &((Keychord){ 1, {{MODKEY,                          XK_comma}},     focusmon,         {.i = -1 } }),
-	&((Keychord){ 1, {{MODKEY,                          XK_period}},    focusmon,         {.i = +1 } }),
-	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_comma}},     tagmon,           {.i = -1 } }),
-	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_period}},    tagmon,           {.i = +1 } }),
+  &((Keychord){ 1, {{MODKEY,                          XK_comma}},                   focusmon,         {.i = -1 } }),
+	&((Keychord){ 1, {{MODKEY,                          XK_period}},                  focusmon,         {.i = +1 } }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_comma}},                   tagmon,           {.i = -1 } }),
+	&((Keychord){ 1, {{MODKEY|ShiftMask,                XK_period}},                  tagmon,           {.i = +1 } }),
 	
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_q}},         spawn,            {.v = (const char*[]){ "rofi-power", NULL } } }),
-  //&((Keychord){ 1, {{MODKEY|ControlMask|ShiftMask,    XK_q}},         quit,             {0} }),
-  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_r}},         quit,             {1} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_q}},                       spawn,            {.v = (const char*[]){ "rofi-power", NULL } } }),
+  //&((Keychord){ 1, {{MODKEY|ControlMask|ShiftMask,    XK_q}},                       quit,             {0} }),
+  &((Keychord){ 1, {{MODKEY|ShiftMask,                XK_r}},                       quit,             {1} }),
   
 
   /* TAGS */

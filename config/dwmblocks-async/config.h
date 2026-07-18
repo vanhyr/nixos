@@ -25,6 +25,7 @@
   X("", "$HOME/.local/bin/widgets/memory", 5, 0) \
   X("", "$HOME/.local/bin/widgets/coretemp", 3, 0) \
   X("", "$HOME/.local/bin/widgets/volume", 0, 10) \
+  X("", "$HOME/.local/bin/widgets/brightness", 0, 20) \
   X("", "$HOME/.local/bin/widgets/battery", 60, 0) \
   X("", "$HOME/.local/bin/widgets/clock", 60, 0) \
 

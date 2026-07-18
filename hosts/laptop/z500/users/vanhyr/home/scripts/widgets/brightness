@@ -1,0 +1,26 @@
+#!/bin/sh
+
+set -euo pipefail
+
+backlight_path="/sys/class/backlight/ideapad"
+
+[ -d "$backlight_path" ] || { printf '󰃞 N/A\n'; exit 0; }
+
+read -r curr_brightness < "$backlight_path/brightness"
+read -r max_brightness < "$backlight_path/max_brightness"
+
+[ "$max_brightness" -gt 0 ] || { printf '󰃞 N/A\n'; exit 0; }
+
+percent=$(( (100 * curr_brightness + max_brightness / 2) / max_brightness ))
+
+if [ "$percent" -le 0 ]; then
+  icon="󰃞"
+elif [ "$percent" -lt 30 ]; then
+  icon="󰃟"
+elif [ "$percent" -lt 70 ]; then
+  icon="󰃝"
+else
+  icon="󰃠"
+fi
+
+printf '%s %d%%\n' "$icon" "$percent"
