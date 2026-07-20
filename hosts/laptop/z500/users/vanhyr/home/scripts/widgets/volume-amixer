@@ -1,41 +1,36 @@
 #!/bin/sh
 
-#set -euo pipefail
-set -eu
-
-#if ! raw_vol=$(/run/current-system/sw/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null); then
-#  printf '󰖁 N/A\n'
-#  exit 0
-#fi
+set -euo pipefail
 
 tries=1
 max_tries=5
 
 # prevent the first launch of the script not showing anything if the audio controller is not yet loaded
 while [ "$tries" -le "$max_tries" ]; do
-  raw_vol=$(/run/current-system/sw/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null || true)
-  if [ -n "$raw_vol" ]; then
+  raw_info=$(/run/current-system/sw/bin/amixer sget Master 2>/dev/null || true)
+  if [ -n "$raw_info" ]; then
     break
   fi
   tries=$((tries + 1))
   sleep 0.2
 done
 
-case "$raw_vol" in
-  *\[MUTED\]*)
+if [ -z "$raw_info" ]; then
+  printf '󰖁 N/A\n'
+  exit 0
+fi
+
+case "$raw_info" in
+  *\[off\]*)
     printf '󰝟 MUTE\n'
     exit 0
   ;;
 esac
 
-val="${raw_vol#Volume: }"
-set -- ${val%.*} ${val#*.}
+val="${raw_info#*\[}"
+volume="${val%%\%]*}"
 
-if [ "$1" -eq 1 ]; then
-  volume=100
-else
-  volume=$((1$2 - 100))
-fi
+volume="${volume:-0}"
 
 if [ "$volume" -eq 0 ]; then
   icon="󰝟"

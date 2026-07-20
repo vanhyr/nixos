@@ -145,7 +145,8 @@ static const char *scratchtodoistcmd[] = {"m", "todoist-electron", NULL};
 static const Keychord *keychords[] = {
 	/* nKchord         modifier,                        key                           function          argument */
   &((Keychord){ 1, {{MODKEY,                          XK_Return}},                  spawn,            SHCMD("$TERMINAL") }),
-  &((Keychord){ 1, {{MODKEY,                          XK_b}},                       spawn,            SHCMD("$BROWSER") }),
+  //&((Keychord){ 1, {{MODKEY,                          XK_b}},                       spawn,            SHCMD("$BROWSER") }),
+  &((Keychord){ 1, {{MODKEY,                          XK_b}},                       spawn,            SHCMD("helium --restore-last-session") }),
   &((Keychord){ 2, {{MODKEY|ShiftMask,                XK_b},
                     {0,                               XK_b}},                       spawn,            SHCMD("brave") }),
   &((Keychord){ 1, {{MODKEY,                          XK_e}},                       spawn,            SHCMD("$FILE_EXPLORER") }),
