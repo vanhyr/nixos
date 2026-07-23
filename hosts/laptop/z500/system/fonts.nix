@@ -5,8 +5,9 @@
 {
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.symbols-only
       nerd-fonts.jetbrains-mono
+      #jetbrains-mono
+      nerd-fonts.symbols-only
       noto-fonts-color-emoji
     ];
     fontconfig = {

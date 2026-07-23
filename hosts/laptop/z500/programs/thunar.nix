@@ -5,6 +5,7 @@
 {
   services = {
     tumbler.enable = true; # thumbnails
+    udisks2.enable = true; # automount removable media
     gvfs = {
       enable = true;
       #package = pkgs.gvfs; # default is gnome.gvfs

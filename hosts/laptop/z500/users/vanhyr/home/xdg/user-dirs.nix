@@ -3,6 +3,7 @@
   ...
 }:
 let
+  home = config.home.homeDirectory;
   dataHome = "/data/vanhyr";
   mkLink = path: config.lib.file.mkOutOfStoreSymlink "${dataHome}/${path}";
 in
@@ -13,15 +14,15 @@ in
     createDirectories = false;
     setSessionVariables = true;
 
-    desktop = "${config.home.homeDirectory}/dsk";
-    documents = "${config.home.homeDirectory}/doc";
-    projects = "${config.home.homeDirectory}/git";
-    download = "${config.home.homeDirectory}/dl";
-    music = "${config.home.homeDirectory}/mus";
-    pictures = "${config.home.homeDirectory}/img";
-    videos = "${config.home.homeDirectory}/vid";
-    templates = "${config.home.homeDirectory}/doc";
-    publicShare = "${config.home.homeDirectory}/doc";
+    desktop = "${home}/dsk";
+    documents = "${home}/doc";
+    projects = "${home}/git";
+    download = "${home}/dl";
+    music = "${home}/mus";
+    pictures = "${home}/img";
+    videos = "${home}/vid";
+    templates = "${home}/doc";
+    publicShare = "${home}/doc";
   };
 
   home.file = {

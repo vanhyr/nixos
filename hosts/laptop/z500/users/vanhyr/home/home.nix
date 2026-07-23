@@ -4,6 +4,7 @@
 {
   imports = [
     ./xdg/default.nix
+    ./theming/default.nix
     ./scripts.nix
   ];
 
