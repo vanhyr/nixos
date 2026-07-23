@@ -6,6 +6,7 @@
 let
   home = config.home.homeDirectory;
   sambaDir = "/data/samba";
+  #sambaIP = "valentin@192.168.18.51";
 
   gtk-theme-name = "Colloid-Dark";
   gtk-theme-pkg = pkgs.colloid-gtk-theme;
@@ -13,9 +14,9 @@ let
   gtk-icon-theme-name = "Colloid-Dark";
   gtk-icon-theme-pkg = pkgs.colloid-icon-theme;
 
-  gtk-cursor-theme-name = "Colloid-dark-cursors";
-  gtk-cursor-theme-pkg = pkgs.colloid-cursors;
-  gtk-cursor-theme-size = 24;
+  #gtk-cursor-theme-name = "Colloid-dark-cursors";
+  #gtk-cursor-theme-pkg = pkgs.colloid-cursors;
+  #gtk-cursor-theme-size = 24;
 
   gtk-font-name = "JetBrainsMono Nerd Font";
   gtk-font-pkg = pkgs.nerd-fonts.jetbrains-mono;
@@ -62,6 +63,12 @@ in
         "file://${sambaDir}/devices 󰣳 devices"
         "file://${sambaDir}/multimedia 󰣳 multimedia"
         "file://${sambaDir}/personal 󰣳 personal"
+        # NAS gvfs
+        #"smb://${sambaIP}/cipreses 󰣳 cipreses"
+        #"smb://${sambaIP}/code 󰣳 code"
+        #"smb://${sambaIP}/devices 󰣳 devices"
+        #"smb://${sambaIP}/multimedia 󰣳 multimedia"
+        #"smb://${sambaIP}/personal 󰣳 personal"
       ];
       extraConfig = {
         gtk-application-prefer-dark-theme = 1;

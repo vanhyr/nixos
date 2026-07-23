@@ -3,11 +3,6 @@
 #set -euo pipefail
 set -eu
 
-#if ! raw_vol=$(/run/current-system/sw/bin/wpctl get-volume @DEFAULT_AUDIO_SINK@ 2>/dev/null); then
-#  printf '󰖁 N/A\n'
-#  exit 0
-#fi
-
 tries=1
 max_tries=5
 

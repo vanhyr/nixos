@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -euo pipefail
+#set -euo pipefail
+set -eu
 
 state_file="/tmp/.dwmblocks_cpu_state_${USER:-$(id -u)}"
 

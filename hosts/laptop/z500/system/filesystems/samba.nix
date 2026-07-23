@@ -18,12 +18,13 @@ let
     "iocharset=utf8"
     "cifsacl"
     "noauto"
+    "nofail" # try for fix
     "vers=3.1.1"
     "x-systemd.automount"
     "x-systemd.idle-timeout=60"
     #"x-systemd.mount-timeout=5"
-    "x-systemd.mount-timeout=10"
-    "x-systemd.device-timeout=10"
+    "x-systemd.mount-timeout=3"
+    "x-systemd.device-timeout=3"
     #"credentials=${config.sops.secrets.samba-credentials.path}"
     "credentials=/home/vanhyr/.local/.samba/.valentin" # TODO -> change this (use sops)!
     "uid=1000"

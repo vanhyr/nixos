@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -euo pipefail
+#set -euo pipefail
+set -eu
 
 backlight_path="/sys/class/backlight/ideapad"
 

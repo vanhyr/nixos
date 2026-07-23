@@ -1,6 +1,7 @@
 #!/bin/sh
 
-set -euo pipefail
+#set -euo pipefail
+set -eu
 
 mem_total=0
 mem_avail=0
