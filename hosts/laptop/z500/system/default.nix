@@ -14,6 +14,8 @@
       blacklist = [
         "default.nix"
 
+        "keyring.nix"
+        "theme.nix"
         "xdg.nix"
       ];
 

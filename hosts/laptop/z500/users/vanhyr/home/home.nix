@@ -5,7 +5,7 @@
   imports = [
     ./xdg/default.nix
     ./theming/default.nix
-    ./thunar-daemon.nix
+    #./thunar-daemon.nix
     ./scripts.nix
   ];
 

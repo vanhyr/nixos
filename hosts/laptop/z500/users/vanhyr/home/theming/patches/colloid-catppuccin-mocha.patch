@@ -1,0 +1,104 @@
+--- a/src/sass/_color-palette-catppuccin.scss
++++ b/src/sass/_color-palette-catppuccin.scss
+@@ -3,47 +3,47 @@
+ // Red
+-$red-light: #ea999c;
+-$red-dark: #e64553;
++$red-light: #f38ba8;
++$red-dark: #f38ba8;
+ 
+ // Pink
+-$pink-light: #f4b8e4;
+-$pink-dark: #ea76cb;
++$pink-light: #f5c2e7;
++$pink-dark: #f5c2e7;
+ 
+ // Purple
+-$purple-light: #ca9ee6;
+-$purple-dark: #8839ef;
++$purple-light: #cba6f7;
++$purple-dark: #cba6f7;
+ 
+ // Blue
+-$blue-light: #8caaee;
+-$blue-dark: #1e66f5;
++$blue-light: #89b4fa;
++$blue-dark: #89b4fa;
+ 
+ // Teal
+-$teal-light: #81c8be;
+-$teal-dark: #179299;
++$teal-light: #94e2d5;
++$teal-dark: #94e2d5;
+ 
+ // Green
+-$green-light: #a6d189;
+-$green-dark: #40a02b;
++$green-light: #a6e3a1;
++$green-dark: #a6e3a1;
+ 
+ // Yellow
+-$yellow-light: #e5c890;
+-$yellow-dark: #df8e1d;
++$yellow-light: #f9e2af;
++$yellow-dark: #f9e2af;
+ 
+ // Orange
+-$orange-light: #ef9f76;
+-$orange-dark: #fe640b;
++$orange-light: #fab387;
++$orange-dark: #fab387;
+ 
+ // Grey
+-$grey-050: #eff1f5;
+-$grey-100: #e6e9ef;
+-$grey-150: #dce0e8;
+-$grey-200: #ccd0da;
+-$grey-250: #bcc0cc;
+-$grey-300: #acb0be;
+-$grey-350: #9ca0b0;
+-$grey-400: #8c8fa1;
+-$grey-450: #7c7f93;
+-$grey-500: #6c6f85;
+-$grey-550: #5c5f77;
+-$grey-600: #4c4f69;
++$grey-050: #cdd6f4;
++$grey-100: #bac2de;
++$grey-150: #a6adc8;
++$grey-200: #9399b2;
++$grey-250: #7f849c;
++$grey-300: #6c7086;
++$grey-350: #585b70;
++$grey-400: #45475a;
++$grey-450: #313244;
++$grey-500: #1e1e2e;
++$grey-550: #181825;
++$grey-600: #11111b;
+ $grey-650: #303446;
+ $grey-700: #292c3c;
+-$grey-750: #24273a;
+-$grey-800: #232634;
+-$grey-850: #1e1e2e;
++$grey-750: #11111b;
++$grey-800: #11111b;
++$grey-850: #1e1e2e;
+ $grey-900: #181825;
+ $grey-950: #11111b;
+ 
+ // White
+-$white: #eff1f5;
++$white: #cdd6f4;
+ 
+ // Black
+ $black: #11111b;
+@@ -53,3 +53,3 @@
+ 
+ // Link
+-$links: if($variant == 'light', #04a5e5, #99d1db);
++$links: if($variant == 'light', #89b4fa, #89dceb);
+ 
+ // Theme
+-$default-light: $blue-light;
+-$default-dark: $blue-dark;
++$default-light: #89b4fa;
++$default-dark: #89b4fa;
