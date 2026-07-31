@@ -401,34 +401,36 @@ applyrules(Client *c)
 				c->floatborderpx = r->floatborderpx;
 				c->hasfloatbw = 1;
 			}
-			if (r->isfloating) {
+      c->scratchkey = r->scratchkey;
+      for (m = mons; m && m->num != r->monitor; m = m->next);
+      if (m)
+        c->mon = m;
+      if (r->isfloating) {
         if (r->scratchkey) {
-					int bw = (r->floatborderpx >= 0) ? r->floatborderpx : borderpx;
-					if (r->floatx == -1) {
-						c->x = c->mon->mx + (c->mon->mw - (c->w + 2 * bw)) / 2;
-					} else if (r->floatx >= 0) {
-						c->x = c->mon->mx + (c->mon->mw * r->floatx) / 100;
-					}
-					if (r->floaty == -1) {
-						c->y = c->mon->my + (c->mon->mh - (c->h + 2 * bw)) / 2;
-					} else if (r->floaty >= 0) {
-						c->y = c->mon->my + (c->mon->mh * r->floaty) / 100;
-					}
+          int bw = (r->floatborderpx >= 0) ? r->floatborderpx : borderpx;
+
           if (r->floatw >= 0) c->w = (c->mon->mw * r->floatw) / 100;
           if (r->floath >= 0) c->h = (c->mon->mh * r->floath) / 100;
+
+          if (r->floatx == -1) {
+            c->x = c->mon->mx + (c->mon->mw - (c->w + 2 * bw)) / 2;
+          } else if (r->floatx >= 0) {
+            c->x = c->mon->mx + (c->mon->mw * r->floatx) / 100;
+          }
+          if (r->floaty == -1) {
+            c->y = c->mon->my + (c->mon->mh - (c->h + 2 * bw)) / 2;
+          } else if (r->floaty >= 0) {
+            c->y = c->mon->my + (c->mon->mh * r->floaty) / 100;
+          }
         } else {
           if (r->floatx >= 0) c->x = c->mon->mx + r->floatx;
           if (r->floaty >= 0) c->y = c->mon->my + r->floaty;
           if (r->floatw >= 0) c->w = r->floatw;
           if (r->floath >= 0) c->h = r->floath;
         }
-			}
-			c->scratchkey = r->scratchkey;
-			for (m = mons; m && m->num != r->monitor; m = m->next);
-			if (m)
-				c->mon = m;
-		}
-	}
+      }
+    }
+  }
 	if (ch.res_class)
 		XFree(ch.res_class);
 	if (ch.res_name)
