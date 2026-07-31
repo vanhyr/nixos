@@ -34,8 +34,11 @@ switch:
 switch-nh:
   nh os switch . -H {{hostname}}
 
-#switch-upgrade:
-#  sudo nixos-rebuild switch --upgrade --flake .#{{hostname}}
+boot:
+	doas nixos-rebuild boot --flake .#{{hostname}}
+
+boot-nh:
+  nh os boot . -H {{hostname}}
 
 fmt:
   nix fmt

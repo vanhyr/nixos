@@ -13,11 +13,15 @@
         # nix-cachyos-kernel
         #"https://attic.xuyh0120.win/lantian" # official
         #"https://cache.xinux.uz" # 3rd party maintainer
+        # nix-community (autofirma-nix)
+        "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
         # nix-cachyos-kernel
         #"lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc=" # official
         #"cache.xinux.uz:BXCrtqejFjWzWEB9YuGB7X2MV4ttBur1N8BkwQRdH+0=" # 3rd party maintainer
+        # nix-community (autofirma-nix)
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
   };

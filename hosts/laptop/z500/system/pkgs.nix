@@ -30,10 +30,6 @@
 
     nsxiv
 
-    zed-editor
-    nil
-    nixd
-
     xclip
     xsel
 

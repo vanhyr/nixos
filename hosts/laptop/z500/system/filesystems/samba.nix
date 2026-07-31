@@ -33,7 +33,7 @@ let
     #"dir_mode=0770"
 
     # no hang when nas is down, possible fix
-    "soft"
+    #"soft"
     #"retry=1"
     #"echo_interval=10"
 

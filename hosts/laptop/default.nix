@@ -62,6 +62,8 @@ in
               # sops-nix
               #self.inputs.sops-nix.nixosModules.default
               self.inputs.sops-nix.nixosModules.sops
+              # autofirma-nix
+              self.inputs.autofirma-nix.nixosModules.default
               # home-manager
               self.inputs."home-manager${
                 lib.attrsets.attrByPath [ name ] "" nixpkgsMap

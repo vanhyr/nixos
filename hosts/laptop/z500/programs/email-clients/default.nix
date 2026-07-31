@@ -13,9 +13,6 @@
 
       blacklist = [
         "default.nix"
-
-        "redshift.nix"
-        "openlogi.nix"
       ];
 
       isValidNix =

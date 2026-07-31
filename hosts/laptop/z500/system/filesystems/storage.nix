@@ -2,6 +2,16 @@
   ...
 }:
 {
+  services = {
+    fstrim = {
+      enable = true; # trim ssd
+      interval = "weekly";
+    };
+    btrfs.autoScrub = {
+      enable = true;
+      interval = "weekly";
+    };
+  };
   fileSystems = {
     "/" = {
       device = "/dev/disk/by-uuid/08ce1240-0369-4d5a-86fa-92b06e89cbc5"; # /dev/sda3
@@ -88,11 +98,4 @@
   #  "d /swap 0700 root root - -"
   #  "h /swap - - - - +C"
   #];
-  services = {
-    fstrim.enable = true; # trim ssd
-    btrfs.autoScrub = {
-      enable = true;
-      interval = "weekly";
-    };
-  };
 }

@@ -3,7 +3,7 @@
 
   inputs = {
 
-    nixpkgs.url = "nixpkgs/nixos-25.11";
+    nixpkgs.url = "nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # chaotic-nyx -> provides the cachyos kernel and some bleeding edge packages (lto does not work)
@@ -61,6 +61,13 @@
     #  url = "github:0xc000022070/zen-browser-flake";
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
+
+    autofirma-nix = {
+      #url = "github:nix-community/autofirma-nix"; # unstable (broken)
+      url = "github:nix-community/autofirma-nix/develop"; # https://github.com/nix-community/autofirma-nix/issues/926
+      #url = "github:nix-community/autofirma-nix/release-26.05"; # stable
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 

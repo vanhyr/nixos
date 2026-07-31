@@ -6,6 +6,8 @@
     ./xdg/default.nix
     ./theming/default.nix
     #./thunar-daemon.nix
+    ./services/default.nix
+    ./programs/default.nix
     ./scripts.nix
   ];
 

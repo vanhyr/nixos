@@ -8,42 +8,64 @@ let
   sambaDir = "/data/samba";
   #sambaIP = "valentin@192.168.18.51";
 
+  # Colloid GTK
   #gtk-theme-pkg = pkgs.colloid-gtk-theme;
   #gtk-theme-name = "Colloid-Dark";
-  colloid-gtk-theme-catppuccin = pkgs.colloid-gtk-theme.override {
-    themeVariants = [ "default" ];
-    colorVariants = [ "standard" ];
-    sizeVariants = [ "standard" ];
-    tweaks = [ "catppuccin" ];
+  # Colloid GTK Catppuccin Mocha
+  #colloid-gtk-theme-catppuccin = pkgs.colloid-gtk-theme.override {
+  #  themeVariants = [ "default" ];
+  #  colorVariants = [ "standard" ];
+  #  sizeVariants = [ "standard" ];
+  #  tweaks = [ "catppuccin" ];
+  #};
+  #colloid-gtk-theme-catppuccin-mocha = colloid-gtk-theme-catppuccin.overrideAttrs (oldAttrs: {
+  #  patches = (oldAttrs.patches or [ ]) ++ [
+  #    ./patches/colloid-catppuccin-mocha.patch
+  #  ];
+  #});
+  #gtk-theme-pkg = colloid-gtk-theme-catppuccin-mocha;
+  #gtk-theme-name = "Colloid-Catppuccin";
+  # Cattppuccin GTK
+  catppuccin-gtk-theme-mocha = pkgs.catppuccin-gtk.override {
+    accents = [ "blue" ];
+    size = "standard";
+    tweaks = [ "normal" ];
+    variant = "mocha";
   };
-  colloid-gtk-theme-catppuccin-mocha = colloid-gtk-theme-catppuccin.overrideAttrs (oldAttrs: {
-    patches = (oldAttrs.patches or [ ]) ++ [
-      ./patches/colloid-catppuccin-mocha.patch
-    ];
-  });
-  gtk-theme-pkg = colloid-gtk-theme-catppuccin-mocha;
-  gtk-theme-name = "Colloid-Catppuccin";
+  gtk-theme-pkg = catppuccin-gtk-theme-mocha;
+  gtk-theme-name = "catppuccin-mocha-blue-standard+normal";
 
+  # Colloid Icons
   #gtk-icon-theme-pkg = pkgs.colloid-icon-theme;
   #gtk-icon-theme-name = "Colloid-Dark";
+  # Colloid Icons Catppuccin
   colloid-icon-theme-catppuccin = pkgs.colloid-icon-theme.override {
     schemeVariants = [ "catppuccin" ];
     colorVariants = [ "default" ];
   };
   gtk-icon-theme-pkg = colloid-icon-theme-catppuccin;
   gtk-icon-theme-name = "Colloid-Catppuccin-Dark";
-  #gtk-icon-theme-name = "Colloid-Catppuccin";
 
+  # Colloid cursors
   #gtk-cursor-theme-pkg = pkgs.colloid-cursors;
   ##gtk-cursor-theme-name = "Colloid-dark-cursors";
   #gtk-cursor-theme-name = "Colloid-cursors";
-  #gtk-cursor-theme-size = 24;
+  #gtk-cursor-theme-size = 20;
+  # Catppuccin Mocha cursors
+  #gtk-cursor-theme-pkg = pkgs.catppuccin-cursors.mochaBlue;
+  #gtk-cursor-theme-name = "catppuccin-mocha-blue-cursors";
+  #gtk-cursor-theme-size = 20;
 
   gtk-font-pkg = pkgs.nerd-fonts.jetbrains-mono;
   gtk-font-name = "JetBrainsMono Nerd Font";
   gtk-font-size = 11;
 in
 {
+  dconf.settings = {
+    "org/gnome/desktop/wm/preferences" = {
+      button-layout = "";
+    };
+  };
   gtk = {
     enable = true;
     colorScheme = "dark";
@@ -71,6 +93,8 @@ in
     gtk3 = {
       enable = true;
       bookmarks = [
+        #"computer:/// computer"
+        #"file:/// /"
         #"file://${home}/dsk dsk"
         "file://${home}/dl dl"
         "file://${home}/doc doc"
@@ -92,14 +116,33 @@ in
         #"smb://${sambaIP}/personal 󰣳 personal"
       ];
       extraConfig = {
-        gtk-application-prefer-dark-theme = 1;
+        #gtk-application-prefer-dark-theme = 1;
+        gtk-decoration-layout = "";
       };
+      extraCss = ''
+        headerbar button.titlebutton,
+        windowcontrols button {
+          display: none;
+        }
+      '';
     };
     gtk4 = {
       enable = true;
-      #extraConfig = {
-      #  gtk-application-prefer-dark-theme = 1;
-      #};
+      colorScheme = "dark";
+      theme = {
+        package = gtk-theme-pkg;
+        name = gtk-theme-name;
+      };
+      extraConfig = {
+        #gtk-application-prefer-dark-theme = 1;
+        gtk-decoration-layout = "";
+      };
+      extraCss = ''
+        headerbar button.titlebutton,
+        windowcontrols button {
+          display: none;
+        }
+      '';
     };
   };
 }
