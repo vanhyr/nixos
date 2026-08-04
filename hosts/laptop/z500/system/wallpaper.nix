@@ -2,9 +2,9 @@
   pkgs,
   ...
 }:
-let
-  wallpaper = "/home/vanhyr/.local/share/wallpaper";
-in
+#let
+#  wallpaper = "/home/vanhyr/.local/share/wallpaper";
+#in
 {
   environment.systemPackages = with pkgs; [
     feh
@@ -16,7 +16,8 @@ in
   #    echo "⚠️ Wallpaper no encontrado: ${wallpaper}" >&2
   #  fi
   #'';
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.feh}/bin/feh --bg-fill ${wallpaper} &
-  '';
+  # this works
+  #services.xserver.displayManager.sessionCommands = ''
+  #  ${pkgs.feh}/bin/feh --bg-fill ${wallpaper} &
+  #'';
 }

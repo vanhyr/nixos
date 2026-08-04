@@ -13,6 +13,8 @@
 
       blacklist = [
         "default.nix"
+
+        "lockscreen-bak.nix"
       ];
 
       isValidNix =
