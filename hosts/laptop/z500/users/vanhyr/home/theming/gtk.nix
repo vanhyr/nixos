@@ -56,9 +56,9 @@ let
   #gtk-cursor-theme-name = "catppuccin-mocha-blue-cursors";
   #gtk-cursor-theme-size = 20;
 
-  gtk-font-pkg = pkgs.nerd-fonts.jetbrains-mono;
-  gtk-font-name = "JetBrainsMono Nerd Font";
-  gtk-font-size = 11;
+  #gtk-font-pkg = pkgs.nerd-fonts.jetbrains-mono;
+  #gtk-font-name = "JetBrainsMono Nerd Font";
+  #gtk-font-size = 11;
 in
 {
   dconf.settings = {
@@ -82,11 +82,11 @@ in
     #  name = gtk-cursor-theme-name;
     #  size = gtk-cursor-theme-size;
     #};
-    font = {
-      package = gtk-font-pkg;
-      name = gtk-font-name;
-      size = gtk-font-size;
-    };
+    #font = {
+    #  package = gtk-font-pkg;
+    #  name = gtk-font-name;
+    #  size = gtk-font-size;
+    #};
     gtk2 = {
       enable = true;
     };

@@ -15,7 +15,7 @@
         "default.nix"
 
         #"keyring.nix"
-        "autorandr.nix"
+        #"autorandr.nix"
         "theme.nix"
         "xdg.nix"
       ];

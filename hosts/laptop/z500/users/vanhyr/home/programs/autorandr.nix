@@ -12,6 +12,7 @@ in
   services.autorandr = {
     enable = true;
     ignoreLid = false;
+    matchEdid = true;
   };
   programs.autorandr = {
     enable = true;

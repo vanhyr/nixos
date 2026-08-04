@@ -46,13 +46,19 @@
       #"acpi_backlight=video"
       "ideapad_laptop.backlight=0"
 
-      # fix nvidia suspend bug
+      # fix nvidia suspend bug (testing)
       "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
 
       # touchpad fix
       #"psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
 
-      "systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
+      #"systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
+
+      #"mem_sleep_default=deep"
+      #"mem_sleep_default=s2idle"
+
+      # usb not working after suspend fix?
+      "usbcore.autosuspend=-1"
     ];
 
     blacklistedKernelModules = [
