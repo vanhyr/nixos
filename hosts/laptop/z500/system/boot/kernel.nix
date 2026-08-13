@@ -52,13 +52,19 @@
       # touchpad fix
       #"psmouse.synaptics_intertouch=1" # force the high precission protocol over the default bus
 
+      # loner0z did it
       #"systemd.mask=dev-tpmrm0.device" # this is to mask that stupid 1.5 mins systemd bug
 
+      # ram suspend fix?
       #"mem_sleep_default=deep"
       #"mem_sleep_default=s2idle"
 
       # usb not working after suspend fix?
       "usbcore.autosuspend=-1"
+
+      # sata suspend fix?
+      #"ahci.mobile_lpm_policy=0"
+      #"libata.force=noncq"
     ];
 
     blacklistedKernelModules = [

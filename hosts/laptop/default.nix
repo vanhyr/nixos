@@ -16,6 +16,7 @@ let
     };
     home-manager.users.vanhyr.imports = [
       ./z500/users/vanhyr/home/home.nix
+      self.inputs.autofirma-nix.homeManagerModules.default
     ]
     ++ extraImports;
     home-manager.backupFileExtension = "hm-bak";
@@ -63,7 +64,7 @@ in
               #self.inputs.sops-nix.nixosModules.default
               self.inputs.sops-nix.nixosModules.sops
               # autofirma-nix
-              self.inputs.autofirma-nix.nixosModules.default
+              #self.inputs.autofirma-nix.nixosModules.default
               # home-manager
               self.inputs."home-manager${
                 lib.attrsets.attrByPath [ name ] "" nixpkgsMap

@@ -25,15 +25,19 @@
     #  ''
     #];
 
-    # Disable xscreensaver
-    #serverFlagsSection = ''
-    #  Option "BlankTime"   "0"
-    #'';
     #serverFlagsSection = ''
     #  Option "StandbyTime" "10"
     #  Option "SuspendTime" "10"
     #  Option "OffTime"     "10"
     #  Option "BlankTime"   "0"
     #'';
+    # Dimming triggers screen locker fix
+    serverFlagsSection = ''
+      Option "BlankTime"   "0"
+      Option "StandbyTime" "0"
+      Option "SuspendTime" "0"
+      Option "OffTime"     "0"
+      Option "PreferBlanking" "false"
+    '';
   };
 }

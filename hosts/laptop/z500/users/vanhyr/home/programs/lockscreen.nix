@@ -12,7 +12,7 @@ let
 
     wallpaper_file="$1"
     wallpaper_hash=$(${pkgs.coreutils}/bin/md5sum "$wallpaper_file" | ${pkgs.coreutils}/bin/cut -d' ' -f1)
-    screens=$(${pkgs.xorg.xrandr}/bin/xrandr --query \
+    screens=$(${pkgs.xrandr}/bin/xrandr --query \
       | ${pkgs.gnugrep}/bin/grep " connected" \
       | ${pkgs.gawk}/bin/awk '{print $1, $3}' \
       | ${pkgs.coreutils}/bin/sort)

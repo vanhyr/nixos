@@ -6,7 +6,7 @@ preserveonrestart:
   - DONE -> remember the tag you were before restart and restore it after the restart (it used to go to tag 1)
 
 namedscratchpads:
-  - fix placement bug after closing the same type of window and spawning the scratch.
+  - DONE -> fix placement bug after closing the same type of window and spawning the scratch.
   - look for a workaround for normal clients (no terminals) to have an unique identifier (wm_class) so rules can be independent for the normal app and the scratched app.
   - DONE -> hide when restarting (preserveonrestart)
   - DONE -> hide when changing tag.

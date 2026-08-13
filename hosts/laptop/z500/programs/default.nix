@@ -14,6 +14,7 @@
       blacklist = [
         "default.nix"
 
+        "gobierno-espanna"
         "redshift.nix"
         "openlogi.nix"
       ];

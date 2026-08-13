@@ -12,5 +12,8 @@
         "DNIeRemote" = "${config.programs.dnieremote.finalPackage}/lib/libdnieremotepkcs11.so";
       };
     };
+    profiles.default = {
+      id = 0;
+    };
   };
 }
