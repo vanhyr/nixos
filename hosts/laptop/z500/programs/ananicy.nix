@@ -4,8 +4,7 @@
 }:
 {
   services.ananicy = {
-    #enable = true;
-    enable = false; # broken now, doesn't build
+    enable = true;
     package = pkgs.ananicy-cpp;
     rulesProvider = pkgs.ananicy-rules-cachyos;
   };
