@@ -74,7 +74,7 @@ in
         #   https://github.com/joanbm/nvidia-470xx-linux-mainline/tree/master/patches
         package =
           if cfg.driverVersion == "legacy-470-patched" then
-            patched-nvidia-470-driver # works up to kernel 7.2
+            patched-nvidia-470-driver # works up to kernel 7.3
           else if cfg.driverVersion == "legacy-470" then
             config.boot.kernelPackages.nvidiaPackages.legacy_470 # works up to kernel 7.1
           else

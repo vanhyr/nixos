@@ -4,8 +4,7 @@
   ...
 }:
 let
-  #commit = "3453cd04da69c60e9330acf085746449c0a7b754";
-  commit = "b1cfe45e485b76bc93cab65f4c065590004b893b";
+  commit = "b68e153b018bb0b5cd4cbd72cb66c84e3b7d18e9";
   joanbm-patches = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/${commit}/patches";
 
   # Disable objtool for propietary blobs (optional if you are compiling the kernel)
@@ -51,6 +50,12 @@ let
     #stripLen = 1;
     #extraPrefix = "kernel/";
   };
+  patch-linux-7-3 = pkgs.fetchpatch {
+    url = "${joanbm-patches}/nvidia-470xx-fix-linux-7.3.patch";
+    hash = "sha256-wiVw1laEh+Yix1eI43gv4qwLz71xt3XCbFxdxennXf8=";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
+  };
 
   baseDriver = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 in
@@ -80,12 +85,13 @@ baseDriver.overrideAttrs (oldAttrs: {
   #NIX_CFLAGS_COMPILE = (oldAttrs.NIX_CFLAGS_COMPILE or "") + " -fno-lto";
 
   patches = (oldAttrs.patches or [ ]) ++ [
-    #patch-disable-objtool-override
-    #patch-linux-6-19-part1
-    #patch-linux-6-19-part2
-    #patch-linux-7-0
+    #patch-disable-objtool-override # optional
+    #patch-linux-6-19-part1 # patched upstream
+    #patch-linux-6-19-part2 # patched upstream
+    #patch-linux-7-0 # patched upstream
     patch-linux-7-2-part1
     patch-linux-7-2-part2
     patch-linux-7-2-part3
+    patch-linux-7-3
   ];
 })

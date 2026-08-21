@@ -35,7 +35,7 @@
         # check options with: lpoptions -p Epson_ET-3850 -l
         ppdOptions = {
           MediaType = "PLAIN_NORMAL"; # or PLAIN_HIGH
-          Ink = "MONO"; # or COLOR
+          Ink = "COLOR"; # or MONO
           Duplex = "DuplexNoTumble"; # or None or DuplexTumble (horizontal)
           PageSize = "A4";
         };

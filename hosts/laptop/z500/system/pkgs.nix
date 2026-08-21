@@ -34,7 +34,7 @@
     xsel
 
     duf
-    nitrogen
+    #nitrogen
 
     lxappearance
     #lxappearance-gtk2
