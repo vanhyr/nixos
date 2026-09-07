@@ -4,10 +4,10 @@
 }:
 {
   boot = {
-    # default linux kernel
+    # default linux kernel (https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/top-level/linux-kernels.nix)
     #kernelPackages = pkgs.linuxPackages_latest;
 
-    # chaotic-nyx
+    # chaotic-nyx (https://www.nyx.chaotic.cx/)
     kernelPackages = pkgs.linuxPackages_cachyos-gcc; # cachyOS kernel
     # lto breaks! marks cups as broken
     #kernelPackages = pkgs.linuxPackages_cachyos; # cachyOS kernel (now it applies lto)
