@@ -30,6 +30,7 @@
 
     thunar = {
       enable = true;
+      #package = pkgs.thunar; # default
       plugins = with pkgs; [
         thunar-archive-plugin
         thunar-volman

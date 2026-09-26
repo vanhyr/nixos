@@ -29,8 +29,8 @@
         # Epson ET-3850 (escpr2 drivers)
         name = "Epson_ET-3850";
         #location = "home";
-        deviceUri = "ipps://192.168.18.150:631/ipp/print";
-        #deviceUri = "ipps://192.168.18.150/ipp/print";
+        #deviceUri = "ipps://192.168.18.150:631/ipp/print";
+        deviceUri = "ipps://192.168.18.150/ipp/print";
         model = "epson-inkjet-printer-escpr2/Epson-ET-3850_Series-epson-escpr2-en.ppd";
         # check options with: lpoptions -p Epson_ET-3850 -l
         ppdOptions = {
@@ -44,8 +44,8 @@
         # Epson ET-3850 (ipp, driverless)
         name = "Epson_ET-3850_IPP";
         #location = "home";
-        deviceUri = "ipps://192.168.18.150:631/ipp/print";
-        #deviceUri = "ipps://192.168.18.150/ipp/print";
+        #deviceUri = "ipps://192.168.18.150:631/ipp/print";
+        deviceUri = "ipps://192.168.18.150/ipp/print";
         model = "everywhere";
         # (doesn't seems to work when using driverless) check options with: lpoptions -p Epson_ET-3850_IPP -l
         #ppdOptions = {
