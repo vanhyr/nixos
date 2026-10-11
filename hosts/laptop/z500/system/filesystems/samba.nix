@@ -19,16 +19,16 @@ let
     "cifsacl"
 
     "noauto"
-    "nofail" # try for fix
+    "nofail"
+
     "soft"
 
-    "vers=3.1.1"
+    #"vers=3.1.1"
 
-    "x-systemd.automount" # try to disable this to fix!
+    "x-systemd.automount"
     "x-systemd.idle-timeout=60"
     #"x-systemd.mount-timeout=5"
     "x-systemd.mount-timeout=3"
-    "x-systemd.device-timeout=3"
 
     #"credentials=${config.sops.secrets.samba-credentials.path}"
     "credentials=/home/vanhyr/.local/.samba/.valentin" # TODO -> change this (use sops)!
@@ -40,7 +40,6 @@ let
     #"dir_mode=0770"
 
     # no hang when nas is down, possible fix
-    #"retry=1"
     #"echo_interval=10"
 
     # TODO -> take a look at this

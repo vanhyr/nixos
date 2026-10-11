@@ -13,6 +13,8 @@
 
       blacklist = [
         "default.nix"
+
+        "autofs.nix"
       ];
 
       isValidNix =

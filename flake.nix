@@ -65,7 +65,6 @@
     autofirma-nix = {
       #url = "github:nix-community/autofirma-nix"; # unstable (broken)
       url = "github:nix-community/autofirma-nix/develop"; # https://github.com/nix-community/autofirma-nix/issues/926
-      #url = "github:nix-community/autofirma-nix/release-26.05"; # stable
       #inputs.nixpkgs.follows = "nixpkgs";
     };
 
