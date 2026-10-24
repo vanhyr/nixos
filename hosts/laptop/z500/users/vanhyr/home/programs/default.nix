@@ -13,6 +13,8 @@
 
       blacklist = [
         "default.nix"
+
+        "tailscale-systray.nix"
       ];
 
       isValidNix =

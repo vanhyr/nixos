@@ -108,6 +108,7 @@ in
         "file://${sambaDir}/devices 󰣳 devices"
         "file://${sambaDir}/multimedia 󰣳 multimedia"
         "file://${sambaDir}/personal 󰣳 personal"
+        "file://${sambaDir}/personal/formacion/gs/dc/1º/ 󰣳 1º dc"
         # NAS gvfs
         #"smb://${sambaIP}/cipreses 󰣳 cipreses"
         #"smb://${sambaIP}/code 󰣳 code"

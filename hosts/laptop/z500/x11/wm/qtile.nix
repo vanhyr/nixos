@@ -11,4 +11,14 @@
       qtile-extras
     ];
   };
+  # qtile-extras tests are broken, temporal fix: disable tests
+  nixpkgs.overlays = [
+    (final: prev: {
+      pythonPackagesExtensions = prev.pythonPackagesExtensions ++ [
+        (pyFinal: pyPrev: {
+          qtile-extras = pyPrev.qtile-extras.overridePythonAttrs { doCheck = false; };
+        })
+      ];
+    })
+  ];
 }

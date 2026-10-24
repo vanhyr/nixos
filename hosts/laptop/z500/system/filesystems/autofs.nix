@@ -50,7 +50,8 @@ in
   ];
 
   services.autofs = {
-    enable = true;
+    #enable = true;
+    enable = false;
     timeout = 60;
     autoMaster = ''
       /data/samba file:/etc/auto.samba --ghost

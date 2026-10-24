@@ -12,7 +12,7 @@
   };
   environment.systemPackages = with pkgs; [
     system-config-printer # gtk frontend to cups
-    naps2 # scan program
+    #naps2 # scan program
   ];
   hardware.sane = {
     enable = true; # support for sane scanners
