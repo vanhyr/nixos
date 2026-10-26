@@ -4,7 +4,7 @@
   ...
 }:
 let
-  commit = "b68e153b018bb0b5cd4cbd72cb66c84e3b7d18e9";
+  commit = "40852aad0bc0dd3774a84a97239e9a25c3e9bdb7";
   joanbm-patches = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/${commit}/patches";
 
   # Disable objtool for propietary blobs (optional if you are compiling the kernel)
@@ -57,6 +57,13 @@ let
     #extraPrefix = "kernel/";
   };
 
+  patch-linux-7-4 = pkgs.fetchpatch {
+    url = "${joanbm-patches}/nvidia-470xx-fix-linux-7.4.patch";
+    hash = "sha256-kAMWvcYgw0h37bqxtEcoK1YxJ3zaLLvmrghUJyg1miU=";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
+  };
+
   baseDriver = config.boot.kernelPackages.nvidiaPackages.legacy_470;
 in
 baseDriver.overrideAttrs (oldAttrs: {
@@ -93,5 +100,6 @@ baseDriver.overrideAttrs (oldAttrs: {
     patch-linux-7-2-part2
     patch-linux-7-2-part3
     patch-linux-7-3
+    patch-linux-7-4
   ];
 })

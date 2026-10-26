@@ -13,9 +13,6 @@
 
       blacklist = [
         "default.nix"
-
-        "firefox.nix" # broken, TODO -> fix
-        "librewolf.nix" # broken, TODO -> fix
       ];
 
       isValidNix =
