@@ -4,13 +4,19 @@
   ...
 }:
 let
-  commit = "40852aad0bc0dd3774a84a97239e9a25c3e9bdb7";
+  commit = "49f2ce2060338c09f93e4f482f0d4894277b2f95";
   joanbm-patches = "https://raw.githubusercontent.com/joanbm/nvidia-470xx-linux-mainline/${commit}/patches";
 
   # Disable objtool for propietary blobs (optional if you are compiling the kernel)
   patch-disable-objtool-override = pkgs.fetchpatch {
     url = "${joanbm-patches}/disable-objtool-override.patch";
     hash = "sha256-3X9M13xm51lPkt0pIFxG0C4/koC1qzKsO43GATHjmK8=";
+    #stripLen = 1;
+    #extraPrefix = "kernel/";
+  };
+  patch-fix-clang = pkgs.fetchpatch {
+    url = "${joanbm-patches}/nvidia-470xx-fix-clang.patch";
+    hash = "sha256-qsDZ0RYOmlDlt/87p0mcTc5/BJktAlN/PczQPSoliZw=";
     #stripLen = 1;
     #extraPrefix = "kernel/";
   };
@@ -91,15 +97,19 @@ baseDriver.overrideAttrs (oldAttrs: {
   #'';
   #NIX_CFLAGS_COMPILE = (oldAttrs.NIX_CFLAGS_COMPILE or "") + " -fno-lto";
 
+  #makeFlags = (oldAttrs.makeFlags or []) ++ [ "LLVM=1" ];
+  #nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.llvmPackages.clang pkgs.llvmPackages.lld ];
+
   patches = (oldAttrs.patches or [ ]) ++ [
     #patch-disable-objtool-override # optional
+    patch-fix-clang # optional (clang)
     #patch-linux-6-19-part1 # patched upstream
     #patch-linux-6-19-part2 # patched upstream
     #patch-linux-7-0 # patched upstream
-    patch-linux-7-2-part1
-    patch-linux-7-2-part2
-    patch-linux-7-2-part3
-    patch-linux-7-3
+    #patch-linux-7-2-part1 # patched upstream
+    #patch-linux-7-2-part2 # patched upstream
+    #patch-linux-7-2-part3 # patched upstream
+    #patch-linux-7-3 # patched upstream
     patch-linux-7-4
   ];
 })

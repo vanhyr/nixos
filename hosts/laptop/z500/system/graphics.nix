@@ -9,8 +9,8 @@
 
   drivers.nvidia = {
     enable = true;
-    driverVersion = "legacy-470-patched"; # patched up to kernel 7.3 manually
-    #driverVersion = "legacy-470"; # recently patched up to kernel 7.2 upstream
+    #driverVersion = "legacy-470-patched"; # patched up to kernel 7.4 manually
+    driverVersion = "legacy-470"; # recently patched up to kernel 7.3 upstream
   };
   drivers.nvidia-prime = {
     enable = true;
